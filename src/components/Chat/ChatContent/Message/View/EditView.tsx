@@ -34,6 +34,7 @@ const EditView = ({
 
   const [_content, _setContent] = useState<ContentInterface[]>(content);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [imageUrl, setImageUrl] = useState<string>('');
   const textareaRef = React.createRef<HTMLTextAreaElement>();
 
   const { t } = useTranslation();
@@ -102,6 +103,22 @@ const EditView = ({
     const updatedContent = [..._content, ...newImages];
 
     _setContent(updatedContent);
+  };
+
+  const handleImageUrlChange = () => {
+    if (imageUrl.trim() === '') return;
+
+    const newImage: ImageContentInterface = {
+      type: 'image_url',
+      image_url: {
+        detail: 'auto',
+        url: imageUrl,
+      },
+    };
+
+    const updatedContent = [..._content, newImage];
+    _setContent(updatedContent);
+    setImageUrl('');
   };
 
   const handleImageDetailChange = (index: number, detail: string) => {
@@ -229,6 +246,9 @@ const EditView = ({
         setIsEdit={setIsEdit}
         _setContent={_setContent}
         _content={_content}
+        imageUrl={imageUrl}
+        setImageUrl={setImageUrl}
+        handleImageUrlChange={handleImageUrlChange}
       />
       {isModalOpen && (
         <PopupModal
@@ -254,6 +274,9 @@ const EditViewButtons = memo(
     setIsEdit,
     _setContent,
     _content,
+    imageUrl,
+    setImageUrl,
+    handleImageUrlChange,
   }: {
     sticky?: boolean;
     handleFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -265,6 +288,9 @@ const EditViewButtons = memo(
     setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
     _setContent: React.Dispatch<React.SetStateAction<ContentInterface[]>>;
     _content: ContentInterface[];
+    imageUrl: string;
+    setImageUrl: React.Dispatch<React.SetStateAction<string>>;
+    handleImageUrlChange: () => void;
   }) => {
     const { t } = useTranslation();
     const generating = useStore.getState().generating;
@@ -286,65 +312,82 @@ const EditViewButtons = memo(
     return (
       <div>
         {modelTypes[model] == 'image' && (
-          <div className='flex justify-center'>
-            <div className='flex gap-5'>
-              {_content.slice(1).map((image, index) => (
-                <div
-                  key={index}
-                  className='image-container flex flex-col gap-2'
-                >
-                  <img
-                    src={image.image_url.url}
-                    alt={`uploaded-${index}`}
-                    className='h-10'
-                  />
-                  <div className='flex flex-row gap-3'>
-                    <select
-                      onChange={(event) =>
-                        handleImageDetailChange(index, event.target.value)
-                      }
-                      title='Select image resolution'
-                      aria-label='Select image resolution'
-                      defaultValue={image.image_url.detail}
-                      style={{ color: 'black' }}
-                    >
-                      <option value='auto'>Auto</option>
-                      <option value='high'>High</option>
-                      <option value='low'>Low</option>
-                    </select>
-                    <button
-                      className='close-button'
-                      onClick={() => handleRemoveImage(index)}
-                      aria-label='Remove Image'
-                    >
-                      &times;
-                    </button>
+          <>
+            <div className='flex justify-center'>
+              <div className='flex gap-5'>
+                {_content.slice(1).map((image, index) => (
+                  <div
+                    key={index}
+                    className='image-container flex flex-col gap-2'
+                  >
+                    <img
+                      src={image.image_url.url}
+                      alt={`uploaded-${index}`}
+                      className='h-10'
+                    />
+                    <div className='flex flex-row gap-3'>
+                      <select
+                        onChange={(event) =>
+                          handleImageDetailChange(index, event.target.value)
+                        }
+                        title='Select image resolution'
+                        aria-label='Select image resolution'
+                        defaultValue={image.image_url.detail}
+                        style={{ color: 'black' }}
+                      >
+                        <option value='auto'>Auto</option>
+                        <option value='high'>High</option>
+                        <option value='low'>Low</option>
+                      </select>
+                      <button
+                        className='close-button'
+                        onClick={() => handleRemoveImage(index)}
+                        aria-label='Remove Image'
+                      >
+                        &times;
+                      </button>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
 
+                <button
+                  className='btn relative btn-neutral h-10'
+                  onClick={handleUploadButtonClick}
+                  aria-label={'Upload Images'}
+                >
+                  <div className='flex items-center justify-center gap-2'>
+                    <FolderIcon />
+                  </div>
+                </button>
+              </div>
+            </div>
+            <div className='flex justify-center mt-4'>
+              <input
+                type='text'
+                value={imageUrl}
+                onChange={(e) => setImageUrl(e.target.value)}
+                placeholder={t('enter_image_url_placeholder') as string}
+                className='input input-bordered w-full max-w-xs text-gray-800 dark:text-white p-3  border-none bg-gray-200 dark:bg-gray-600 rounded-md m-0 w-full mr-0 h-10 focus:outline-none'
+              />
               <button
-                className='btn relative btn-neutral h-10'
-                onClick={handleUploadButtonClick}
-                aria-label={'Upload Images'}
+                className='btn btn-primary ml-2'
+                onClick={handleImageUrlChange}
+                aria-label={t('add_image_url') as string}
               >
-                <div className='flex items-center justify-center gap-2'>
-                  <FolderIcon />
-                </div>
+                {t('add_image_url')}
               </button>
             </div>
-
             {/* Hidden file input */}
             <input
               type='file'
               ref={fileInputRef}
               style={{ display: 'none' }}
               onChange={handleFileChange}
-              accept='image/*'
               multiple
             />
-          </div>
+          </>
         )}
+
         <div className='flex'>
           <div className='flex-1 text-center mt-2 flex justify-center'>
             {sticky && (
