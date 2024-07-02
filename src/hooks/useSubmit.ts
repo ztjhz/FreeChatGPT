@@ -2,6 +2,7 @@ import useStore from '@store/store';
 import { useTranslation } from 'react-i18next';
 import {
   ChatInterface,
+  ConfigInterface,
   MessageInterface,
   TextContentInterface,
 } from '@type/chat';
@@ -23,7 +24,8 @@ const useSubmit = () => {
   const setChats = useStore((state) => state.setChats);
 
   const generateTitle = async (
-    message: MessageInterface[]
+    message: MessageInterface[],
+    modelConfig: ConfigInterface
   ): Promise<string> => {
     let data;
     try {
@@ -47,7 +49,7 @@ const useSubmit = () => {
         data = await getChatCompletion(
           useStore.getState().apiEndpoint,
           message,
-          _defaultChatConfig,
+          modelConfig,
           apiKey,
           undefined,
           useStore.getState().apiVersion
@@ -202,13 +204,15 @@ const useSubmit = () => {
           ],
         };
 
-        let title = (await generateTitle([message])).trim();
-        if (title.startsWith('"') && title.endsWith('"')) {
-          title = title.slice(1, -1);
-        }
         const updatedChats: ChatInterface[] = JSON.parse(
           JSON.stringify(useStore.getState().chats)
         );
+        let title = (
+          await generateTitle([message], updatedChats[currentChatIndex].config)
+        ).trim();
+        if (title.startsWith('"') && title.endsWith('"')) {
+          title = title.slice(1, -1);
+        }
         updatedChats[currentChatIndex].title = title;
         updatedChats[currentChatIndex].titleSet = true;
         setChats(updatedChats);
