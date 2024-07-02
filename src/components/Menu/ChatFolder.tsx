@@ -25,9 +25,17 @@ import useHideOnOutsideClick from '@hooks/useHideOnOutsideClick';
 const ChatFolder = ({
   folderChats,
   folderId,
+  selectedChats,
+  setSelectedChats,
+  lastSelectedIndex,
+  setLastSelectedIndex,
 }: {
   folderChats: ChatHistoryInterface[];
   folderId: string;
+  selectedChats: number[];
+  setSelectedChats: (indices: number[]) => void;
+  lastSelectedIndex: number | null;
+  setLastSelectedIndex: (index: number) => void;
 }) => {
   const folderName = useStore((state) => state.folders[folderId]?.name);
   const isExpanded = useStore((state) => state.folders[folderId]?.expanded);
@@ -116,12 +124,15 @@ const ChatFolder = ({
       setFolders(updatedFolders);
 
       // update chat folderId to new folderId
-      const chatIndex = Number(e.dataTransfer.getData('chatIndex'));
+      const chatIndices = JSON.parse(e.dataTransfer.getData('chatIndices'));
       const updatedChats: ChatInterface[] = JSON.parse(
         JSON.stringify(useStore.getState().chats)
       );
-      updatedChats[chatIndex].folder = folderId;
+      chatIndices.forEach((chatIndex: number) => {
+        updatedChats[chatIndex].folder = folderId;
+      });
       setChats(updatedChats);
+      setSelectedChats([]);
     }
   };
 
@@ -304,7 +315,12 @@ const ChatFolder = ({
             <ChatHistory
               title={chat.title}
               chatIndex={chat.index}
+              chatSize={chat.chatSize}
               key={`${chat.title}-${chat.index}`}
+              selectedChats={selectedChats}
+              setSelectedChats={setSelectedChats}
+              lastSelectedIndex={lastSelectedIndex}
+              setLastSelectedIndex={setLastSelectedIndex}
             />
           ))}
       </div>

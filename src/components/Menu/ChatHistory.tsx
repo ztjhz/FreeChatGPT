@@ -8,6 +8,7 @@ import DeleteIcon from '@icon/DeleteIcon';
 import EditIcon from '@icon/EditIcon';
 import TickIcon from '@icon/TickIcon';
 import useStore from '@store/store';
+import { formatNumber } from '@utils/chat';
 
 const ChatHistoryClass = {
   normal:
@@ -21,7 +22,23 @@ const ChatHistoryClass = {
 };
 
 const ChatHistory = React.memo(
-  ({ title, chatIndex }: { title: string; chatIndex: number }) => {
+  ({
+    title,
+    chatIndex,
+    chatSize,
+    selectedChats,
+    setSelectedChats,
+    lastSelectedIndex,
+    setLastSelectedIndex,
+  }: {
+    title: string;
+    chatIndex: number;
+    chatSize?: number;
+    selectedChats: number[];
+    setSelectedChats: (indices: number[]) => void;
+    lastSelectedIndex: number | null;
+    setLastSelectedIndex: (index: number) => void;
+  }) => {
     const initialiseNewChat = useInitialiseNewChat();
     const setCurrentChatIndex = useStore((state) => state.setCurrentChatIndex);
     const setChats = useStore((state) => state.setChats);
@@ -46,7 +63,13 @@ const ChatHistory = React.memo(
       const updatedChats = JSON.parse(
         JSON.stringify(useStore.getState().chats)
       );
-      updatedChats.splice(chatIndex, 1);
+      const indicesToDelete =
+        selectedChats.length > 0 ? selectedChats : [chatIndex];
+      indicesToDelete
+        .sort((a, b) => b - a)
+        .forEach((index) => {
+          updatedChats.splice(index, 1);
+        });
       if (updatedChats.length > 0) {
         setCurrentChatIndex(0);
         setChats(updatedChats);
@@ -54,6 +77,7 @@ const ChatHistory = React.memo(
         initialiseNewChat();
       }
       setIsDelete(false);
+      setSelectedChats([]);
     };
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -77,7 +101,32 @@ const ChatHistory = React.memo(
 
     const handleDragStart = (e: React.DragEvent<HTMLAnchorElement>) => {
       if (e.dataTransfer) {
-        e.dataTransfer.setData('chatIndex', String(chatIndex));
+        const chatIndices =
+          selectedChats.length > 0 ? selectedChats : [chatIndex];
+        e.dataTransfer.setData('chatIndices', JSON.stringify(chatIndices));
+      }
+    };
+
+    const handleCheckboxClick = (e: React.MouseEvent<HTMLInputElement>) => {
+      if (e.shiftKey && lastSelectedIndex !== null) {
+        const start = Math.min(lastSelectedIndex, chatIndex);
+        const end = Math.max(lastSelectedIndex, chatIndex);
+        const newSelectedChats = [...selectedChats];
+        for (let i = start; i <= end; i++) {
+          if (!newSelectedChats.includes(i)) {
+            newSelectedChats.push(i);
+          }
+        }
+        setSelectedChats(newSelectedChats);
+      } else {
+        if (selectedChats.includes(chatIndex)) {
+          setSelectedChats(
+            selectedChats.filter((index) => index !== chatIndex)
+          );
+        } else {
+          setSelectedChats([...selectedChats, chatIndex]);
+        }
+        setLastSelectedIndex(chatIndex);
       }
     };
 
@@ -93,15 +142,24 @@ const ChatHistory = React.memo(
           generating
             ? 'cursor-not-allowed opacity-40'
             : 'cursor-pointer opacity-100'
-        }`}
+        } ${selectedChats.includes(chatIndex) ? 'bg-blue-500' : ''}`}
         onClick={() => {
           if (!generating) setCurrentChatIndex(chatIndex);
         }}
         draggable
         onDragStart={handleDragStart}
       >
+        <input
+          type='checkbox'
+          checked={selectedChats.includes(chatIndex)}
+          onClick={handleCheckboxClick}
+          onChange={() => {}}
+        />
         <ChatIcon />
-        <div className='flex-1 text-ellipsis max-h-5 overflow-hidden break-all relative' title={title}>
+        <div
+          className='flex-1 text-ellipsis max-h-5 overflow-hidden break-all relative'
+          title={`${title}${chatSize ? ` (${formatNumber(chatSize)})` : ''}`}
+        >
           {isEdit ? (
             <input
               type='text'
@@ -114,7 +172,7 @@ const ChatHistory = React.memo(
               ref={inputRef}
             />
           ) : (
-            _title
+            `${title}${chatSize ? ` (${formatNumber(chatSize)})` : ''}`
           )}
 
           {isEdit || (

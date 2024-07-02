@@ -77,12 +77,14 @@ function App() {
   }, []);
 
   return (
-    <div className='overflow-hidden w-full h-full relative'>
+    <div className='verflow-hidden w-full h-full relative'>
       <Menu />
-      <Chat />
-      <ApiPopup />
-      <Toast />
-      <ToastContainer />
+      <div className={`flex h-full flex-1 flex-col`}>
+        <Chat />
+        <ApiPopup />
+        <Toast />
+        <ToastContainer />
+      </div>
     </div>
   );
 }
