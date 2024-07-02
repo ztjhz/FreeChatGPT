@@ -11,17 +11,10 @@ import {
   ChatHistoryFolderInterface,
   ChatInterface,
   FolderCollection,
-  ImageContentInterface,
-  TextContentInterface,
-  ContentInterface,
+  isImageContent,
+  isTextContent,
 } from '@type/chat';
 
-function isTextContent(ob: ContentInterface): ob is TextContentInterface {
-  return (ob as TextContentInterface).text !== undefined;
-}
-function isImageContent(ob: ContentInterface): ob is ImageContentInterface {
-  return (ob as ImageContentInterface).image_url !== undefined;
-}
 const ChatHistoryList = () => {
   const currentChatIndex = useStore((state) => state.currentChatIndex);
   const displayChatSize = useStore((state) => state.displayChatSize);
