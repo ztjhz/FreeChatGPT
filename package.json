@@ -1,11 +1,25 @@
 {
   "name": "better-chatgpt",
   "private": true,
-  "version": "1.0.5",
+  "version": "1.1.0",
   "type": "module",
   "homepage": "./",
   "main": "electron/index.cjs",
   "author": "Jing Hua <betterchatgpt@mail.tjh.sg>",
+  "contributors": [
+    {
+      "name": "animalnots",
+      "url": "https://github.com/animalnots"
+    },
+    {
+      "name": "Seth Deegan <lectrician1>",
+      "url": "https://github.com/lectrician1"
+    },
+    {
+      "name": "Alper Özdemir <maozdemir>",
+      "url": "https://github.com/maozdemir"
+    }
+  ],
   "description": "Play and chat smarter with BetterChatGPT - an amazing open-source web app with a better UI for exploring OpenAI's ChatGPT API!",
   "scripts": {
     "dev": "vite",
