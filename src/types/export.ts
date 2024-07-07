@@ -1,4 +1,9 @@
-import { ChatInterface, FolderCollection, Role } from './chat';
+import {
+  ChatInterface,
+  ContentInterface,
+  FolderCollection,
+  Role,
+} from './chat';
 
 export interface ExportBase {
   version: number;
@@ -8,7 +13,6 @@ export interface ExportV1 extends ExportBase {
   chats?: ChatInterface[];
   folders: FolderCollection;
 }
-
 export type OpenAIChat = {
   title: string;
   mapping: {
@@ -18,9 +22,11 @@ export type OpenAIChat = {
         author: {
           role: Role;
         };
-        content: {
-          parts?: string[];
-        };
+        content:
+          | {
+              parts?: string[];
+            }
+          | ContentInterface;
       } | null;
       parent: string | null;
       children: string[];

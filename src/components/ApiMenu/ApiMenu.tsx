@@ -21,16 +21,20 @@ const ApiMenu = ({
   const setApiKey = useStore((state) => state.setApiKey);
   const apiEndpoint = useStore((state) => state.apiEndpoint);
   const setApiEndpoint = useStore((state) => state.setApiEndpoint);
+  const apiVersion = useStore((state) => state.apiVersion);
+  const setApiVersion = useStore((state) => state.setApiVersion);
 
   const [_apiKey, _setApiKey] = useState<string>(apiKey || '');
   const [_apiEndpoint, _setApiEndpoint] = useState<string>(apiEndpoint);
   const [_customEndpoint, _setCustomEndpoint] = useState<boolean>(
     !availableEndpoints.includes(apiEndpoint)
   );
+  const [_apiVersion, _setApiVersion] = useState<string>(apiVersion || '');
 
   const handleSave = () => {
     setApiKey(_apiKey);
     setApiEndpoint(_apiEndpoint);
+    setApiVersion(_apiVersion);
     setIsModalOpen(false);
   };
 
@@ -92,6 +96,20 @@ const ApiMenu = ({
           />
         </div>
 
+        <div className='flex gap-2 items-center justify-center mt-2'>
+          <div className='min-w-fit text-gray-900 dark:text-gray-300 text-sm'>
+            {t('apiVersion.inputLabel', { ns: 'api' })}
+          </div>
+          <input
+            type='text'
+            placeholder={t('apiVersion.description', { ns: 'api' }) ?? ''}
+            className='text-gray-800 dark:text-white p-3 text-sm border-none bg-gray-200 dark:bg-gray-600 rounded-md m-0 w-full mr-0 h-8 focus:outline-none'
+            value={_apiVersion}
+            onChange={(e) => {
+              _setApiVersion(e.target.value);
+            }}
+          />
+        </div>
         <div className='min-w-fit text-gray-900 dark:text-gray-300 text-sm flex flex-col gap-3 leading-relaxed'>
           <p className='mt-4'>
             <Trans

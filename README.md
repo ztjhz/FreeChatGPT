@@ -144,20 +144,23 @@ One click deploy with Vercel
 5. Launch the app by running `yarn dev` or `npm run dev`
 
 ### Running it locally using docker compose
+
 1. Ensure that you have the following installed:
 
    - [docker](https://www.docker.com/) (v24.0.7 or above)
-      ```bash
-      curl https://get.docker.com | sh \
-      && sudo usermod -aG docker $USER
-      ```
+     ```bash
+     curl https://get.docker.com | sh \
+     && sudo usermod -aG docker $USER
+     ```
 
 2. Build the docker image
+
    ```
    docker compose build
    ```
 
 3. Build and start the container using docker compose
+
    ```
    docker compose build
    docker compose up -d
@@ -167,6 +170,24 @@ One click deploy with Vercel
    ```
    docker compose down
    ```
+
+### Running it locally via desktop app
+
+1. Ensure that you have the following installed:
+
+   - [yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/) (6.14.15 or above)
+
+2. Build the executable (Windows)
+
+   ```
+   yarn make --win
+   ```
+
+3. Build for other OS
+   ```
+   yarn make _ADD_BUILD_ARGS_HERE
+   ```
+   To find out available building arguments, go to [electron-builder reference](https://www.electron.build/cli.html)
 
 # ⭐️ Star History
 

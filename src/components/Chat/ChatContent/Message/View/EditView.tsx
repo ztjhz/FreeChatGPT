@@ -4,13 +4,18 @@ import useStore from '@store/store';
 
 import useSubmit from '@hooks/useSubmit';
 
-import { ChatInterface, Content, ContentInterface, ImageContentInterface, TextContentInterface } from '@type/chat';
+import {
+  ChatInterface,
+  ContentInterface,
+  ImageContentInterface,
+  TextContentInterface,
+} from '@type/chat';
 
 import PopupModal from '@components/PopupModal';
 import TokenCount from '@components/TokenCount';
 import CommandPrompt from '../CommandPrompt';
 import FolderIcon from '@icon/FolderIcon';
-import { modelTypes } from '@constants/chat';
+import { defaultModel, modelTypes } from '@constants/chat';
 
 const EditView = ({
   content: content,
@@ -79,17 +84,21 @@ const EditView = ({
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files!;
-    const newImageURLs = Array.from(files).map((file: Blob) => URL.createObjectURL(file));
-    const newImages = await Promise.all(newImageURLs.map(async (url) => {
-      const blob = await fetch(url).then((r) => r.blob());
-      return {
-        type: 'image_url',
-        image_url: {
-          detail: 'auto',
-          url: await blobToBase64(blob) as string
-        }
-      } as ImageContentInterface
-    }));
+    const newImageURLs = Array.from(files).map((file: Blob) =>
+      URL.createObjectURL(file)
+    );
+    const newImages = await Promise.all(
+      newImageURLs.map(async (url) => {
+        const blob = await fetch(url).then((r) => r.blob());
+        return {
+          type: 'image_url',
+          image_url: {
+            detail: 'auto',
+            url: (await blobToBase64(blob)) as string,
+          },
+        } as ImageContentInterface;
+      })
+    );
     const updatedContent = [..._content, ...newImages];
 
     _setContent(updatedContent);
@@ -99,7 +108,7 @@ const EditView = ({
     const updatedImages = [..._content];
     updatedImages[index + 1].image_url.detail = detail;
     _setContent(updatedImages);
-  }
+  };
 
   const handleRemoveImage = (index: number) => {
     const updatedImages = [..._content];
@@ -109,7 +118,12 @@ const EditView = ({
   };
 
   const handleSave = () => {
-    if (sticky && ((_content[0] as TextContentInterface).text === '' || useStore.getState().generating)) return;
+    if (
+      sticky &&
+      ((_content[0] as TextContentInterface).text === '' ||
+        useStore.getState().generating)
+    )
+      return;
     const updatedChats: ChatInterface[] = JSON.parse(
       JSON.stringify(useStore.getState().chats)
     );
@@ -117,10 +131,12 @@ const EditView = ({
 
     if (sticky) {
       updatedMessages.push({ role: inputRole, content: _content });
-      _setContent([{
-        type: 'text',
-        text: ''
-      } as TextContentInterface]);
+      _setContent([
+        {
+          type: 'text',
+          text: '',
+        } as TextContentInterface,
+      ]);
       resetTextAreaHeight();
     } else {
       updatedMessages[messageIndex].content = _content;
@@ -141,10 +157,12 @@ const EditView = ({
       if ((_content[0] as TextContentInterface).text !== '') {
         updatedMessages.push({ role: inputRole, content: _content });
       }
-      _setContent([{
-        type: 'text',
-        text: ''
-      } as TextContentInterface]);
+      _setContent([
+        {
+          type: 'text',
+          text: '',
+        } as TextContentInterface,
+      ]);
       resetTextAreaHeight();
     } else {
       updatedMessages[messageIndex].content = _content;
@@ -154,7 +172,11 @@ const EditView = ({
       );
       setIsEdit(false);
     }
-    setChats(updatedChats);
+    try {
+      setChats(updatedChats);
+    } catch (e) {
+      console.log(e);
+    }
     handleSubmit();
   };
 
@@ -175,16 +197,20 @@ const EditView = ({
   return (
     <>
       <div
-        className={`w-full ${sticky
-          ? 'py-2 md:py-3 px-2 md:px-4 border border-black/10 bg-white dark:border-gray-900/50 dark:text-white dark:bg-gray-700 rounded-md shadow-[0_0_10px_rgba(0,0,0,0.10)] dark:shadow-[0_0_15px_rgba(0,0,0,0.10)]'
-          : ''
-          }`}
+        className={`w-full ${
+          sticky
+            ? 'py-2 md:py-3 px-2 md:px-4 border border-black/10 bg-white dark:border-gray-900/50 dark:text-white dark:bg-gray-700 rounded-md shadow-[0_0_10px_rgba(0,0,0,0.10)] dark:shadow-[0_0_15px_rgba(0,0,0,0.10)]'
+            : ''
+        }`}
       >
         <textarea
           ref={textareaRef}
           className='m-0 resize-none rounded-lg bg-transparent overflow-y-hidden focus:ring-0 focus-visible:ring-0 leading-7 w-full placeholder:text-gray-500/40'
           onChange={(e) => {
-            _setContent((prev) => [{ type: 'text', text: e.target.value }, ...prev.slice(1)])
+            _setContent((prev) => [
+              { type: 'text', text: e.target.value },
+              ...prev.slice(1),
+            ]);
           }}
           value={(_content[0] as TextContentInterface).text}
           placeholder={t('submitPlaceholder') as string}
@@ -227,7 +253,7 @@ const EditViewButtons = memo(
     setIsModalOpen,
     setIsEdit,
     _setContent,
-    _content
+    _content,
   }: {
     sticky?: boolean;
     handleFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -243,7 +269,13 @@ const EditViewButtons = memo(
     const { t } = useTranslation();
     const generating = useStore.getState().generating;
     const advancedMode = useStore((state) => state.advancedMode);
-    const model = useStore((state) => state.chats![state.currentChatIndex].config.model);
+    const model = useStore((state) => {
+      const isInitialised =
+        state.chats && state.chats.length > 0 && state.currentChatIndex >= 0;
+      return isInitialised
+        ? state.chats![state.currentChatIndex].config.model
+        : defaultModel;
+    });
     const fileInputRef = useRef(null);
 
     const handleUploadButtonClick = () => {
@@ -255,52 +287,60 @@ const EditViewButtons = memo(
       <div>
         {modelTypes[model] == 'image' && (
           <div className='flex justify-center'>
-            <div className="flex gap-5">
+            <div className='flex gap-5'>
               {_content.slice(1).map((image, index) => (
-                <div key={index} className="image-container flex flex-col gap-2">
-                  <img src={image.image_url.url} alt={`uploaded-${index}`} className="h-10" />
+                <div
+                  key={index}
+                  className='image-container flex flex-col gap-2'
+                >
+                  <img
+                    src={image.image_url.url}
+                    alt={`uploaded-${index}`}
+                    className='h-10'
+                  />
                   <div className='flex flex-row gap-3'>
-                  <select
-                    onChange={(event) => handleImageDetailChange(index, event.target.value)}
-                    title="Select image resolution"
-                    aria-label="Select image resolution"
-                    defaultValue={image.image_url.detail}
-                    style={{ color: 'black' }}
-                  >
-                    <option value="auto">Auto</option>
-                    <option value="high">High</option>
-                    <option value="low">Low</option>
-                  </select>
-                  <button
-                    className="close-button"
-                    onClick={() => handleRemoveImage(index)}
-                    aria-label="Remove Image"
-                  >
-                    &times;
-                  </button>
+                    <select
+                      onChange={(event) =>
+                        handleImageDetailChange(index, event.target.value)
+                      }
+                      title='Select image resolution'
+                      aria-label='Select image resolution'
+                      defaultValue={image.image_url.detail}
+                      style={{ color: 'black' }}
+                    >
+                      <option value='auto'>Auto</option>
+                      <option value='high'>High</option>
+                      <option value='low'>Low</option>
+                    </select>
+                    <button
+                      className='close-button'
+                      onClick={() => handleRemoveImage(index)}
+                      aria-label='Remove Image'
+                    >
+                      &times;
+                    </button>
                   </div>
                 </div>
               ))}
 
-            <button
-              className='btn relative btn-neutral h-10'
-              onClick={handleUploadButtonClick}
-              aria-label={'Upload Images'}
-            >
-              <div className='flex items-center justify-center gap-2'>
-                <FolderIcon />
-              </div>
-            </button>
-            
+              <button
+                className='btn relative btn-neutral h-10'
+                onClick={handleUploadButtonClick}
+                aria-label={'Upload Images'}
+              >
+                <div className='flex items-center justify-center gap-2'>
+                  <FolderIcon />
+                </div>
+              </button>
             </div>
 
             {/* Hidden file input */}
             <input
-              type="file"
+              type='file'
               ref={fileInputRef}
               style={{ display: 'none' }}
               onChange={handleFileChange}
-              accept="image/*"
+              accept='image/*'
               multiple
             />
           </div>
@@ -309,8 +349,9 @@ const EditViewButtons = memo(
           <div className='flex-1 text-center mt-2 flex justify-center'>
             {sticky && (
               <button
-                className={`btn relative mr-2 btn-primary ${generating ? 'cursor-not-allowed opacity-40' : ''
-                  }`}
+                className={`btn relative mr-2 btn-primary ${
+                  generating ? 'cursor-not-allowed opacity-40' : ''
+                }`}
                 onClick={handleGenerate}
                 aria-label={t('generate') as string}
               >
@@ -334,11 +375,13 @@ const EditViewButtons = memo(
             )}
 
             <button
-              className={`btn relative mr-2 ${sticky
-                ? `btn-neutral ${generating ? 'cursor-not-allowed opacity-40' : ''
-                }`
-                : 'btn-neutral'
-                }`}
+              className={`btn relative mr-2 ${
+                sticky
+                  ? `btn-neutral ${
+                      generating ? 'cursor-not-allowed opacity-40' : ''
+                    }`
+                  : 'btn-neutral'
+              }`}
               onClick={handleSave}
               aria-label={t('save') as string}
             >

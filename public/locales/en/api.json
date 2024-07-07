@@ -9,6 +9,10 @@
     "howTo": "Get your personal API key <0>here</0>.",
     "inputLabel": "API Key"
   },
+  "apiVersion": {
+    "inputLabel": "Api Version",
+    "description": "Api Version e.g. 2024-04-01-preview"
+  },
   "customEndpoint": "Use custom API endpoint",
   "advancedConfig": "View advanced API configuration <0>here</0>",
   "noApiKeyWarning": "No API key supplied! Please check your API settings."

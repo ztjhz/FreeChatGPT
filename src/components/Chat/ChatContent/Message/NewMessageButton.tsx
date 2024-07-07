@@ -3,7 +3,7 @@ import useStore from '@store/store';
 
 import PlusIcon from '@icon/PlusIcon';
 
-import { ChatInterface } from '@type/chat';
+import { ChatInterface, TextContentInterface } from '@type/chat';
 import { generateDefaultChat } from '@constants/chat';
 
 const NewMessageButton = React.memo(
@@ -38,7 +38,7 @@ const NewMessageButton = React.memo(
           JSON.stringify(useStore.getState().chats)
         );
         updatedChats[currentChatIndex].messages.splice(messageIndex + 1, 0, {
-          content: '',
+          content: [{ type: 'text', text: '' } as TextContentInterface],
           role: 'user',
         });
         setChats(updatedChats);

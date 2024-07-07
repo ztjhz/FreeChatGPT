@@ -1,7 +1,10 @@
-import React from 'react';
 import useStore from '@store/store';
 import { useTranslation } from 'react-i18next';
-import { ChatInterface, MessageInterface, TextContentInterface } from '@type/chat';
+import {
+  ChatInterface,
+  MessageInterface,
+  TextContentInterface,
+} from '@type/chat';
 import { getChatCompletion, getChatCompletionStream } from '@api/api';
 import { parseEventSource } from '@api/helper';
 import { limitMessageTokens, updateTotalTokenUsed } from '@utils/messageUtils';
@@ -34,7 +37,10 @@ const useSubmit = () => {
         data = await getChatCompletion(
           useStore.getState().apiEndpoint,
           message,
-          _defaultChatConfig
+          _defaultChatConfig,
+          undefined,
+          undefined,
+          useStore.getState().apiVersion
         );
       } else if (apiKey) {
         // own apikey
@@ -42,7 +48,9 @@ const useSubmit = () => {
           useStore.getState().apiEndpoint,
           message,
           _defaultChatConfig,
-          apiKey
+          apiKey,
+          undefined,
+          useStore.getState().apiVersion
         );
       }
     } catch (error: unknown) {
@@ -59,10 +67,12 @@ const useSubmit = () => {
 
     updatedChats[currentChatIndex].messages.push({
       role: 'assistant',
-      content: [{
-        type: 'text',
-        text: ''
-      } as TextContentInterface],
+      content: [
+        {
+          type: 'text',
+          text: '',
+        } as TextContentInterface,
+      ],
     });
 
     setChats(updatedChats);
@@ -91,7 +101,10 @@ const useSubmit = () => {
         stream = await getChatCompletionStream(
           useStore.getState().apiEndpoint,
           messages,
-          chats[currentChatIndex].config
+          chats[currentChatIndex].config,
+          undefined,
+          undefined,
+          useStore.getState().apiVersion
         );
       } else if (apiKey) {
         // own apikey
@@ -99,7 +112,9 @@ const useSubmit = () => {
           useStore.getState().apiEndpoint,
           messages,
           chats[currentChatIndex].config,
-          apiKey
+          apiKey,
+          undefined,
+          useStore.getState().apiVersion
         );
       }
 
@@ -135,7 +150,10 @@ const useSubmit = () => {
               JSON.stringify(useStore.getState().chats)
             );
             const updatedMessages = updatedChats[currentChatIndex].messages;
-            (updatedMessages[updatedMessages.length - 1].content[0] as TextContentInterface).text += resultString;
+            (
+              updatedMessages[updatedMessages.length - 1]
+                .content[0] as TextContentInterface
+            ).text += resultString;
             setChats(updatedChats);
           }
         }
@@ -176,10 +194,12 @@ const useSubmit = () => {
 
         const message: MessageInterface = {
           role: 'user',
-          content: [{
-            type: 'text',
-            text: `Generate a title in less than 6 words for the following message (language: ${i18n.language}):\n"""\nUser: ${user_message}\nAssistant: ${assistant_message}\n"""`,
-          } as TextContentInterface]
+          content: [
+            {
+              type: 'text',
+              text: `Generate a title in less than 6 words for the following message (language: ${i18n.language}):\n"""\nUser: ${user_message}\nAssistant: ${assistant_message}\n"""`,
+            } as TextContentInterface,
+          ],
         };
 
         let title = (await generateTitle([message])).trim();
@@ -198,7 +218,7 @@ const useSubmit = () => {
           const model = _defaultChatConfig.model;
           updateTotalTokenUsed(model, [message], {
             role: 'assistant',
-            content: [{type: 'text', text: title} as TextContentInterface],
+            content: [{ type: 'text', text: title } as TextContentInterface],
           });
         }
       }

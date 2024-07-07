@@ -10,6 +10,8 @@ import { ChatInterface } from '@type/chat';
 import { Theme } from '@type/theme';
 import ApiPopup from '@components/ApiPopup';
 import Toast from '@components/Toast';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const initialiseNewChat = useInitialiseNewChat();
@@ -80,6 +82,7 @@ function App() {
       <Chat />
       <ApiPopup />
       <Toast />
+      <ToastContainer />
     </div>
   );
 }

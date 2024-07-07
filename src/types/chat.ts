@@ -14,7 +14,7 @@ export interface ImageContentInterface extends ContentInterface {
   image_url: {
     url: string; // base64 or image URL
     detail: ImageDetail;
-  }
+  };
 }
 
 export interface TextContentInterface extends ContentInterface {
@@ -91,6 +91,19 @@ export type ModelOptions =
 // | 'gpt-4-32k-0314'
 
 export type ModelType = 'text' | 'image';
+interface Pricing {
+  price: number;
+  unit: number;
+}
+
+interface CostDetails {
+  prompt: Pricing;
+  completion: Pricing;
+}
+
+export interface ModelCost {
+  [modelName: string]: CostDetails;
+}
 
 export type TotalTokenUsed = {
   [model in ModelOptions]?: {
@@ -185,7 +198,10 @@ export interface LocalStorageInterfaceV7oV8
   foldersExpanded: boolean[];
   folders: FolderCollection;
 }
+export interface LocalStorageInterfaceV8oV8_1
+  extends LocalStorageInterfaceV7oV8 {
+  apiVersion: string;
+}
 
-// export interface LocalStorageInterfaceV8ToV9
-//   extends LocalStorageInterfaceV7oV8 {
-    
+// export interface LocalStorageInterfaceV8_1ToV9
+//   extends LocalStorageInterfaceV8oV8_1 {
