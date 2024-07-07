@@ -1,3 +1,13 @@
+## 🚀 维护中的 Better ChatGPT 分叉版本
+
+这是原始 Better ChatGPT 项目的一个维护中的分叉版本。这个分叉版本的主要区别包括：
+
+- **视觉支持**：为兼容的模型添加了图片上传支持。
+- **UI 增强**：改进了用户界面，增加了新功能。
+- **Azure API 扩展支持**：可以在配置中指定 API 版本。
+
+原项目更新不太频繁，我们致力于提供更动态和持续的改进。我们欢迎大家的贡献！请随时提交 PR 来帮助我们进一步改进这个项目。
+
 <h1 align="center"><b>Better ChatGPT</b></h1>
 
 <p align="center">
@@ -7,30 +17,30 @@
 <h4 align="center"><b>免费、无限、强大、智能、迷人</b></h4>
 
 <p align="center">
-<a href="https://github.com/ztjhz/BetterChatGPT/blob/main/LICENSE" target="_blank">
-<img src="https://img.shields.io/github/license/ztjhz/BetterChatGPT?style=flat-square" alt="licence" />
+<a href="https://github.com/animalnots/BetterChatGPT-VISION/blob/main/LICENSE" target="_blank">
+<img src="https://img.shields.io/github/license/animalnots/BetterChatGPT-VISION?style=flat-square" alt="licence" />
 </a>
-<a href="https://github.com/ztjhz/BetterChatGPT/fork" target="_blank">
-<img src="https://img.shields.io/github/forks/ztjhz/BetterChatGPT?style=flat-square" alt="forks"/>
+<a href="https://github.com/animalnots/BetterChatGPT-VISION/fork" target="_blank">
+<img src="https://img.shields.io/github/forks/animalnots/BetterChatGPT-VISION?style=flat-square" alt="forks"/>
 </a>
-<a href="https://github.com/ztjhz/BetterChatGPT/stargazers" target="_blank">
-<img src="https://img.shields.io/github/stars/ztjhz/BetterChatGPT?style=flat-square" alt="stars"/>
+<a href="https://github.com/animalnots/BetterChatGPT-VISION/stargazers" target="_blank">
+<img src="https://img.shields.io/github/stars/animalnots/BetterChatGPT-VISION?style=flat-square" alt="stars"/>
 </a>
-<a href="https://github.com/ztjhz/BetterChatGPT/issues" target="_blank">
-<img src="https://img.shields.io/github/issues/ztjhz/BetterChatGPT?style=flat-square" alt="issues"/>
+<a href="https://github.com/animalnots/BetterChatGPT-VISION/issues" target="_blank">
+<img src="https://img.shields.io/github/issues/animalnots/BetterChatGPT-VISION?style=flat-square" alt="issues"/>
 </a>
-<a href="https://github.com/ztjhz/BetterChatGPT/pulls" target="_blank">
-<img src="https://img.shields.io/github/issues-pr/ztjhz/BetterChatGPT?style=flat-square" alt="pull-requests"/>
+<a href="https://github.com/animalnots/BetterChatGPT-VISION/pulls" target="_blank">
+<img src="https://img.shields.io/github/issues-pr/animalnots/BetterChatGPT-VISION?style=flat-square" alt="pull-requests"/>
 </a>
-<a href="https://twitter.com/intent/tweet?text=👋看看这个惊人的存储库%20https://github.com/ztjhz/BetterChatGPT，由%20@nikushii_%20创建。"><img src="https://img.shields.io/twitter/url?label=%E5%88%86%E4%BA%AB%E5%88%B0%E6%8E%A8%E7%89%B9&style=social&url=https%3A%2F%2Fgithub.com%2Fztjhz%2FBetterChatGPT"></a>
+<a href="https://twitter.com/intent/tweet?text=👋看看这个惊人的存储库%20https://github.com/animalnots/BetterChatGPT-VISION，由%20@nikushii_%20创建。"><img src="https://img.shields.io/twitter/url?label=%E5%88%86%E4%BA%AB%E5%88%B0%E6%8E%A8%E7%89%B9&style=social&url=https%3A%2F%2Fgithub.com%2Fztjhz%2FBetterChatGPT"></a>
 </p>
 
 <p align="center">
     <a href="https://bettergpt.chat">进入网站</a>
     ·
-    <a href="https://github.com/ztjhz/BetterChatGPT/issues/new/choose">反馈问题</a>
+    <a href="https://github.com/animalnots/BetterChatGPT-VISION/issues/new/choose">反馈问题</a>
     ·
-    <a href="https://github.com/ztjhz/BetterChatGPT/issues/new/choose">请求功能</a>
+    <a href="https://github.com/animalnots/BetterChatGPT-VISION/issues/new/choose">请求功能</a>
 </p>
 <p align="center"><i>您喜欢使用 Better ChatGPT 吗？请给它一个星星以示支持！🌟</i></p>
 
@@ -79,7 +89,7 @@ Better ChatGPT 已经包含了大量的功能。您可以使用以下功能：
 
 ## 桌面应用
 
-在此下载桌面应用程序：<https://github.com/ztjhz/BetterChatGPT/releases/>
+在此下载桌面应用程序：<https://github.com/animalnots/BetterChatGPT-VISION/releases/>
 
 | 操作系统 | 下载      |
 | -------- | --------- |
@@ -107,8 +117,8 @@ Better ChatGPT 已经包含了大量的功能。您可以使用以下功能：
 ### 步骤
 
 1. 创建一个 GitHub 账户（如果您还没有账户）。
-1. 给此[存储库](https://github.com/ztjhz/BetterChatGPT) 一个星星 ⭐️
-1. Fork 此[存储库](https://github.com/ztjhz/BetterChatGPT)
+1. 给此[存储库](https://github.com/animalnots/BetterChatGPT-VISION) 一个星星 ⭐️
+1. Fork 此[存储库](https://github.com/animalnots/BetterChatGPT-VISION)
 1. 在 fork 之后的存储库中点击 `Settings` 选项卡
    ![image](https://user-images.githubusercontent.com/59118459/223753577-9b6f8266-26e8-471b-8f45-a1a02fbab232.png)
 1. 在左侧边栏中，单击 `Pages` ，在右侧区域中，为 `Source` 选择 `GitHub Actions`。
@@ -131,14 +141,14 @@ Better ChatGPT 已经包含了大量的功能。您可以使用以下功能：
    - [node.js](https://nodejs.org/en/)
    - [yarn](https://yarnpkg.com/) 或者 [npm](https://www.npmjs.com/)
 
-2. 通过运行 `git clone https://github.com/ztjhz/BetterChatGPT.git` 克隆此[存储库](https://github.com/ztjhz/BetterChatGPT)。
+2. 通过运行 `git clone https://github.com/animalnots/BetterChatGPT-VISION.git` 克隆此[存储库](https://github.com/animalnots/BetterChatGPT-VISION)。
 3. 进入目录通过 `cd BetterChatGPT`
 4. 运行 `yarn` 或 `npm install`，具体取决于您是否安装了 yarn 或 npm。
 5. 运行 `yarn dev` 或 `npm run dev` 来启动应用程序。
 
 # ⭐️ 星星历史
 
-[![Star History Chart](https://api.star-history.com/svg?repos=ztjhz/BetterChatGPT&type=Date)](https://github.com/ztjhz/BetterChatGPT/stargazers)
+[![Star History Chart](https://api.star-history.com/svg?repos=animalnots/BetterChatGPT-VISION&type=Date)](https://github.com/animalnots/BetterChatGPT-VISION/stargazers)
 
 <h3 align="center">
     给 <b>Better ChatGPT</b> 一个星星 ⭐️ 可以让它更加锦上添花，让更多人受益匪浅。
@@ -148,8 +158,8 @@ Better ChatGPT 已经包含了大量的功能。您可以使用以下功能：
 
 感谢所有贡献者！
 
-<a href="https://github.com/ztjhz/BetterChatGPT/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=ztjhz/BetterChatGPT" />
+<a href="https://github.com/animalnots/BetterChatGPT-VISION/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=animalnots/BetterChatGPT-VISION" />
 </a>
 
 # 🙏 支持
