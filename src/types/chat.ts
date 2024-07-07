@@ -54,6 +54,7 @@ export interface ChatHistoryInterface {
   title: string;
   index: number;
   id: string;
+  chatSize?: number;
 }
 
 export interface ChatHistoryFolderInterface {
@@ -203,5 +204,11 @@ export interface LocalStorageInterfaceV8oV8_1
   apiVersion: string;
 }
 
-// export interface LocalStorageInterfaceV8_1ToV9
-//   extends LocalStorageInterfaceV8oV8_1 {
+export interface LocalStorageInterfaceV8_1ToV8_2
+  extends LocalStorageInterfaceV8oV8_1 {
+  menuWidth: number;
+  displayChatSize: boolean;
+}
+
+// export interface LocalStorageInterfaceV8_2ToV9
+//   extends LocalStorageInterfaceV8_1ToV8_2 {

@@ -11,11 +11,14 @@ import {
   LocalStorageInterfaceV5ToV6,
   LocalStorageInterfaceV6ToV7,
   LocalStorageInterfaceV7oV8,
+  LocalStorageInterfaceV8_1ToV8_2,
   LocalStorageInterfaceV8oV8_1,
   TextContentInterface,
 } from '@type/chat';
 import {
   _defaultChatConfig,
+  _defaultMenuWidth,
+  _defaultDisplayChatSize,
   defaultApiVersion,
   defaultModel,
   defaultUserMaxToken,
@@ -120,4 +123,9 @@ export const migrateV8_1 = (persistedState: LocalStorageInterfaceV8oV8_1) => {
       }
     });
   });
+};
+
+export const migrateV8_1_fix = (persistedState: LocalStorageInterfaceV8_1ToV8_2) => {
+  persistedState.menuWidth = _defaultMenuWidth;
+  persistedState.displayChatSize = _defaultDisplayChatSize;
 };

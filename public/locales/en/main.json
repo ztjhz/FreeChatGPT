@@ -33,6 +33,7 @@
   "total": "Total",
   "resetCost": "Reset Costs",
   "countTotalTokens": "Count total tokens",
+  "displayChatSize": "Display chat size in title",
   "morePrompts": "You can find more prompts here: ",
   "clearPrompts": "Clear prompts",
   "postOnShareGPT": {
