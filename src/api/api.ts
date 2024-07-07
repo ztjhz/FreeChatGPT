@@ -1,5 +1,10 @@
 import { ShareGPTSubmitBodyInterface } from '@type/api';
-import { ConfigInterface, MessageInterface, ModelOptions } from '@type/chat';
+import {
+  ConfigInterface,
+  ImageContentInterface,
+  MessageInterface,
+  ModelOptions,
+} from '@type/chat';
 import { isAzureEndpoint } from '@utils/api';
 
 export const getChatCompletion = async (
@@ -7,7 +12,8 @@ export const getChatCompletion = async (
   messages: MessageInterface[],
   config: ConfigInterface,
   apiKey?: string,
-  customHeaders?: Record<string, string>
+  customHeaders?: Record<string, string>,
+  apiVersionToUse?: string
 ) => {
   const headers: HeadersInit = {
     'Content-Type': 'application/json',
@@ -29,9 +35,10 @@ export const getChatCompletion = async (
 
     // set api version to 2023-07-01-preview for gpt-4 and gpt-4-32k, otherwise use 2023-03-15-preview
     const apiVersion =
-      model === 'gpt-4' || model === 'gpt-4-32k'
+      apiVersionToUse ??
+      (model === 'gpt-4' || model === 'gpt-4-32k'
         ? '2023-07-01-preview'
-        : '2023-03-15-preview';
+        : '2023-03-15-preview');
 
     const path = `openai/deployments/${model}/chat/completions?api-version=${apiVersion}`;
 
@@ -42,6 +49,7 @@ export const getChatCompletion = async (
       endpoint += path;
     }
   }
+  endpoint = endpoint.trim();
 
   const response = await fetch(endpoint, {
     method: 'POST',
@@ -63,7 +71,8 @@ export const getChatCompletionStream = async (
   messages: MessageInterface[],
   config: ConfigInterface,
   apiKey?: string,
-  customHeaders?: Record<string, string>
+  customHeaders?: Record<string, string>,
+  apiVersionToUse?: string
 ) => {
   const headers: HeadersInit = {
     'Content-Type': 'application/json',
@@ -83,9 +92,10 @@ export const getChatCompletionStream = async (
 
     // set api version to 2023-07-01-preview for gpt-4 and gpt-4-32k, otherwise use 2023-03-15-preview
     const apiVersion =
-      model === 'gpt-4' || model === 'gpt-4-32k'
+      apiVersionToUse ??
+      (model === 'gpt-4' || model === 'gpt-4-32k'
         ? '2023-07-01-preview'
-        : '2023-03-15-preview';
+        : '2023-03-15-preview');
     const path = `openai/deployments/${model}/chat/completions?api-version=${apiVersion}`;
 
     if (!endpoint.endsWith(path)) {
@@ -95,7 +105,7 @@ export const getChatCompletionStream = async (
       endpoint += path;
     }
   }
-
+  endpoint = endpoint.trim();
   const response = await fetch(endpoint, {
     method: 'POST',
     headers,

@@ -12,6 +12,7 @@ import useSubmit from '@hooks/useSubmit';
 import DownloadChat from './DownloadChat';
 import CloneChat from './CloneChat';
 import ShareGPT from '@components/ShareGPT';
+import { ImageContentInterface, TextContentInterface } from '@type/chat';
 
 const ChatContent = () => {
   const inputRole = useStore((state) => state.inputRole);
@@ -79,7 +80,10 @@ const ChatContent = () => {
 
           <Message
             role={inputRole}
-            content=''
+            // For now we always initizlize a new message with an empty text content.
+            // It is possible to send a message to the API without a TextContentInterface, 
+            // but the UI would need to be modified to allow the user to control the order of text and image content
+            content={[{type: 'text', text: ''} as TextContentInterface]}
             messageIndex={stickyIndex}
             sticky
           />
