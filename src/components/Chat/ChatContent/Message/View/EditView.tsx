@@ -8,14 +8,15 @@ import {
   ChatInterface,
   ContentInterface,
   ImageContentInterface,
+  ModelOptions,
   TextContentInterface,
 } from '@type/chat';
 
 import PopupModal from '@components/PopupModal';
 import TokenCount from '@components/TokenCount';
 import CommandPrompt from '../CommandPrompt';
-import FolderIcon from '@icon/FolderIcon';
 import { defaultModel, modelTypes } from '@constants/chat';
+import AttachmentIcon from '@icon/AttachmentIcon';
 
 const EditView = ({
   content: content,
@@ -31,6 +32,13 @@ const EditView = ({
   const inputRole = useStore((state) => state.inputRole);
   const setChats = useStore((state) => state.setChats);
   const currentChatIndex = useStore((state) => state.currentChatIndex);
+  const model = useStore((state) => {
+    const isInitialised =
+      state.chats && state.chats.length > 0 && state.currentChatIndex >= 0;
+    return isInitialised
+      ? state.chats![state.currentChatIndex].config.model
+      : defaultModel;
+  });
 
   const [_content, _setContent] = useState<ContentInterface[]>(content);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -232,30 +240,51 @@ const EditView = ({
     }
   }, []);
 
+  const fileInputRef = useRef(null);
+  const handleUploadButtonClick = () => {
+    // Trigger the file input when the custom button is clicked
+    (fileInputRef.current! as HTMLInputElement).click();
+  };
   return (
-    <>
+    <div className='relative'>
       <div
-        className={`w-full ${
+        className={`w-full  ${
           sticky
             ? 'py-2 md:py-3 px-2 md:px-4 border border-black/10 bg-white dark:border-gray-900/50 dark:text-white dark:bg-gray-700 rounded-md shadow-[0_0_10px_rgba(0,0,0,0.10)] dark:shadow-[0_0_15px_rgba(0,0,0,0.10)]'
             : ''
         }`}
       >
-        <textarea
-          ref={textareaRef}
-          className='m-0 resize-none rounded-lg bg-transparent overflow-y-hidden focus:ring-0 focus-visible:ring-0 leading-7 w-full placeholder:text-gray-500/40'
-          onChange={(e) => {
-            _setContent((prev) => [
-              { type: 'text', text: e.target.value },
-              ...prev.slice(1),
-            ]);
-          }}
-          value={(_content[0] as TextContentInterface).text}
-          placeholder={t('submitPlaceholder') as string}
-          onKeyDown={handleKeyDown}
-          onPaste={handlePaste}
-          rows={1}
-        ></textarea>
+        <div className='relative flex items-start'>
+          {modelTypes[model] == 'image' && (
+            <>
+              <button
+                className='absolute left-0 bottom-0  btn btn-secondary h-10 ml-[-1.2rem] mb-[-0.4rem]'
+                onClick={handleUploadButtonClick}
+                aria-label={'Upload Images'}
+              >
+                <div className='flex items-center justify-center gap-2'>
+                  <AttachmentIcon />
+                </div>
+              </button>
+            </>
+          )}
+          {/* Place the AttachmentIcon directly over the textarea */}
+          <textarea
+            ref={textareaRef}
+            className={`m-0 resize-none rounded-lg bg-transparent overflow-y-hidden focus:ring-0 focus-visible:ring-0 leading-7 w-full placeholder:text-gray-500/40 pr-10 ${modelTypes[model] == 'image' ? 'pl-7' : ''}`} // Adjust padding-right to make space for the icon
+            onChange={(e) => {
+              _setContent((prev) => [
+                { type: 'text', text: e.target.value },
+                ...prev.slice(1),
+              ]);
+            }}
+            value={(_content[0] as TextContentInterface).text}
+            placeholder={t('submitPlaceholder') as string}
+            onKeyDown={handleKeyDown}
+            onPaste={handlePaste}
+            rows={1}
+          ></textarea>
+        </div>
       </div>
       <EditViewButtons
         sticky={sticky}
@@ -271,6 +300,8 @@ const EditView = ({
         imageUrl={imageUrl}
         setImageUrl={setImageUrl}
         handleImageUrlChange={handleImageUrlChange}
+        fileInputRef={fileInputRef}
+        model={model}
       />
       {isModalOpen && (
         <PopupModal
@@ -280,7 +311,7 @@ const EditView = ({
           handleConfirm={handleGenerate}
         />
       )}
-    </>
+    </div>
   );
 };
 
@@ -299,6 +330,8 @@ const EditViewButtons = memo(
     imageUrl,
     setImageUrl,
     handleImageUrlChange,
+    fileInputRef,
+    model,
   }: {
     sticky?: boolean;
     handleFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -313,23 +346,12 @@ const EditViewButtons = memo(
     imageUrl: string;
     setImageUrl: React.Dispatch<React.SetStateAction<string>>;
     handleImageUrlChange: () => void;
+    fileInputRef: React.MutableRefObject<null>;
+    model: ModelOptions;
   }) => {
     const { t } = useTranslation();
     const generating = useStore.getState().generating;
     const advancedMode = useStore((state) => state.advancedMode);
-    const model = useStore((state) => {
-      const isInitialised =
-        state.chats && state.chats.length > 0 && state.currentChatIndex >= 0;
-      return isInitialised
-        ? state.chats![state.currentChatIndex].config.model
-        : defaultModel;
-    });
-    const fileInputRef = useRef(null);
-
-    const handleUploadButtonClick = () => {
-      // Trigger the file input when the custom button is clicked
-      (fileInputRef.current! as HTMLInputElement).click();
-    };
 
     return (
       <div>
@@ -371,16 +393,6 @@ const EditViewButtons = memo(
                     </div>
                   </div>
                 ))}
-
-                <button
-                  className='btn relative btn-neutral h-10'
-                  onClick={handleUploadButtonClick}
-                  aria-label={'Upload Images'}
-                >
-                  <div className='flex items-center justify-center gap-2'>
-                    <FolderIcon />
-                  </div>
-                </button>
               </div>
             </div>
             <div className='flex justify-center mt-4'>
@@ -392,7 +404,7 @@ const EditViewButtons = memo(
                 className='input input-bordered w-full max-w-xs text-gray-800 dark:text-white p-3  border-none bg-gray-200 dark:bg-gray-600 rounded-md m-0 w-full mr-0 h-10 focus:outline-none'
               />
               <button
-                className='btn btn-primary ml-2'
+                className='btn btn-neutral ml-2'
                 onClick={handleImageUrlChange}
                 aria-label={t('add_image_url') as string}
               >
