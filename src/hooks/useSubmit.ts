@@ -197,9 +197,11 @@ const useSubmit = () => {
         const message: MessageInterface = {
           role: 'user',
           content: [
+            ...user_message,
+            ...assistant_message,
             {
               type: 'text',
-              text: `Generate a title in less than 6 words for the following message (language: ${i18n.language}):\n"""\nUser: ${user_message}\nAssistant: ${assistant_message}\n"""`,
+              text: `Generate a title in less than 6 words for the conversation so far (language: ${i18n.language})`,
             } as TextContentInterface,
           ],
         };

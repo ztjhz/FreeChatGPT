@@ -22,6 +22,13 @@ export interface TextContentInterface extends ContentInterface {
   text: string;
 }
 
+export function isTextContent(ob: ContentInterface): ob is TextContentInterface {
+  return (ob as TextContentInterface).text !== undefined;
+}
+export function isImageContent(ob: ContentInterface): ob is ImageContentInterface {
+  return (ob as ImageContentInterface).image_url !== undefined;
+}
+
 export interface ContentInterface {
   [x: string]: any;
   type: Content;
