@@ -197,6 +197,27 @@ const EditView = ({
     handleSubmit();
   };
 
+  const handlePaste = async (e: React.ClipboardEvent<HTMLTextAreaElement>) => {
+    const items = e.clipboardData.items;
+    for (const item of items) {
+      if (item.type.startsWith('image/')) {
+        const blob = item.getAsFile();
+        if (blob) {
+          const base64Image = (await blobToBase64(blob)) as string;
+          const newImage: ImageContentInterface = {
+            type: 'image_url',
+            image_url: {
+              detail: 'auto',
+              url: base64Image,
+            },
+          };
+          const updatedContent = [..._content, newImage];
+          _setContent(updatedContent);
+        }
+      }
+    }
+  };
+
   useEffect(() => {
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto';
@@ -232,6 +253,7 @@ const EditView = ({
           value={(_content[0] as TextContentInterface).text}
           placeholder={t('submitPlaceholder') as string}
           onKeyDown={handleKeyDown}
+          onPaste={handlePaste}
           rows={1}
         ></textarea>
       </div>
