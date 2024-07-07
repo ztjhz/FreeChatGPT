@@ -1,7 +1,7 @@
 import { StoreSlice } from './store';
 import { Theme } from '@type/theme';
 import { ConfigInterface, TotalTokenUsed } from '@type/chat';
-import { _defaultChatConfig, _defaultSystemMessage } from '@constants/chat';
+import { _defaultChatConfig, _defaultSystemMessage,_defaultMenuWidth } from '@constants/chat';
 
 export interface ConfigSlice {
   openConfig: boolean;
@@ -17,6 +17,8 @@ export interface ConfigSlice {
   markdownMode: boolean;
   countTotalTokens: boolean;
   totalTokenUsed: TotalTokenUsed;
+  menuWidth: number;
+  displayChatSize: boolean;
   setOpenConfig: (openConfig: boolean) => void;
   setTheme: (theme: Theme) => void;
   setAutoTitle: (autoTitle: boolean) => void;
@@ -30,6 +32,8 @@ export interface ConfigSlice {
   setMarkdownMode: (markdownMode: boolean) => void;
   setCountTotalTokens: (countTotalTokens: boolean) => void;
   setTotalTokenUsed: (totalTokenUsed: TotalTokenUsed) => void;
+  setMenuWidth: (menuWidth: number) => void;
+  setDisplayChatSize: (displayChatSize: boolean) => void;
 }
 
 export const createConfigSlice: StoreSlice<ConfigSlice> = (set, get) => ({
@@ -46,6 +50,8 @@ export const createConfigSlice: StoreSlice<ConfigSlice> = (set, get) => ({
   markdownMode: true,
   countTotalTokens: false,
   totalTokenUsed: {},
+  menuWidth: _defaultMenuWidth,
+  displayChatSize: false,
   setOpenConfig: (openConfig: boolean) => {
     set((prev: ConfigSlice) => ({
       ...prev,
@@ -122,6 +128,18 @@ export const createConfigSlice: StoreSlice<ConfigSlice> = (set, get) => ({
     set((prev: ConfigSlice) => ({
       ...prev,
       totalTokenUsed: totalTokenUsed,
+    }));
+  },
+  setMenuWidth: (menuWidth: number) => {
+    set((prev: ConfigSlice) => ({
+      ...prev,
+      menuWidth: menuWidth,
+    }));
+  },
+  setDisplayChatSize: (displayChatSize: boolean) => {
+    set((prev: ConfigSlice) => ({
+      ...prev,
+      displayChatSize: displayChatSize,
     }));
   },
 });

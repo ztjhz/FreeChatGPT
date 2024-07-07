@@ -19,7 +19,12 @@ import CrossIcon from '@icon/CrossIcon';
 
 import useSubmit from '@hooks/useSubmit';
 
-import { ChatInterface, ContentInterface, ImageContentInterface, TextContentInterface } from '@type/chat';
+import {
+  ChatInterface,
+  ContentInterface,
+  ImageContentInterface,
+  TextContentInterface,
+} from '@type/chat';
 
 import { codeLanguageSubset } from '@constants/chat';
 
@@ -41,7 +46,7 @@ const ContentView = memo(
     messageIndex,
   }: {
     role: string;
-    content: ContentInterface[],
+    content: ContentInterface[];
     setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
     messageIndex: number;
   }) => {
@@ -132,13 +137,19 @@ const ContentView = memo(
               {(content[0] as TextContentInterface).text}
             </ReactMarkdown>
           ) : (
-            <span className='whitespace-pre-wrap'>{(content[0] as TextContentInterface).text}</span>
+            <span className='whitespace-pre-wrap'>
+              {(content[0] as TextContentInterface).text}
+            </span>
           )}
         </div>
-        <div className="flex gap-4">
+        <div className='flex gap-4'>
           {(content.slice(1) as ImageContentInterface[]).map((image, index) => (
-            <div key={index} className="image-container">
-              <img src={image.image_url.url} alt={`uploaded-${index}`} className="h-20" />
+            <div key={index} className='image-container'>
+              <img
+                src={image.image_url.url}
+                alt={`uploaded-${index}`}
+                className='h-20'
+              />
             </div>
           ))}
         </div>

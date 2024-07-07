@@ -11,10 +11,13 @@ import {
   ChatHistoryFolderInterface,
   ChatInterface,
   FolderCollection,
+  isImageContent,
+  isTextContent,
 } from '@type/chat';
 
 const ChatHistoryList = () => {
   const currentChatIndex = useStore((state) => state.currentChatIndex);
+  const displayChatSize = useStore((state) => state.displayChatSize);
   const setChats = useStore((state) => state.setChats);
   const setFolders = useStore((state) => state.setFolders);
   const chatTitles = useStore(
@@ -30,6 +33,10 @@ const ChatHistoryList = () => {
     []
   );
   const [filter, setFilter] = useState<string>('');
+  const [selectedChats, setSelectedChats] = useState<number[]>([]);
+  const [lastSelectedIndex, setLastSelectedIndex] = useState<number | null>(
+    null
+  );
 
   const chatsRef = useRef<ChatInterface[]>(useStore.getState().chats || []);
   const foldersRef = useRef<FolderCollection>(useStore.getState().folders);
@@ -40,6 +47,7 @@ const ChatHistoryList = () => {
     const _noFolders: ChatHistoryInterface[] = [];
     const chats = useStore.getState().chats;
     const folders = useStore.getState().folders;
+    const displayChatSize = useStore.getState().displayChatSize;
 
     Object.values(folders)
       .sort((a, b) => a.order - b.order)
@@ -61,13 +69,51 @@ const ChatHistoryList = () => {
           return;
 
         if (!chat.folder) {
-          _noFolders.push({ title: chat.title, index: index, id: chat.id });
+          _noFolders.push({
+            title: chat.title,
+            index: index,
+            id: chat.id,
+            chatSize: !displayChatSize
+              ? undefined
+              : chat.messages.reduce(
+                  (prev, current) =>
+                    prev +
+                    current.content.reduce(
+                      (prevInner, currCont) =>
+                        prevInner +
+                        (isTextContent(currCont)
+                          ? currCont.text.length
+                          : isImageContent(currCont)
+                          ? currCont.image_url.url.length
+                          : 0),
+                      0
+                    ),
+                  0
+                ),
+          });
         } else {
           if (!_folders[chat.folder]) _folders[_chatFolderName] = [];
           _folders[chat.folder].push({
             title: chat.title,
             index: index,
             id: chat.id,
+            chatSize: !displayChatSize
+              ? undefined
+              : chat.messages.reduce(
+                  (prev, current) =>
+                    prev +
+                    current.content.reduce(
+                      (prevInner, currCont) =>
+                        prevInner +
+                        (isTextContent(currCont)
+                          ? currCont.text.length
+                          : isImageContent(currCont)
+                          ? currCont.image_url.url.length
+                          : 0),
+                      0
+                    ),
+                  0
+                ),
           });
         }
       });
@@ -80,7 +126,7 @@ const ChatHistoryList = () => {
   useEffect(() => {
     updateFolders();
 
-    useStore.subscribe((state) => {
+    const unsubscribe = useStore.subscribe((state) => {
       if (
         !state.generating &&
         state.chats &&
@@ -93,7 +139,14 @@ const ChatHistoryList = () => {
         foldersRef.current = state.folders;
       }
     });
+    return () => {
+      unsubscribe();
+    };
   }, []);
+
+  useEffect(() => {
+    updateFolders();
+  }, [displayChatSize]);
 
   useEffect(() => {
     if (
@@ -131,12 +184,15 @@ const ChatHistoryList = () => {
       e.stopPropagation();
       setIsHover(false);
 
-      const chatIndex = Number(e.dataTransfer.getData('chatIndex'));
+      const chatIndices = JSON.parse(e.dataTransfer.getData('chatIndices'));
       const updatedChats: ChatInterface[] = JSON.parse(
         JSON.stringify(useStore.getState().chats)
       );
-      delete updatedChats[chatIndex].folder;
+      chatIndices.forEach((chatIndex: number) => {
+        delete updatedChats[chatIndex].folder;
+      });
       setChats(updatedChats);
+      setSelectedChats([]);
     }
   };
 
@@ -170,10 +226,23 @@ const ChatHistoryList = () => {
             folderChats={chatFolders[folderId]}
             folderId={folderId}
             key={folderId}
+            selectedChats={selectedChats}
+            setSelectedChats={setSelectedChats}
+            lastSelectedIndex={lastSelectedIndex}
+            setLastSelectedIndex={setLastSelectedIndex}
           />
         ))}
-        {noChatFolders.map(({ title, index, id }) => (
-          <ChatHistory title={title} key={`${title}-${id}`} chatIndex={index} />
+        {noChatFolders.map(({ title, index, id, chatSize }) => (
+          <ChatHistory
+            title={title}
+            chatSize={chatSize}
+            key={`${title}-${id}`}
+            chatIndex={index}
+            selectedChats={selectedChats}
+            setSelectedChats={setSelectedChats}
+            lastSelectedIndex={lastSelectedIndex}
+            setLastSelectedIndex={setLastSelectedIndex}
+          />
         ))}
       </div>
       <div className='w-full h-10' />

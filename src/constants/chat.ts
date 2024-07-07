@@ -225,3 +225,6 @@ export const modelTypes: { [key: string]: string } = {
   'gpt-4o-2024-05-13': 'image',
   'gpt-4-vision-preview': 'image',
 };
+
+export const _defaultMenuWidth = 260;
+export const _defaultDisplayChatSize = false;
