@@ -1,3 +1,13 @@
+## 🚀 Maintained Fork of Better ChatGPT
+
+This is a maintained fork of the original Better ChatGPT project. The main differences in this fork include:
+
+- **Vision Support**: Added support for image uploads for compatible models.
+- **UI Enhancements**: Improved user interface with new features.
+- **Azure API Extended Support**: Ability to specify API version in the configuration.
+
+The original project has not been updated frequently, and we aim to provide more dynamic and continuous improvements. We welcome contributions! Feel free to submit PRs to help improve this project further.
+
 <h1 align="center"><b>Better ChatGPT</b></h1>
 
 <p align="center">
