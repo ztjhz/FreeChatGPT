@@ -1,3 +1,7 @@
+## 🗳️ Feature Prioritization with Canny.io
+
+We are now using [Canny.io](https://betterchatgpt.canny.io/feature-requests) for prioritizing feature development. You can and should vote there if you want development to be prioritized. Additionally, there's a possibility to push a feature to the front of the queue with a bounty of $100.
+
 ## 🚀 Maintained Fork of Better ChatGPT
 
 This is a maintained fork of the original Better ChatGPT project. The main differences in this fork include:
