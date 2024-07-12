@@ -1,9 +1,14 @@
+import { MessageInterface } from './chat';
+
 export interface EventSourceDataInterface {
   choices: EventSourceDataChoices[];
   created: number;
+  created_at?: string;
   id: string;
   model: string;
   object: string;
+  message?: MessageInterface;
+  done?: boolean;
 }
 
 export type EventSourceData = EventSourceDataInterface | '[DONE]';

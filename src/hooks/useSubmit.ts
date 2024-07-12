@@ -122,7 +122,7 @@ const useSubmit = () => {
               if (typeof curr === 'string') {
                 partial += curr;
               } else {
-                const content = curr.choices[0]?.delta?.content ?? null;
+                const content = curr?.message?.content ?? curr?.choices[0]?.delta?.content ?? null;
                 if (content) output += content;
               }
               return output;

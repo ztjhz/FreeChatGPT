@@ -18,6 +18,7 @@ Carefully heed the user's instructions.
 Respond using Markdown.`;
 
 export const modelOptions: ModelOptions[] = [
+  'llama3:latest',
   'gpt-3.5-turbo',
   'gpt-3.5-turbo-16k',
   'gpt-3.5-turbo-1106',
@@ -35,7 +36,7 @@ export const modelOptions: ModelOptions[] = [
   // 'gpt-4-32k-0314',
 ];
 
-export const defaultModel = 'gpt-3.5-turbo';
+export const defaultModel = 'llama3:latest';
 
 export const modelMaxToken = {
   'gpt-3.5-turbo': 4096,
@@ -57,9 +58,14 @@ export const modelMaxToken = {
   'gpt-4-turbo-2024-04-09': 128000,
   'gpt-4o': 128000,
   'gpt-4o-2024-05-13': 128000,
+  'llama3:latest': 8192,
 };
 
 export const modelCost = {
+  'llama3:latest': {
+    prompt: { price: 0.0, unit: 1000 },
+    completion: { price: 0.0, unit: 1000 },
+  },
   'gpt-3.5-turbo': {
     prompt: { price: 0.0015, unit: 1000 },
     completion: { price: 0.002, unit: 1000 },
@@ -159,7 +165,7 @@ export const generateDefaultChat = (
     useStore.getState().defaultSystemMessage.length > 0
       ? [{ role: 'system', content: useStore.getState().defaultSystemMessage }]
       : [],
-  config: { ...useStore.getState().defaultChatConfig },
+  config: { ..._defaultChatConfig },
   titleSet: false,
   folder,
 });

@@ -7,6 +7,7 @@ export const roles: Role[] = ['user', 'assistant', 'system'];
 export interface MessageInterface {
   role: Role;
   content: string;
+  images?: string[];
 }
 
 export interface ChatInterface {
@@ -50,6 +51,7 @@ export interface Folder {
 }
 
 export type ModelOptions =
+  | 'llama3:latest'
   | 'gpt-4o'
   | 'gpt-4o-2024-05-13'
   | 'gpt-4'
