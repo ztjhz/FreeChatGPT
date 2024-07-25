@@ -233,6 +233,8 @@ export const codeLanguageSubset = [
 ];
 
 export const modelTypes: { [key: string]: string } = {
+  'gpt-4o-mini-2024-07-18': 'image',
+  'gpt-4o-mini': 'image',
   'gpt-4o': 'image',
   'gpt-4o-2024-05-13': 'image',
   'gpt-4-vision-preview': 'image',
