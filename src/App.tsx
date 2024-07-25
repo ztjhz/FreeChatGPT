@@ -10,6 +10,8 @@ import { ChatInterface } from '@type/chat';
 import { Theme } from '@type/theme';
 import ApiPopup from '@components/ApiPopup';
 import Toast from '@components/Toast';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const initialiseNewChat = useInitialiseNewChat();
@@ -77,9 +79,12 @@ function App() {
   return (
     <div className='overflow-hidden w-full h-full relative'>
       <Menu />
-      <Chat />
-      <ApiPopup />
-      <Toast />
+      <div className={`flex h-full flex-1 flex-col`}>
+        <Chat />
+        <ApiPopup />
+        <Toast />
+        <ToastContainer />
+      </div>
     </div>
   );
 }

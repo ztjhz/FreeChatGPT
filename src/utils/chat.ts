@@ -1,6 +1,16 @@
 import html2canvas from 'html2canvas';
 import { ChatInterface } from '@type/chat';
 
+export const formatNumber = (num: number): string => {
+  return new Intl.NumberFormat('en-US', {
+    useGrouping: true,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  })
+    .format(num)
+    .replace(/,/g, ' ');
+};
+
 // Function to convert HTML to an image using html2canvas
 export const htmlToImg = async (html: HTMLDivElement) => {
   const needResize = window.innerWidth >= 1024;

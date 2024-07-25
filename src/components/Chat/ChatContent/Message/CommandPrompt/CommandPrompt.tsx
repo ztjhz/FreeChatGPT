@@ -6,11 +6,12 @@ import { matchSorter } from 'match-sorter';
 import { Prompt } from '@type/prompt';
 
 import useHideOnOutsideClick from '@hooks/useHideOnOutsideClick';
+import { ContentInterface } from '@type/chat';
 
 const CommandPrompt = ({
   _setContent,
 }: {
-  _setContent: React.Dispatch<React.SetStateAction<string>>;
+  _setContent: React.Dispatch<React.SetStateAction<ContentInterface[]>>;
 }) => {
   const { t } = useTranslation();
   const prompts = useStore((state) => state.prompts);
@@ -69,7 +70,7 @@ const CommandPrompt = ({
             <li
               className='px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer text-start w-full'
               onClick={() => {
-                _setContent((prev) => prev + cp.prompt);
+                _setContent((prev) => [{type: 'text', text: prev + cp.prompt}, ...prev.slice(1)]);
                 setDropDown(false);
               }}
               key={cp.id}

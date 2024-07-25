@@ -11,9 +11,15 @@ import {
   LocalStorageInterfaceV5ToV6,
   LocalStorageInterfaceV6ToV7,
   LocalStorageInterfaceV7oV8,
+  LocalStorageInterfaceV8_1ToV8_2,
+  LocalStorageInterfaceV8oV8_1,
+  TextContentInterface,
 } from '@type/chat';
 import {
   _defaultChatConfig,
+  _defaultMenuWidth,
+  _defaultDisplayChatSize,
+  defaultApiVersion,
   defaultModel,
   defaultUserMaxToken,
 } from '@constants/chat';
@@ -103,4 +109,23 @@ export const migrateV7 = (persistedState: LocalStorageInterfaceV7oV8) => {
     if (chat.folder) chat.folder = folderNameToIdMap[chat.folder];
     chat.id = uuidv4();
   });
+};
+
+export const migrateV8_1 = (persistedState: LocalStorageInterfaceV8oV8_1) => {
+  persistedState.chats.forEach((chat) => {
+    persistedState.apiVersion = defaultApiVersion;
+    chat.messages.forEach((msg) => {
+      if (typeof msg.content === 'string') {
+        const content: TextContentInterface[] = [
+          { type: 'text', text: msg.content },
+        ];
+        msg.content = content;
+      }
+    });
+  });
+};
+
+export const migrateV8_1_fix = (persistedState: LocalStorageInterfaceV8_1ToV8_2) => {
+  persistedState.menuWidth = _defaultMenuWidth;
+  persistedState.displayChatSize = _defaultDisplayChatSize;
 };

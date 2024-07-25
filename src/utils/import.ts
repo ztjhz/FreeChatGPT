@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import {
   ChatInterface,
   ConfigInterface,
+  ContentInterface,
   FolderCollection,
   MessageInterface,
 } from '@type/chat';
@@ -88,6 +89,10 @@ export const validateFolders = (
 export const validateExportV1 = (data: ExportV1): data is ExportV1 => {
   return validateAndFixChats(data.chats) && validateFolders(data.folders);
 };
+// Type guard to check if content is ContentInterface
+const isContentInterface = (content: any): content is ContentInterface => {
+  return typeof content === 'object' && 'type' in content;
+};
 
 // Convert OpenAI chat format to BetterChatGPT format
 export const convertOpenAIToBetterChatGPTFormat = (
@@ -102,8 +107,21 @@ export const convertOpenAIToBetterChatGPTFormat = (
     // Extract message if it exists
     if (node.message) {
       const { role } = node.message.author;
-      const content = node.message.content.parts?.join('') || '';
-      if (content.length > 0) messages.push({ role, content });
+      const content = node.message.content;
+      if (Array.isArray(content.parts)) {
+        const textContent = content.parts.join('') || '';
+        if (textContent.length > 0) {
+          messages.push({
+            role,
+            content: [{ type: 'text', text: textContent }],
+          });
+        }
+      } else if (isContentInterface(content)) {
+        messages.push({ role, content: [content] });
+      }
+      // TODO: Remove this after stable build
+      // const content = node.message.content.parts?.join('') || '';
+      // if (content.length > 0) messages.push({ role, content });
     }
 
     // Traverse the last child node if any children exist

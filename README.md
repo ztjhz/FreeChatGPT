@@ -1,3 +1,17 @@
+## 🗳️ Feature Prioritization with Canny.io
+
+We are now using [Canny.io](https://betterchatgpt.canny.io/feature-requests) for prioritizing feature development. You can and should vote there if you want development to be prioritized. Additionally, there's a possibility to push a feature to the front of the queue with a bounty of $100.
+
+## 🚀 Maintained Fork of Better ChatGPT
+
+This is a maintained fork of the original Better ChatGPT project. The main differences in this fork include:
+
+- **Vision Support**: Added support for image uploads for compatible models.
+- **UI Enhancements**: Improved user interface with new features.
+- **Azure API Extended Support**: Ability to specify API version in the configuration.
+
+The original project has not been updated frequently, and we aim to provide more dynamic and continuous improvements. We welcome contributions! Feel free to submit PRs to help improve this project further.
+
 <h1 align="center"><b>Better ChatGPT</b></h1>
 
 <p align="center">
@@ -8,43 +22,43 @@
 </p>
 
 <p align="center">
-    <a href="https://bettergpt.chat" target="_blank"><img src="public/apple-touch-icon.png" alt="Better ChatGPT" width="100" /></a>
+    <a href="https://animalnots.github.io/BetterChatGPT-VISION/" target="_blank"><img src="public/apple-touch-icon.png" alt="Better ChatGPT" width="100" /></a>
 </p>
 
 <h4 align="center"><b>Free, Powerful, Limitless, Intelligent, Engaging</b></h4>
 
 <p align="center">
-<a href="https://github.com/ztjhz/BetterChatGPT/blob/main/LICENSE" target="_blank">
-<img src="https://img.shields.io/github/license/ztjhz/BetterChatGPT?style=flat-square" alt="licence" />
+<a href="https://github.com/animalnots/BetterChatGPT-VISION/blob/main/LICENSE" target="_blank">
+<img src="https://img.shields.io/github/license/animalnots/BetterChatGPT-VISION?style=flat-square" alt="licence" />
 </a>
-<a href="https://github.com/ztjhz/BetterChatGPT/fork" target="_blank">
-<img src="https://img.shields.io/github/forks/ztjhz/BetterChatGPT?style=flat-square" alt="forks"/>
+<a href="https://github.com/animalnots/BetterChatGPT-VISION/fork" target="_blank">
+<img src="https://img.shields.io/github/forks/animalnots/BetterChatGPT-VISION?style=flat-square" alt="forks"/>
 </a>
-<a href="https://github.com/ztjhz/BetterChatGPT/stargazers" target="_blank">
-<img src="https://img.shields.io/github/stars/ztjhz/BetterChatGPT?style=flat-square" alt="stars"/>
+<a href="https://github.com/animalnots/BetterChatGPT-VISION/stargazers" target="_blank">
+<img src="https://img.shields.io/github/stars/animalnots/BetterChatGPT-VISION?style=flat-square" alt="stars"/>
 </a>
-<a href="https://github.com/ztjhz/BetterChatGPT/issues" target="_blank">
-<img src="https://img.shields.io/github/issues/ztjhz/BetterChatGPT?style=flat-square" alt="issues"/>
+<a href="https://github.com/animalnots/BetterChatGPT-VISION/issues" target="_blank">
+<img src="https://img.shields.io/github/issues/animalnots/BetterChatGPT-VISION?style=flat-square" alt="issues"/>
 </a>
-<a href="https://github.com/ztjhz/BetterChatGPT/pulls" target="_blank">
-<img src="https://img.shields.io/github/issues-pr/ztjhz/BetterChatGPT?style=flat-square" alt="pull-requests"/>
+<a href="https://github.com/animalnots/BetterChatGPT-VISION/pulls" target="_blank">
+<img src="https://img.shields.io/github/issues-pr/animalnots/BetterChatGPT-VISION?style=flat-square" alt="pull-requests"/>
 </a>
-<a href="https://twitter.com/intent/tweet?text=👋%20Check%20this%20amazing%20repo%20https://github.com/ztjhz/BetterChatGPT,%20created%20by%20@nikushii_"><img src="https://img.shields.io/twitter/url?label=Share%20on%20Twitter&style=social&url=https%3A%2F%2Fgithub.com%2Fztjhz%2FBetterChatGPT"></a>
+<a href="https://twitter.com/intent/tweet?text=👋%20Check%20this%20amazing%20repo%20https://github.com/animalnots/BetterChatGPT-VISION,%20created%20by%20@nikushii_"><img src="https://img.shields.io/twitter/url?label=Share%20on%20Twitter&style=social&url=https%3A%2F%2Fgithub.com%2Fztjhz%2FBetterChatGPT"></a>
 </p>
 
 <p align="center">
-    <a href="https://bettergpt.chat">Enter Website</a>
+    <a href="https://animalnots.github.io/BetterChatGPT-VISION/">Enter Website</a>
     ·
-    <a href="https://github.com/ztjhz/BetterChatGPT/issues/new/choose">Report Bug</a>
+    <a href="https://github.com/animalnots/BetterChatGPT-VISION/issues/new/choose">Report Bug</a>
     ·
-    <a href="https://github.com/ztjhz/BetterChatGPT/issues/new/choose">Request Feature</a>
+    <a href="https://github.com/animalnots/BetterChatGPT-VISION/issues/new/choose">Request Feature</a>
 </p>
 <p align="center"><i>Did you enjoy using Better ChatGPT? Give it some love with a star! 🌟</i></p>
 
-## 👋🏻 Introducing Better ChatGPT
+## 👋🏻 Introducing Better ChatGPT Vision
 
 <p align="center">
-    <a href="https://bettergpt.chat" target="_blank">
+    <a href="https://animalnots.github.io/BetterChatGPT-VISION/" target="_blank">
         <img src="assets/preview.png" alt="landing" width=500 />
     </a>
 </p>
@@ -78,7 +92,7 @@ Better ChatGPT comes with a bundle of amazing features! Here are some of them:
 
 # 🛠️ Usage
 
-To get started, simply visit our website at <https://bettergpt.chat/>. There are 3 ways for you to start using Better ChatGPT.
+To get started, simply visit our website at <https://animalnots.github.io/BetterChatGPT-VISION/>. There are 3 ways for you to start using Better ChatGPT.
 
 1. Enter into the API menu your OpenAI API Key obtained from [OpenAI API Keys](https://platform.openai.com/account/api-keys).
 2. Utilise the api endpoint proxy provided by [ayaka14732/ChatGPTAPIFree](https://github.com/ayaka14732/ChatGPTAPIFree) (if you are in a region with no access to ChatGPT)
@@ -86,7 +100,7 @@ To get started, simply visit our website at <https://bettergpt.chat/>. There are
 
 ## Desktop App
 
-Download the desktop app [here](https://github.com/ztjhz/BetterChatGPT/releases)
+Download the desktop app [here](https://github.com/animalnots/BetterChatGPT-VISION/releases)
 
 | OS      | Download  |
 | ------- | --------- |
@@ -114,8 +128,8 @@ One click deploy with Vercel
 ### Steps
 
 1. Create a GitHub account (if you don't have one already)
-1. Star this [repository](https://github.com/ztjhz/BetterChatGPT) ⭐️
-1. Fork this [repository](https://github.com/ztjhz/BetterChatGPT)
+1. Star this [repository](https://github.com/animalnots/BetterChatGPT-VISION) ⭐️
+1. Fork this [repository](https://github.com/animalnots/BetterChatGPT-VISION)
 1. In your forked repository, navigate to the `Settings` tab
    ![image](https://user-images.githubusercontent.com/59118459/223753577-9b6f8266-26e8-471b-8f45-a1a02fbab232.png)
 1. In the left sidebar, click on `Pages` and in the right section, select `GitHub Actions` for `source`.
@@ -138,26 +152,29 @@ One click deploy with Vercel
    - [node.js](https://nodejs.org/en/) (v14.18.0 or above)
    - [yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/) (6.14.15 or above)
 
-2. Clone this [repository](https://github.com/ztjhz/BetterChatGPT) by running `git clone https://github.com/ztjhz/BetterChatGPT.git`
+2. Clone this [repository](https://github.com/animalnots/BetterChatGPT-VISION) by running `git clone https://github.com/animalnots/BetterChatGPT-VISION.git`
 3. Navigate into the directory by running `cd BetterChatGPT`
 4. Run `yarn` or `npm install`, depending on whether you have yarn or npm installed.
 5. Launch the app by running `yarn dev` or `npm run dev`
 
 ### Running it locally using docker compose
+
 1. Ensure that you have the following installed:
 
    - [docker](https://www.docker.com/) (v24.0.7 or above)
-      ```bash
-      curl https://get.docker.com | sh \
-      && sudo usermod -aG docker $USER
-      ```
+     ```bash
+     curl https://get.docker.com | sh \
+     && sudo usermod -aG docker $USER
+     ```
 
 2. Build the docker image
+
    ```
    docker compose build
    ```
 
 3. Build and start the container using docker compose
+
    ```
    docker compose build
    docker compose up -d
@@ -168,9 +185,27 @@ One click deploy with Vercel
    docker compose down
    ```
 
+### Running it locally via desktop app
+
+1. Ensure that you have the following installed:
+
+   - [yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/) (6.14.15 or above)
+
+2. Build the executable (Windows)
+
+   ```
+   yarn make --win
+   ```
+
+3. Build for other OS
+   ```
+   yarn make _ADD_BUILD_ARGS_HERE
+   ```
+   To find out available building arguments, go to [electron-builder reference](https://www.electron.build/cli.html)
+
 # ⭐️ Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=ztjhz/BetterChatGPT&type=Date)](https://github.com/ztjhz/BetterChatGPT/stargazers)
+[![Star History Chart](https://api.star-history.com/svg?repos=animalnots/BetterChatGPT-VISION&type=Date)](https://github.com/animalnots/BetterChatGPT-VISION/stargazers)
 
 <h3 align="center">
 A ⭐️ to <b>Better ChatGPT</b> is to make it shine brighter and benefit more people.
@@ -180,8 +215,8 @@ A ⭐️ to <b>Better ChatGPT</b> is to make it shine brighter and benefit more 
 
 Thanks to all the contributors!
 
-<a href="https://github.com/ztjhz/BetterChatGPT/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=ztjhz/BetterChatGPT" />
+<a href="https://github.com/animalnots/BetterChatGPT-VISION/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=animalnots/BetterChatGPT-VISION" />
 </a>
 
 # 🙏 Support

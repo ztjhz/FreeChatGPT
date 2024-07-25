@@ -1,5 +1,12 @@
 import { v4 as uuidv4 } from 'uuid';
-import { ChatInterface, ConfigInterface, ModelOptions } from '@type/chat';
+import {
+  ChatInterface,
+  ConfigInterface,
+  ModelCost,
+  ModelOptions,
+  ModelType,
+  TextContentInterface,
+} from '@type/chat';
 import useStore from '@store/store';
 
 const date = new Date();
@@ -37,9 +44,10 @@ export const modelOptions: ModelOptions[] = [
   // 'gpt-4-32k-0314',
 ];
 
+export const defaultApiVersion = '2024-04-01-preview';
 export const defaultModel = 'gpt-3.5-turbo';
 
-export const modelMaxToken = {
+export const modelMaxToken: { [key: string]: number } = {
   'gpt-3.5-turbo': 4096,
   'gpt-3.5-turbo-0301': 4096,
   'gpt-3.5-turbo-0613': 4096,
@@ -63,7 +71,7 @@ export const modelMaxToken = {
   'gpt-4o-mini-2024-07-18': 128000
 };
 
-export const modelCost = {
+export const modelCost: ModelCost = {
   'gpt-3.5-turbo': {
     prompt: { price: 0.0015, unit: 1000 },
     completion: { price: 0.002, unit: 1000 },
@@ -169,7 +177,17 @@ export const generateDefaultChat = (
   title: title ? title : 'New Chat',
   messages:
     useStore.getState().defaultSystemMessage.length > 0
-      ? [{ role: 'system', content: useStore.getState().defaultSystemMessage }]
+      ? [
+          {
+            role: 'system',
+            content: [
+              {
+                type: 'text',
+                text: useStore.getState().defaultSystemMessage,
+              } as TextContentInterface,
+            ],
+          },
+        ]
       : [],
   config: { ...useStore.getState().defaultChatConfig },
   titleSet: false,
@@ -213,3 +231,12 @@ export const codeLanguageSubset = [
   'xml',
   'yaml',
 ];
+
+export const modelTypes: { [key: string]: string } = {
+  'gpt-4o': 'image',
+  'gpt-4o-2024-05-13': 'image',
+  'gpt-4-vision-preview': 'image',
+};
+
+export const _defaultMenuWidth = 260;
+export const _defaultDisplayChatSize = false;

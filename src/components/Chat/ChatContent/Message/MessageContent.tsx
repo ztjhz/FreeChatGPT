@@ -3,6 +3,7 @@ import useStore from '@store/store';
 
 import ContentView from './View/ContentView';
 import EditView from './View/EditView';
+import { ContentInterface } from '@type/chat';
 
 const MessageContent = ({
   role,
@@ -11,7 +12,7 @@ const MessageContent = ({
   sticky = false,
 }: {
   role: string;
-  content: string;
+  content: ContentInterface[];
   messageIndex: number;
   sticky?: boolean;
 }) => {

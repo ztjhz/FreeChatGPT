@@ -19,7 +19,12 @@ import CrossIcon from '@icon/CrossIcon';
 
 import useSubmit from '@hooks/useSubmit';
 
-import { ChatInterface } from '@type/chat';
+import {
+  ChatInterface,
+  ContentInterface,
+  ImageContentInterface,
+  TextContentInterface,
+} from '@type/chat';
 
 import { codeLanguageSubset } from '@constants/chat';
 
@@ -41,7 +46,7 @@ const ContentView = memo(
     messageIndex,
   }: {
     role: string;
-    content: string;
+    content: ContentInterface[];
     setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
     messageIndex: number;
   }) => {
@@ -100,7 +105,7 @@ const ContentView = memo(
     };
 
     const handleCopy = () => {
-      navigator.clipboard.writeText(content);
+      navigator.clipboard.writeText((content[0] as TextContentInterface).text);
     };
 
     return (
@@ -129,11 +134,24 @@ const ContentView = memo(
                 p,
               }}
             >
-              {content}
+              {(content[0] as TextContentInterface).text}
             </ReactMarkdown>
           ) : (
-            <span className='whitespace-pre-wrap'>{content}</span>
+            <span className='whitespace-pre-wrap'>
+              {(content[0] as TextContentInterface).text}
+            </span>
           )}
+        </div>
+        <div className='flex gap-4'>
+          {(content.slice(1) as ImageContentInterface[]).map((image, index) => (
+            <div key={index} className='image-container'>
+              <img
+                src={image.image_url.url}
+                alt={`uploaded-${index}`}
+                className='h-20'
+              />
+            </div>
+          ))}
         </div>
         <div className='flex justify-end gap-2 w-full mt-2'>
           {isDelete || (

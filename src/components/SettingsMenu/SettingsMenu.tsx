@@ -16,6 +16,7 @@ import ChatConfigMenu from '@components/ChatConfigMenu';
 import EnterToSubmitToggle from './EnterToSubmitToggle';
 import TotalTokenCost, { TotalTokenCostToggle } from './TotalTokenCost';
 import ClearConversation from '@components/Menu/MenuOptions/ClearConversation';
+import DisplayChatSizeToggle from './DisplayChatSizeToggle';
 
 const SettingsMenu = () => {
   const { t } = useTranslation();
@@ -51,6 +52,7 @@ const SettingsMenu = () => {
               <InlineLatexToggle />
               <AdvancedModeToggle />
               <TotalTokenCostToggle />
+              <DisplayChatSizeToggle />
             </div>
             <ClearConversation />
             <PromptLibraryMenu />

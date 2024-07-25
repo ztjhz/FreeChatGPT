@@ -1,6 +1,8 @@
 {
   "save": "Save",
   "generate": "Generate",
+  "add_image_url": "Add image URL",
+  "enter_image_url_placeholder": "Enter image URL",
   "cancel": "Cancel",
   "confirm": "Confirm",
   "warning": "Warning",
@@ -33,6 +35,7 @@
   "total": "Total",
   "resetCost": "Reset Costs",
   "countTotalTokens": "Count total tokens",
+  "displayChatSize": "Display chat size in title",
   "morePrompts": "You can find more prompts here: ",
   "clearPrompts": "Clear prompts",
   "postOnShareGPT": {

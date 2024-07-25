@@ -1,11 +1,25 @@
 {
   "name": "better-chatgpt",
   "private": true,
-  "version": "1.0.5",
+  "version": "1.2.0",
   "type": "module",
   "homepage": "./",
   "main": "electron/index.cjs",
   "author": "Jing Hua <betterchatgpt@mail.tjh.sg>",
+  "contributors": [
+    {
+      "name": "animalnots",
+      "url": "https://github.com/animalnots"
+    },
+    {
+      "name": "Seth Deegan <lectrician1>",
+      "url": "https://github.com/lectrician1"
+    },
+    {
+      "name": "Alper Özdemir <maozdemir>",
+      "url": "https://github.com/maozdemir"
+    }
+  ],
   "description": "Play and chat smarter with BetterChatGPT - an amazing open-source web app with a better UI for exploring OpenAI's ChatGPT API!",
   "scripts": {
     "dev": "vite",
@@ -13,7 +27,8 @@
     "preview": "vite preview",
     "electron": "concurrently -k \"BROWSER=none yarn dev\" \"wait-on tcp:5173 && electron .\"",
     "pack": "yarn build && electron-builder --dir",
-    "make": "yarn build && electron-builder"
+    "make": "yarn build && electron-builder",
+    "debug": "concurrently -k \"cross-env BROWSER=none yarn dev\" \"wait-on tcp:5173 && electron --inspect=5858 .\""
   },
   "build": {
     "appId": "better-chatgpt",
@@ -62,6 +77,7 @@
     "react-i18next": "^12.2.0",
     "react-markdown": "^8.0.5",
     "react-scroll-to-bottom": "^4.2.0",
+    "react-toastify": "^10.0.5",
     "rehype-highlight": "^6.0.0",
     "rehype-katex": "^6.0.2",
     "remark-gfm": "^3.0.1",
@@ -80,6 +96,7 @@
     "@vitejs/plugin-react-swc": "^3.0.0",
     "autoprefixer": "^10.4.13",
     "concurrently": "^8.0.1",
+    "cross-env": "^7.0.3",
     "electron": "^23.2.0",
     "electron-builder": "^23.6.0",
     "postcss": "^8.4.21",

@@ -4,7 +4,7 @@ import useStore from '@store/store';
 import Avatar from './Avatar';
 import MessageContent from './MessageContent';
 
-import { Role } from '@type/chat';
+import { ContentInterface, Role } from '@type/chat';
 import RoleSelector from './RoleSelector';
 
 // const backgroundStyle: { [role in Role]: string } = {
@@ -22,7 +22,7 @@ const Message = React.memo(
     sticky = false,
   }: {
     role: Role;
-    content: string;
+    content: ContentInterface[],
     messageIndex: number;
     sticky?: boolean;
   }) => {

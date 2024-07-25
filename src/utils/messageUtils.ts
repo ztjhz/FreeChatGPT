@@ -1,4 +1,4 @@
-import { MessageInterface, ModelOptions, TotalTokenUsed } from '@type/chat';
+import { MessageInterface, ModelOptions, TextContentInterface, TotalTokenUsed } from '@type/chat';
 
 import useStore from '@store/store';
 
@@ -29,7 +29,7 @@ export const getChatGPTEncoding = (
   const serialized = [
     messages
       .map(({ role, content }) => {
-        return `<|im_start|>${role}${roleSep}${content}<|im_end|>`;
+        return `<|im_start|>${role}${roleSep}${(content[0] as TextContentInterface).text}<|im_end|>`;
       })
       .join(msgSep),
     `<|im_start|>assistant${roleSep}`,
