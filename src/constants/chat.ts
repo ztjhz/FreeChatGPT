@@ -136,11 +136,11 @@ export const modelCost = {
   },
   'gpt-4o-mini': {
     prompt: { price: 0.00015, unit: 1000 },
-    completion: { price: 0.00060, unit: 1000 },
+    completion: { price: 0.0006, unit: 1000 },
   },
   'gpt-4o-mini-2024-07-18': {
     prompt: { price: 0.00015, unit: 1000 },
-    completion: { price: 0.00060, unit: 1000 },
+    completion: { price: 0.0006, unit: 1000 },
   },
   'gpt-4o': {
     prompt: { price: 0.005, unit: 1000 },
@@ -152,7 +152,7 @@ export const modelCost = {
   },
   'gpt-4o-2024-08-06': {
     prompt: { price: 0.0025, unit: 1000 },
-    completion: { price: 0.010, unit: 1000 },
+    completion: { price: 0.01, unit: 1000 },
   },
 };
 
