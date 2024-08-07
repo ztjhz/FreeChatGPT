@@ -8,20 +8,54 @@ export const htmlToImg = async (html: HTMLDivElement) => {
   if (needResize) {
     html.style.width = '1023px';
   }
-  const canvas = await html2canvas(html);
+  await Promise.all(
+    Array.from(html.querySelectorAll('img'))
+      。filter(img => !img.complete)
+      。map(img => new Promise(resolve => { img.onload = img.onerror = resolve; }))
+  );
+  const canvas = await html2canvas(html, {
+    useCORS: true,
+  });
   if (needResize) html.style.width = initialWidth;
-  const dataURL = canvas.toDataURL('image/png');
+  const croppedCanvas = document.createElement('canvas');
+  const ctx = croppedCanvas.getContext('2d');
+  if (ctx) {
+    const cropHeight = 3;
+    const cropWidth = 3;
+    croppedCanvas.width = canvas.width - cropWidth;
+    croppedCanvas.height = canvas.height - cropHeight;
+    ctx.drawImage(
+      canvas,
+      0, 0,
+      canvas.width - cropWidth, canvas.height - cropHeight,
+      0, 0,
+      canvas.width - cropWidth, canvas.height - cropHeight
+    );
+  }
+  const dataURL = croppedCanvas.toDataURL('image/png');
   return dataURL;
 };
 
 // Function to download the image as a file
 export const downloadImg = (imgData: string, fileName: string) => {
+  const byteString = atob(imgData.split(',')[1]);
+  const mimeString = imgData.split(',')[0].split(':')[1].split(';')[0];
+  const ab = new ArrayBuffer(byteString.length);
+  const ia = new Uint8Array(ab);
+  for (let i = 0; i < byteString.length; i++) {
+    ia[i] = byteString.charCodeAt(i);
+  }
+  const blob = new Blob([ab], {type: mimeString});
+  const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
-  link.href = imgData;
+  link.href = url;
   link.download = fileName;
+  document.body.appendChild(link);
   link.click();
-  link.remove();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
 };
+
 
 // Function to convert a chat object to markdown format
 export const chatToMarkdown = (chat: ChatInterface) => {
@@ -38,6 +72,7 @@ export const downloadMarkdown = (markdown: string, fileName: string) => {
   const markdownFile = new Blob([markdown], { type: 'text/markdown' });
   link.href = URL.createObjectURL(markdownFile);
   link.download = fileName;
+  document.body.appendChild(link);
   link.click();
-  link.remove();
+  document.body.removeChild(link);
 };
