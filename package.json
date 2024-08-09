@@ -46,7 +46,15 @@
       "icon": "dist/icon-rounded-macos.png"
     },
     "mac": {
-      "icon": "dist/icon-rounded-macos.png"
+      "icon": "dist/icon-rounded-macos.png",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "universal"
+          ]
+        }
+      ]
     },
     "linux": {
       "target": [
