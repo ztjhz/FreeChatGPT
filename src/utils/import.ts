@@ -32,10 +32,16 @@ export const validateAndFixChats = (chats: any): chats is ChatInterface[] => {
   return true;
 };
 
-const validateMessage = (messages: MessageInterface[]) => {
+const validateMessage = (messages: MessageInterface[]): boolean => {
   if (!Array.isArray(messages)) return false;
   for (const message of messages) {
-    if (!(typeof message.content === 'string')) return false;
+    if (typeof message.content === 'string') {
+      // Convert string content to an array containing that string
+      message.content = [message.content];
+    } else if (!Array.isArray(message.content)) {
+      return false;
+    }
+
     if (!(typeof message.role === 'string')) return false;
     if (!roles.includes(message.role)) return false;
   }
