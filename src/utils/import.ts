@@ -5,6 +5,8 @@ import {
   ConfigInterface,
   ContentInterface,
   FolderCollection,
+  isImageContent,
+  isTextContent,
   MessageInterface,
 } from '@type/chat';
 import { roles } from '@type/chat';
@@ -95,6 +97,7 @@ export const validateFolders = (
 export const validateExportV1 = (data: ExportV1): data is ExportV1 => {
   return validateAndFixChats(data.chats) && validateFolders(data.folders);
 };
+
 // Type guard to check if content is ContentInterface
 const isContentInterface = (content: any): content is ContentInterface => {
   return typeof content === 'object' && 'type' in content;
@@ -106,51 +109,108 @@ export const convertOpenAIToBetterChatGPTFormat = (
 ): ChatInterface => {
   const messages: MessageInterface[] = [];
 
-  // Traverse the chat tree and collect messages
-  const traverseTree = (id: string) => {
-    const node = openAIChat.mapping[id];
+  if ('mapping' in openAIChat) {
+    // Traverse the chat tree and collect messages for the mapping structure
+    const traverseTree = (id: string) => {
+      const node = openAIChat.mapping[id];
 
-    // Extract message if it exists
-    if (node.message) {
-      const { role } = node.message.author;
-      const content = node.message.content;
-      if (Array.isArray(content.parts)) {
-        const textContent = content.parts.join('') || '';
-        if (textContent.length > 0) {
+      // Extract message if it exists
+      if (node.message) {
+        const { role } = node.message.author;
+        const content = node.message.content;
+        if (Array.isArray(content.parts)) {
+          const textContent = content.parts.join('') || '';
+          if (textContent.length > 0) {
+            messages.push({
+              role,
+              content: [{ type: 'text', text: textContent }],
+            });
+          }
+        } else if (isContentInterface(content)) {
+          messages.push({ role, content: [content] });
+        }
+      }
+
+      // Traverse the last child node if any children exist
+      if (node.children.length > 0) {
+        traverseTree(node.children[node.children.length - 1]);
+      }
+    };
+
+    // Start traversing the tree from the root node
+    const rootNode = openAIChat.mapping[Object.keys(openAIChat.mapping)[0]];
+    traverseTree(rootNode.id);
+  } else if ('messages' in openAIChat) {
+    // Handle the playground export format
+    openAIChat.messages.forEach((message) => {
+      const { role, content } = message;
+      if (Array.isArray(content)) {
+        const contentElements: ContentInterface[] = content
+          .map((part) => {
+            if (isTextContent(part)) {
+              return { type: 'text', text: part.text };
+            } else if (isImageContent(part)) {
+              return {
+                type: 'image_url',
+                image_url: {
+                  url: part.image_url.url,
+                  detail: part.image_url.detail || 'auto',
+                },
+              };
+            }
+            return null;
+          })
+          .filter((part) => part !== null) as ContentInterface[];
+
+        if (contentElements.length > 0) {
           messages.push({
             role,
-            content: [{ type: 'text', text: textContent }],
+            content: contentElements,
           });
         }
-      } else if (isContentInterface(content)) {
-        messages.push({ role, content: [content] });
       }
-      // TODO: Remove this after stable build
-      // const content = node.message.content.parts?.join('') || '';
-      // if (content.length > 0) messages.push({ role, content });
-    }
+    });
+  }
 
-    // Traverse the last child node if any children exist
-    if (node.children.length > 0) {
-      traverseTree(node.children[node.children.length - 1]);
-    }
+  // Extend or override _defaultChatConfig with values from openAIChat
+  const config: ConfigInterface = {
+    ..._defaultChatConfig,
+    ...((openAIChat as any).temperature !== undefined && {
+      temperature: (openAIChat as any).temperature,
+    }),
+    ...((openAIChat as any).max_tokens !== undefined && {
+      max_tokens: (openAIChat as any).max_tokens,
+    }),
+    ...((openAIChat as any).top_p !== undefined && {
+      top_p: (openAIChat as any).top_p,
+    }),
+    ...((openAIChat as any).frequency_penalty !== undefined && {
+      frequency_penalty: (openAIChat as any).frequency_penalty,
+    }),
+    ...((openAIChat as any).presence_penalty !== undefined && {
+      presence_penalty: (openAIChat as any).presence_penalty,
+    }),
+    ...((openAIChat as any).model !== undefined && {
+      model: (openAIChat as any).model,
+    }),
   };
-
-  // Start traversing the tree from the root node
-  const rootNode = openAIChat.mapping[Object.keys(openAIChat.mapping)[0]].id;
-  traverseTree(rootNode);
 
   // Return the chat interface object
   return {
     id: uuidv4(),
-    title: openAIChat.title,
+    title: openAIChat.title || 'Untitled Chat',
     messages,
-    config: _defaultChatConfig,
+    config,
     titleSet: true,
   };
 };
 
 // Import OpenAI chat data and convert it to BetterChatGPT format
-export const importOpenAIChatExport = (openAIChatExport: OpenAIChat[]) => {
-  return openAIChatExport.map(convertOpenAIToBetterChatGPTFormat);
+export const importOpenAIChatExport = (openAIChatExport: any) => {
+  if (Array.isArray(openAIChatExport)) {
+    return openAIChatExport.map(convertOpenAIToBetterChatGPTFormat);
+  } else if (typeof openAIChatExport === 'object') {
+    return [convertOpenAIToBetterChatGPTFormat(openAIChatExport)];
+  }
+  return [];
 };
