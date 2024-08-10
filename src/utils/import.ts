@@ -103,10 +103,16 @@ const isContentInterface = (content: any): content is ContentInterface => {
   return typeof content === 'object' && 'type' in content;
 };
 
+export const isOpenAIContent = (content: any) => {
+  return isOpenAIChat(content) || isOpenAIPlaygroundJSON(content);
+};
+
 const isOpenAIChat = (content: any): content is OpenAIChat => {
   return typeof content === 'object' && 'mapping' in content;
 };
-const isOpenAIPlaygroundJSON = (content: any): content is OpenAIPlaygroundJSON => {
+const isOpenAIPlaygroundJSON = (
+  content: any
+): content is OpenAIPlaygroundJSON => {
   return typeof content === 'object' && 'messages' in content;
 };
 
@@ -145,7 +151,8 @@ export const convertOpenAIToBetterChatGPTFormat = (
     };
 
     // Start traversing the tree from the root node
-    const rootNode = openAIChatExport.mapping[Object.keys(openAIChatExport.mapping)[0]];
+    const rootNode =
+      openAIChatExport.mapping[Object.keys(openAIChatExport.mapping)[0]];
     traverseTree(rootNode.id);
   } else if (isOpenAIPlaygroundJSON(openAIChatExport)) {
     // Handle the playground export format

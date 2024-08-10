@@ -6,7 +6,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 
 const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID || undefined;
 
-const namespace = ['main', 'api', 'about', 'model'];
+const namespace = ['main', 'api', 'about', 'model', 'import'];
 if (googleClientId) namespace.push('drive');
 
 i18n
