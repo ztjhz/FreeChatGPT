@@ -15,7 +15,7 @@ import {
   modelOptions,
   _defaultChatConfig,
 } from '@constants/chat';
-import { ExportV1, OpenAIChat } from '@type/export';
+import { ExportV1, OpenAIChat, OpenAIPlaygroundJSON } from '@type/export';
 
 export const validateAndFixChats = (chats: any): chats is ChatInterface[] => {
   if (!Array.isArray(chats)) return false;
@@ -103,16 +103,23 @@ const isContentInterface = (content: any): content is ContentInterface => {
   return typeof content === 'object' && 'type' in content;
 };
 
+const isOpenAIChat = (content: any): content is OpenAIChat => {
+  return typeof content === 'object' && 'mapping' in content;
+};
+const isOpenAIPlaygroundJSON = (content: any): content is OpenAIPlaygroundJSON => {
+  return typeof content === 'object' && 'messages' in content;
+};
+
 // Convert OpenAI chat format to BetterChatGPT format
 export const convertOpenAIToBetterChatGPTFormat = (
-  openAIChat: OpenAIChat
+  openAIChatExport: any
 ): ChatInterface => {
   const messages: MessageInterface[] = [];
 
-  if ('mapping' in openAIChat) {
+  if (isOpenAIChat(openAIChatExport)) {
     // Traverse the chat tree and collect messages for the mapping structure
     const traverseTree = (id: string) => {
-      const node = openAIChat.mapping[id];
+      const node = openAIChatExport.mapping[id];
 
       // Extract message if it exists
       if (node.message) {
@@ -138,11 +145,11 @@ export const convertOpenAIToBetterChatGPTFormat = (
     };
 
     // Start traversing the tree from the root node
-    const rootNode = openAIChat.mapping[Object.keys(openAIChat.mapping)[0]];
+    const rootNode = openAIChatExport.mapping[Object.keys(openAIChatExport.mapping)[0]];
     traverseTree(rootNode.id);
-  } else if ('messages' in openAIChat) {
+  } else if (isOpenAIPlaygroundJSON(openAIChatExport)) {
     // Handle the playground export format
-    openAIChat.messages.forEach((message) => {
+    openAIChatExport.messages.forEach((message) => {
       const { role, content } = message;
       if (Array.isArray(content)) {
         const contentElements: ContentInterface[] = content
@@ -175,30 +182,30 @@ export const convertOpenAIToBetterChatGPTFormat = (
   // Extend or override _defaultChatConfig with values from openAIChat
   const config: ConfigInterface = {
     ..._defaultChatConfig,
-    ...((openAIChat as any).temperature !== undefined && {
-      temperature: (openAIChat as any).temperature,
+    ...((openAIChatExport as any).temperature !== undefined && {
+      temperature: (openAIChatExport as any).temperature,
     }),
-    ...((openAIChat as any).max_tokens !== undefined && {
-      max_tokens: (openAIChat as any).max_tokens,
+    ...((openAIChatExport as any).max_tokens !== undefined && {
+      max_tokens: (openAIChatExport as any).max_tokens,
     }),
-    ...((openAIChat as any).top_p !== undefined && {
-      top_p: (openAIChat as any).top_p,
+    ...((openAIChatExport as any).top_p !== undefined && {
+      top_p: (openAIChatExport as any).top_p,
     }),
-    ...((openAIChat as any).frequency_penalty !== undefined && {
-      frequency_penalty: (openAIChat as any).frequency_penalty,
+    ...((openAIChatExport as any).frequency_penalty !== undefined && {
+      frequency_penalty: (openAIChatExport as any).frequency_penalty,
     }),
-    ...((openAIChat as any).presence_penalty !== undefined && {
-      presence_penalty: (openAIChat as any).presence_penalty,
+    ...((openAIChatExport as any).presence_penalty !== undefined && {
+      presence_penalty: (openAIChatExport as any).presence_penalty,
     }),
-    ...((openAIChat as any).model !== undefined && {
-      model: (openAIChat as any).model,
+    ...((openAIChatExport as any).model !== undefined && {
+      model: (openAIChatExport as any).model,
     }),
   };
 
   // Return the chat interface object
   return {
     id: uuidv4(),
-    title: openAIChat.title || 'Untitled Chat',
+    title: openAIChatExport.title || 'Untitled Chat',
     messages,
     config,
     titleSet: true,

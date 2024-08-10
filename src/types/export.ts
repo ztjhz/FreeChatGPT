@@ -1,7 +1,9 @@
 import {
   ChatInterface,
+  ConfigInterface,
   ContentInterface,
   FolderCollection,
+  MessageInterface,
   Role,
 } from './chat';
 
@@ -13,6 +15,7 @@ export interface ExportV1 extends ExportBase {
   chats?: ChatInterface[];
   folders: FolderCollection;
 }
+
 export type OpenAIChat = {
   title: string;
   mapping: {
@@ -34,5 +37,9 @@ export type OpenAIChat = {
   };
   current_node: string;
 };
+
+export interface OpenAIPlaygroundJSON extends ConfigInterface {
+  messages: MessageInterface[];
+}
 
 export default ExportV1;
