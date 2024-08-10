@@ -33,7 +33,7 @@ const ImportExportChat = () => {
             <ImportChat />
             <ExportChat />
             <div className='border-t my-3 border-gray-200 dark:border-gray-600' />
-            <ImportChatOpenAI setIsModalOpen={setIsModalOpen} />
+            {/* <ImportChatOpenAI setIsModalOpen={setIsModalOpen} /> */}
           </div>
         </PopupModal>
       )}

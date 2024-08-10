@@ -1,0 +1,10 @@
+{
+    "notifications": {
+        "invalidOpenAIDataFormat" : "Invalid openai data format",
+        "invalidChatsDataFormat" : "Invalid chats data format",
+        "invalidFormatForVersion" : "Invalid format for specified version",
+        "successfulImport" : "Succesfully imported!",
+        "unrecognisedDataFormat" : "Unrecognised data format. Supported formats are: BetterGPT export, OpenAI export, OpenAI Playground (JSON)"
+    }
+}
+  
