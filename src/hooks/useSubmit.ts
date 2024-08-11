@@ -22,7 +22,7 @@ const useSubmit = () => {
   const generating = useStore((state) => state.generating);
   const currentChatIndex = useStore((state) => state.currentChatIndex);
   const setChats = useStore((state) => state.setChats);
-
+  
   const generateTitle = async (
     message: MessageInterface[],
     modelConfig: ConfigInterface
@@ -34,22 +34,29 @@ const useSubmit = () => {
         if (apiEndpoint === officialAPIEndpoint) {
           throw new Error(t('noApiKeyWarning') as string);
         }
-
+        const titleChatConfig = {
+          ..._defaultChatConfig,  // Spread the original config
+          model:  useStore.getState().titleModel ?? _defaultChatConfig.model,           // Override the model property
+        };
         // other endpoints
         data = await getChatCompletion(
           useStore.getState().apiEndpoint,
           message,
-          _defaultChatConfig,
+          titleChatConfig,
           undefined,
           undefined,
           useStore.getState().apiVersion
         );
       } else if (apiKey) {
+        const titleChatConfig = {
+          ...modelConfig,  // Spread the original config
+          model: useStore.getState().titleModel ?? modelConfig.model,           // Override the model property
+        };
         // own apikey
         data = await getChatCompletion(
           useStore.getState().apiEndpoint,
           message,
-          modelConfig,
+          titleChatConfig,
           apiKey,
           undefined,
           useStore.getState().apiVersion
