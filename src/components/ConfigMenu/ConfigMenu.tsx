@@ -47,7 +47,11 @@ const ConfigMenu = ({
       handleClickBackdrop={handleConfirm}
     >
       <div className='p-6 border-b border-gray-200 dark:border-gray-600'>
-        <ModelSelector _model={_model} _setModel={_setModel} />
+        <ModelSelector
+          _model={_model}
+          _setModel={_setModel}
+          _label={t('Model')}
+        />
         <MaxTokenSlider
           _maxToken={_maxToken}
           _setMaxToken={_setMaxToken}
@@ -74,14 +78,19 @@ const ConfigMenu = ({
 export const ModelSelector = ({
   _model,
   _setModel,
+  _label,
 }: {
   _model: ModelOptions;
   _setModel: React.Dispatch<React.SetStateAction<ModelOptions>>;
+  _label: string;
 }) => {
   const [dropDown, setDropDown] = useState<boolean>(false);
 
   return (
     <div className='mb-4'>
+      <label className='block text-sm font-medium text-gray-900 dark:text-white'>
+        {_label}
+      </label>
       <button
         className='btn btn-neutral btn-small flex gap-1'
         type='button'

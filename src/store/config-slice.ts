@@ -1,12 +1,13 @@
 import { StoreSlice } from './store';
 import { Theme } from '@type/theme';
-import { ConfigInterface, TotalTokenUsed } from '@type/chat';
-import { _defaultChatConfig, _defaultSystemMessage,_defaultMenuWidth } from '@constants/chat';
+import { ConfigInterface, ModelOptions, TotalTokenUsed } from '@type/chat';
+import { _defaultChatConfig, _defaultSystemMessage,_defaultMenuWidth, defaultModel } from '@constants/chat';
 
 export interface ConfigSlice {
   openConfig: boolean;
   theme: Theme;
   autoTitle: boolean;
+  titleModel: ModelOptions;
   hideMenuOptions: boolean;
   advancedMode: boolean;
   defaultChatConfig: ConfigInterface;
@@ -22,6 +23,7 @@ export interface ConfigSlice {
   setOpenConfig: (openConfig: boolean) => void;
   setTheme: (theme: Theme) => void;
   setAutoTitle: (autoTitle: boolean) => void;
+  setTitleModel: (titleModel: ModelOptions) => void;
   setAdvancedMode: (advancedMode: boolean) => void;
   setDefaultChatConfig: (defaultChatConfig: ConfigInterface) => void;
   setDefaultSystemMessage: (defaultSystemMessage: string) => void;
@@ -42,6 +44,7 @@ export const createConfigSlice: StoreSlice<ConfigSlice> = (set, get) => ({
   hideMenuOptions: false,
   hideSideMenu: false,
   autoTitle: false,
+  titleModel: defaultModel,
   enterToSubmit: true,
   advancedMode: true,
   defaultChatConfig: _defaultChatConfig,
@@ -68,6 +71,12 @@ export const createConfigSlice: StoreSlice<ConfigSlice> = (set, get) => ({
     set((prev: ConfigSlice) => ({
       ...prev,
       autoTitle: autoTitle,
+    }));
+  },
+  setTitleModel: (titleModel: ModelOptions) => {
+    set((prev: ConfigSlice) => ({
+      ...prev,
+      titleModel: titleModel,
     }));
   },
   setAdvancedMode: (advancedMode: boolean) => {
