@@ -46,7 +46,7 @@ export const modelOptions: ModelOptions[] = [
 ];
 
 export const defaultApiVersion = '2024-04-01-preview';
-export const defaultModel = 'gpt-3.5-turbo';
+export const defaultModel = 'gpt-4o-mini';
 
 export const modelMaxToken: { [key: string]: number } = {
   'gpt-3.5-turbo': 4096,
@@ -172,7 +172,7 @@ export const _defaultChatConfig: ConfigInterface = {
   temperature: 1,
   presence_penalty: 0,
   top_p: 1,
-  frequency_penalty: 0,
+  frequency_penalty: 0
 };
 
 export const generateDefaultChat = (
