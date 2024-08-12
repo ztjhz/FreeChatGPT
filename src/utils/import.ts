@@ -8,6 +8,7 @@ import {
   isImageContent,
   isTextContent,
   MessageInterface,
+  strToTextContent,
 } from '@type/chat';
 import { roles } from '@type/chat';
 import {
@@ -39,7 +40,8 @@ const validateMessage = (messages: MessageInterface[]): boolean => {
   for (const message of messages) {
     if (typeof message.content === 'string') {
       // Convert string content to an array containing that string
-      message.content = [message.content];
+      // Ensure the TextContent format
+      message.content = [strToTextContent(message.content)];
     } else if (!Array.isArray(message.content)) {
       return false;
     }
