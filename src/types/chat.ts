@@ -22,6 +22,13 @@ export interface TextContentInterface extends ContentInterface {
   text: string;
 }
 
+export function strToTextContent(ob: string): TextContentInterface {
+  return {
+    type: 'text',
+    text: ob
+  };
+}
+
 export function isTextContent(ob: ContentInterface): ob is TextContentInterface {
   return (ob as TextContentInterface).text !== undefined;
 }

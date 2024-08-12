@@ -5,16 +5,19 @@ import { v4 as uuidv4 } from 'uuid';
 import useStore from '@store/store';
 
 import {
+  importOpenAIChatExport,
   isLegacyImport,
+  isOpenAIContent,
   validateAndFixChats,
   validateExportV1,
 } from '@utils/import';
 
 import { ChatInterface, Folder, FolderCollection } from '@type/chat';
 import { ExportBase } from '@type/export';
+import { toast } from 'react-toastify';
 
 const ImportChat = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(['main', 'import']);
   const setChats = useStore.getState().setChats;
   const setFolders = useStore.getState().setFolders;
   const inputRef = useRef<HTMLInputElement>(null);
@@ -26,7 +29,6 @@ const ImportChat = () => {
   const handleFileUpload = () => {
     if (!inputRef || !inputRef.current) return;
     const file = inputRef.current.files?.[0];
-
     if (file) {
       const reader = new FileReader();
 
@@ -35,7 +37,24 @@ const ImportChat = () => {
 
         try {
           const parsedData = JSON.parse(data);
-          if (isLegacyImport(parsedData)) {
+          if (isOpenAIContent(parsedData)) {
+            try {
+              const chats = importOpenAIChatExport(parsedData);
+              const prevChats: ChatInterface[] = JSON.parse(
+                JSON.stringify(useStore.getState().chats)
+              );
+              setChats(chats.concat(prevChats));
+              toast.success(
+                t('notifications.successfulImport', { ns: 'import' })
+              );
+            } catch (error: unknown) {
+              toast.error(
+                `${t('notifications.invalidOpenAIDataFormat', {
+                  ns: 'import',
+                })}: ${(error as Error).message}`
+              );
+            }
+          } else if (isLegacyImport(parsedData)) {
             if (validateAndFixChats(parsedData)) {
               // import new folders
               const folderNameToIdMap: Record<string, string> = {};
@@ -84,10 +103,18 @@ const ImportChat = () => {
               } else {
                 setChats(parsedData);
               }
+              toast.success(
+                t('notifications.successfulImport', { ns: 'import' })
+              );
               setAlert({ message: 'Succesfully imported!', success: true });
             } else {
+              toast.error(
+                t('notifications.invalidChatsDataFormat', { ns: 'import' })
+              );
               setAlert({
-                message: 'Invalid chats data format',
+                message: t('notifications.invalidChatsDataFormat', {
+                  ns: 'import',
+                }),
                 success: false,
               });
             }
@@ -120,17 +147,42 @@ const ImportChat = () => {
                     }
                   }
 
-                  setAlert({ message: 'Succesfully imported!', success: true });
-                } else {
+                  toast.success(
+                    t('notifications.successfulImport', { ns: 'import' })
+                  );
                   setAlert({
-                    message: 'Invalid format',
+                    message: t('notifications.successfulImport', {
+                      ns: 'import',
+                    }),
+                    success: true,
+                  });
+                } else {
+                  toast.error(
+                    t('notifications.invalidFormatForVersion', { ns: 'import' })
+                  );
+                  setAlert({
+                    message: t('notifications.invalidFormatForVersion', {
+                      ns: 'import',
+                    }),
                     success: false,
                   });
                 }
                 break;
+              default:
+                toast.error(
+                  t('notifications.unrecognisedDataFormat', { ns: 'import' })
+                );
+                setAlert({
+                  message: t('notifications.unrecognisedDataFormat', {
+                    ns: 'import',
+                  }),
+                  success: false,
+                });
+                break;
             }
           }
         } catch (error: unknown) {
+          toast.error((error as Error).message);
           setAlert({ message: (error as Error).message, success: false });
         }
       };

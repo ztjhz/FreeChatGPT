@@ -93,7 +93,7 @@ const ChatConfigPopup = ({
           _systemMessage={_systemMessage}
           _setSystemMessage={_setSystemMessage}
         />
-        <ModelSelector _model={_model} _setModel={_setModel} />
+        <ModelSelector _model={_model} _setModel={_setModel} _label={t('model')} />
         <MaxTokenSlider
           _maxToken={_maxToken}
           _setMaxToken={_setMaxToken}

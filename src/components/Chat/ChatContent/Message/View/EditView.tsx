@@ -29,12 +29,17 @@ const EditView = ({
   messageIndex: number;
   sticky?: boolean;
 }) => {
+  const setCurrentChatIndex = useStore((state) => state.setCurrentChatIndex);
   const inputRole = useStore((state) => state.inputRole);
   const setChats = useStore((state) => state.setChats);
-  const currentChatIndex = useStore((state) => state.currentChatIndex);
+  var currentChatIndex = useStore((state) => state.currentChatIndex);
   const model = useStore((state) => {
     const isInitialised =
-      state.chats && state.chats.length > 0 && state.currentChatIndex >= 0;
+      state.chats && state.chats.length > 0 && state.currentChatIndex >= 0 && state.currentChatIndex < state.chats.length;
+    if (!isInitialised) {
+      currentChatIndex = 0
+      setCurrentChatIndex(0)
+    }
     return isInitialised
       ? state.chats![state.currentChatIndex].config.model
       : defaultModel;

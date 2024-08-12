@@ -37,6 +37,7 @@ import DeleteButton from './Button/DeleteButton';
 import MarkdownModeButton from './Button/MarkdownModeButton';
 
 import CodeBlock from '../CodeBlock';
+import PopupModal from '@components/PopupModal';
 
 const ContentView = memo(
   ({
@@ -53,6 +54,7 @@ const ContentView = memo(
     const { handleSubmit } = useSubmit();
 
     const [isDelete, setIsDelete] = useState<boolean>(false);
+    const [zoomedImage, setZoomedImage] = useState<string | null>(null);
 
     const currentChatIndex = useStore((state) => state.currentChatIndex);
     const setChats = useStore((state) => state.setChats);
@@ -108,6 +110,14 @@ const ContentView = memo(
       navigator.clipboard.writeText((content[0] as TextContentInterface).text);
     };
 
+    const handleImageClick = (imageUrl: string) => {
+      setZoomedImage(imageUrl);
+    };
+
+    const handleCloseZoom = () => {
+      setZoomedImage(null);
+    };
+
     return (
       <>
         <div className='markdown prose w-full md:max-w-full break-words dark:prose-invert dark share-gpt-message'>
@@ -148,11 +158,28 @@ const ContentView = memo(
               <img
                 src={image.image_url.url}
                 alt={`uploaded-${index}`}
-                className='h-20'
+                className='h-20 cursor-pointer'
+                onClick={() => handleImageClick(image.image_url.url)}
               />
             </div>
           ))}
         </div>
+        {zoomedImage && (
+          <PopupModal
+            title=''
+            setIsModalOpen={handleCloseZoom}
+            handleConfirm={handleCloseZoom}
+            cancelButton={false}
+          >
+            <div className='flex justify-center'>
+              <img
+                src={zoomedImage}
+                alt='Zoomed'
+                className='max-w-full max-h-full'
+              />
+            </div>
+          </PopupModal>
+        )}
         <div className='flex justify-end gap-2 w-full mt-2'>
           {isDelete || (
             <>

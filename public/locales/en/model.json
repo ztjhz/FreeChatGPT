@@ -1,6 +1,7 @@
 {
   "configuration": "Configuration",
   "model": "Model",
+  "modelTitleGeneration": "Model for title generation",
   "token": {
     "label": "Max Token",
     "description": "The maximum number of tokens to generate in the chat completion. The total length of input tokens and generated tokens is limited by the model's context length."
