@@ -14,9 +14,10 @@ import {
 import PopupModal from '@components/PopupModal';
 import TokenCount from '@components/TokenCount';
 import CommandPrompt from '../CommandPrompt';
-import { defaultModel, modelTypes } from '@constants/chat';
+import { defaultModel } from '@constants/chat';
 import AttachmentIcon from '@icon/AttachmentIcon';
 import { ModelOptions } from '@utils/modelReader';
+import { modelTypes } from '@constants/modelLoader';
 
 const EditView = ({
   content: content,

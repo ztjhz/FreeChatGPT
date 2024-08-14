@@ -29,22 +29,40 @@ interface ModelsJson {
 
 const modelsJsonUrl = '/src/data/models.json';
 
-export const loadModels = async (): Promise<{ modelOptions: string[], modelMaxToken: { [key: string]: number }, modelCost: ModelCost }> => {
+export const loadModels = async (): Promise<{
+  modelOptions: string[];
+  modelMaxToken: { [key: string]: number };
+  modelCost: ModelCost;
+  modelTypes: { [key: string]: string };
+}> => {
   const response = await fetch(modelsJsonUrl);
   const modelsJson: ModelsJson = await response.json();
 
   const modelOptions: string[] = [];
   const modelMaxToken: { [key: string]: number } = {};
   const modelCost: ModelCost = {};
+  const modelTypes: { [key: string]: string } = {};
 
-  modelsJson.data.forEach(model => {
+  modelsJson.data.forEach((model) => {
     const modelId = model.id.split('/').pop() as string;
     modelOptions.push(modelId);
     modelMaxToken[modelId] = model.context_length;
     modelCost[modelId] = {
       prompt: { price: parseFloat(model.pricing.prompt), unit: 1 },
       completion: { price: parseFloat(model.pricing.completion), unit: 1 },
+      image: { price: 0, unit: 1 }, // default for no image models
     };
+
+    // Detect image capabilities
+    if (parseFloat(model.pricing.image) > 0) {
+      modelTypes[modelId] = 'image';
+      modelCost[modelId].image = {
+        price: parseFloat(model.pricing.image),
+        unit: 1,
+      };
+    } else {
+      modelTypes[modelId] = 'text';
+    }
   });
 
   // Sort modelOptions to prioritize gpt-4o models at the top, followed by other OpenAI models
@@ -61,7 +79,7 @@ export const loadModels = async (): Promise<{ modelOptions: string[], modelMaxTo
     return 0;
   });
 
-  return { modelOptions, modelMaxToken, modelCost };
+  return { modelOptions, modelMaxToken, modelCost, modelTypes };
 };
 
 export type ModelOptions = string;

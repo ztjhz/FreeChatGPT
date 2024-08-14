@@ -24,11 +24,12 @@ const tokenCostToCost = (
     return -1; // Return -1 if the model does not exist in modelCost
   }
 
-  const { prompt, completion } = modelCostEntry;
+  const { prompt, completion, image } = modelCostEntry;
   const completionCost =
     (completion.price / completion.unit) * tokenCost.completionTokens;
-  const promptCost = (prompt.price / prompt.unit) * tokenCost.promptTokens;
-  return completionCost + promptCost;
+    const promptCost = (prompt.price / prompt.unit) * tokenCost.promptTokens;
+    const imageCost = (image.price / image.unit) * tokenCost.imageTokens;
+  return completionCost + promptCost + imageCost;
 };
 
 const TotalTokenCost = () => {
@@ -124,7 +125,6 @@ export const TotalTokenCostDisplay = () => {
 
   useEffect(() => {
     let updatedTotalCost = 0;
-
     Object.entries(totalTokenUsed).forEach(([model, tokenCost]) => {
       updatedTotalCost += tokenCostToCost(tokenCost, model as ModelOptions);
     });

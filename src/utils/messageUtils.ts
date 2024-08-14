@@ -2,7 +2,7 @@
 import useStore from '@store/store';
 
 import { Tiktoken } from '@dqbd/tiktoken/lite';
-import { MessageInterface, TextContentInterface, TotalTokenUsed } from '@type/chat';
+import { isImageContent, isTextContent, MessageInterface, TextContentInterface, TotalTokenUsed } from '@type/chat';
 import { ModelOptions } from './modelReader';
 const cl100k_base = await import('@dqbd/tiktoken/encoders/cl100k_base.json');
 
@@ -98,15 +98,27 @@ export const updateTotalTokenUsed = (
     JSON.stringify(useStore.getState().totalTokenUsed)
   );
 
-  const newPromptTokens = countTokens(promptMessages, model);
+  // Filter text and image prompts
+  const textPrompts = promptMessages.filter(e => e.content.some(isTextContent));
+  const imgPrompts = promptMessages.filter(e => e.content.some(isImageContent));
+
+  // Count tokens
+  const newPromptTokens = countTokens(textPrompts, model);
+  const newImageTokens = countTokens(imgPrompts, model);
   const newCompletionTokens = countTokens([completionMessage], model);
-  const { promptTokens = 0, completionTokens = 0 } =
+
+  // Destructure existing token counts or default to 0
+  const { promptTokens = 0, completionTokens = 0, imageTokens = 0 } =
     updatedTotalTokenUsed[model] ?? {};
 
+  // Update token counts
   updatedTotalTokenUsed[model] = {
     promptTokens: promptTokens + newPromptTokens,
     completionTokens: completionTokens + newCompletionTokens,
+    imageTokens: imageTokens + newImageTokens
   };
+
+  // Set the updated token counts in the store
   setTotalTokenUsed(updatedTotalTokenUsed);
 };
 

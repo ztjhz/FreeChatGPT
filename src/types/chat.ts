@@ -88,7 +88,6 @@ export interface Folder {
   color?: string;
 }
 
-export type ModelType = 'text' | 'image';
 interface Pricing {
   price: number;
   unit: number;
@@ -97,6 +96,7 @@ interface Pricing {
 interface CostDetails {
   prompt: Pricing;
   completion: Pricing;
+  image: Pricing;
 }
 
 export interface ModelCost {
@@ -107,6 +107,7 @@ export type TotalTokenUsed = {
   [model in ModelOptions]?: {
     promptTokens: number;
     completionTokens: number;
+    imageTokens: number;
   };
 };
 export interface LocalStorageInterfaceV0ToV1 {
