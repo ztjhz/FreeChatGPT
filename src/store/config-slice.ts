@@ -1,7 +1,8 @@
 import { StoreSlice } from './store';
 import { Theme } from '@type/theme';
-import { ConfigInterface, ModelOptions, TotalTokenUsed } from '@type/chat';
 import { _defaultChatConfig, _defaultSystemMessage,_defaultMenuWidth, defaultModel } from '@constants/chat';
+import { ConfigInterface, TotalTokenUsed } from '@type/chat';
+import { ModelOptions } from '@utils/modelReader';
 
 export interface ConfigSlice {
   openConfig: boolean;

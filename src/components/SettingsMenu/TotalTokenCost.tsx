@@ -3,12 +3,12 @@ import { useTranslation } from 'react-i18next';
 
 import useStore from '@store/store';
 
-import { modelCost } from '@constants/chat';
 import Toggle from '@components/Toggle/Toggle';
 
-import { ModelOptions, TotalTokenUsed } from '@type/chat';
-
 import CalculatorIcon from '@icon/CalculatorIcon';
+import { modelCost } from '@constants/modelLoader';
+import { TotalTokenUsed } from '@type/chat';
+import { ModelOptions } from '@utils/modelReader';
 
 type CostMapping = { model: string; cost: number }[];
 
@@ -17,7 +17,14 @@ const tokenCostToCost = (
   model: ModelOptions
 ) => {
   if (!tokenCost) return 0;
-  const { prompt, completion } = modelCost[model as keyof typeof modelCost];
+
+  const modelCostEntry = modelCost[model as keyof typeof modelCost];
+
+  if (!modelCostEntry) {
+    return -1; // Return -1 if the model does not exist in modelCost
+  }
+
+  const { prompt, completion } = modelCostEntry;
   const completionCost =
     (completion.price / completion.unit) * tokenCost.completionTokens;
   const promptCost = (prompt.price / prompt.unit) * tokenCost.promptTokens;

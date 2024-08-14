@@ -12,8 +12,8 @@ import {
   TopPSlider,
 } from '@components/ConfigMenu/ConfigMenu';
 
-import { ModelOptions } from '@type/chat';
 import { _defaultChatConfig, _defaultSystemMessage } from '@constants/chat';
+import { ModelOptions } from '@utils/modelReader';
 
 const ChatConfigMenu = () => {
   const { t } = useTranslation('model');

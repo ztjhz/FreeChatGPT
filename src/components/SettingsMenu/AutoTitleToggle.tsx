@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import useStore from '@store/store';
 import Toggle from '@components/Toggle';
 import { ModelSelector } from '@components/ConfigMenu/ConfigMenu';
-import { ModelOptions } from '@type/chat';
+import { ModelOptions } from '@utils/modelReader';
 
 const AutoTitleToggle = () => {
   const { t } = useTranslation(['main', 'model']);

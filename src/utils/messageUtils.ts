@@ -1,8 +1,9 @@
-import { MessageInterface, ModelOptions, TextContentInterface, TotalTokenUsed } from '@type/chat';
 
 import useStore from '@store/store';
 
 import { Tiktoken } from '@dqbd/tiktoken/lite';
+import { MessageInterface, TextContentInterface, TotalTokenUsed } from '@type/chat';
+import { ModelOptions } from './modelReader';
 const cl100k_base = await import('@dqbd/tiktoken/encoders/cl100k_base.json');
 
 const encoder = new Tiktoken(

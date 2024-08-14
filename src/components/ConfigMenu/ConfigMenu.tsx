@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import useStore from '@store/store';
 import { useTranslation } from 'react-i18next';
 import PopupModal from '@components/PopupModal';
-import { ConfigInterface, ModelOptions } from '@type/chat';
+import { ConfigInterface } from '@type/chat';
 import DownChevronArrow from '@icon/DownChevronArrow';
-import { modelMaxToken, modelOptions } from '@constants/chat';
-
+import { modelOptions, modelMaxToken } from '@constants/modelLoader';
+import { ModelOptions } from '@utils/modelReader';
 const ConfigMenu = ({
   setIsModalOpen,
   config,

@@ -8,7 +8,6 @@ import {
   ChatInterface,
   ContentInterface,
   ImageContentInterface,
-  ModelOptions,
   TextContentInterface,
 } from '@type/chat';
 
@@ -17,6 +16,7 @@ import TokenCount from '@components/TokenCount';
 import CommandPrompt from '../CommandPrompt';
 import { defaultModel, modelTypes } from '@constants/chat';
 import AttachmentIcon from '@icon/AttachmentIcon';
+import { ModelOptions } from '@utils/modelReader';
 
 const EditView = ({
   content: content,

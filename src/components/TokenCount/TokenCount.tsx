@@ -3,7 +3,7 @@ import useStore from '@store/store';
 import { shallow } from 'zustand/shallow';
 
 import countTokens from '@utils/messageUtils';
-import { modelCost } from '@constants/chat';
+import { modelCost } from '@constants/modelLoader';
 
 const TokenCount = React.memo(() => {
   const [tokenCount, setTokenCount] = useState<number>(0);
