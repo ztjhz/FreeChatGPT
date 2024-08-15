@@ -253,3 +253,7 @@ Example of files that had to be changed in order for a new settings to be added 
 - src/types/chat.ts
 - src/utils/import.ts
 ```
+
+# Models update
+update models.json at
+https://openrouter.ai/api/v1/models

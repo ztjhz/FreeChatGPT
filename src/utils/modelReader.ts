@@ -26,8 +26,7 @@ interface ModelData {
 interface ModelsJson {
   data: ModelData[];
 }
-
-const modelsJsonUrl = '/src/data/models.json';
+const modelsJsonUrl = 'models.json';
 
 export const loadModels = async (): Promise<{
   modelOptions: string[];
@@ -49,10 +48,10 @@ export const loadModels = async (): Promise<{
       id: 'gpt-4-0125-preview',
       context_length: 128000,
       pricing: {
-        "prompt": "0.00001",
-        "completion": "0.00003",
-        "image": "0.01445",
-        "request": "0"
+        prompt: '0.00001',
+        completion: '0.00003',
+        image: '0.01445',
+        request: '0',
       },
       type: 'text',
     },
@@ -60,10 +59,10 @@ export const loadModels = async (): Promise<{
       id: 'gpt-4-turbo-2024-04-09',
       context_length: 128000,
       pricing: {
-        "prompt": "0.00001",
-        "completion": "0.00003",
-        "image": "0.01445",
-        "request": "0"
+        prompt: '0.00001',
+        completion: '0.00003',
+        image: '0.01445',
+        request: '0',
       },
       type: 'text',
     },
