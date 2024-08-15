@@ -1,7 +1,8 @@
 import { StoreSlice } from './store';
 import { Theme } from '@type/theme';
-import { ConfigInterface, ModelOptions, TotalTokenUsed } from '@type/chat';
-import { _defaultChatConfig, _defaultSystemMessage,_defaultMenuWidth, defaultModel } from '@constants/chat';
+import { _defaultChatConfig, _defaultSystemMessage,_defaultMenuWidth, defaultModel, _defaultImageDetail, _defaultDisplayChatSize } from '@constants/chat';
+import { ConfigInterface, ImageDetail, TotalTokenUsed } from '@type/chat';
+import { ModelOptions } from '@utils/modelReader';
 
 export interface ConfigSlice {
   openConfig: boolean;
@@ -20,6 +21,7 @@ export interface ConfigSlice {
   totalTokenUsed: TotalTokenUsed;
   menuWidth: number;
   displayChatSize: boolean;
+  defaultImageDetail: ImageDetail;
   setOpenConfig: (openConfig: boolean) => void;
   setTheme: (theme: Theme) => void;
   setAutoTitle: (autoTitle: boolean) => void;
@@ -36,6 +38,7 @@ export interface ConfigSlice {
   setTotalTokenUsed: (totalTokenUsed: TotalTokenUsed) => void;
   setMenuWidth: (menuWidth: number) => void;
   setDisplayChatSize: (displayChatSize: boolean) => void;
+  setDefaultImageDetail: (imageDetail: ImageDetail) => void;
 }
 
 export const createConfigSlice: StoreSlice<ConfigSlice> = (set, get) => ({
@@ -54,7 +57,8 @@ export const createConfigSlice: StoreSlice<ConfigSlice> = (set, get) => ({
   countTotalTokens: false,
   totalTokenUsed: {},
   menuWidth: _defaultMenuWidth,
-  displayChatSize: false,
+  displayChatSize: _defaultDisplayChatSize,
+  defaultImageDetail: _defaultImageDetail,
   setOpenConfig: (openConfig: boolean) => {
     set((prev: ConfigSlice) => ({
       ...prev,
@@ -149,6 +153,12 @@ export const createConfigSlice: StoreSlice<ConfigSlice> = (set, get) => ({
     set((prev: ConfigSlice) => ({
       ...prev,
       displayChatSize: displayChatSize,
+    }));
+  },
+  setDefaultImageDetail: (imageDetail: ImageDetail) => {
+    set((prev: ConfigSlice) => ({
+      ...prev,
+      defaultImageDetail: imageDetail,
     }));
   },
 });

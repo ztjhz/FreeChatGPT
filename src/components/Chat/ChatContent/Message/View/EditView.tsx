@@ -8,15 +8,16 @@ import {
   ChatInterface,
   ContentInterface,
   ImageContentInterface,
-  ModelOptions,
   TextContentInterface,
 } from '@type/chat';
 
 import PopupModal from '@components/PopupModal';
 import TokenCount from '@components/TokenCount';
 import CommandPrompt from '../CommandPrompt';
-import { defaultModel, modelTypes } from '@constants/chat';
+import { defaultModel } from '@constants/chat';
 import AttachmentIcon from '@icon/AttachmentIcon';
+import { ModelOptions } from '@utils/modelReader';
+import { modelTypes } from '@constants/modelLoader';
 
 const EditView = ({
   content: content,
@@ -97,6 +98,10 @@ const EditView = ({
   };
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const updatedChats: ChatInterface[] = JSON.parse(
+      JSON.stringify(useStore.getState().chats)
+    );
+    const chat = updatedChats[currentChatIndex];
     const files = e.target.files!;
     const newImageURLs = Array.from(files).map((file: Blob) =>
       URL.createObjectURL(file)
@@ -107,7 +112,7 @@ const EditView = ({
         return {
           type: 'image_url',
           image_url: {
-            detail: 'auto',
+            detail: chat.imageDetail,
             url: (await blobToBase64(blob)) as string,
           },
         } as ImageContentInterface;
@@ -120,11 +125,14 @@ const EditView = ({
 
   const handleImageUrlChange = () => {
     if (imageUrl.trim() === '') return;
-
+    const updatedChats: ChatInterface[] = JSON.parse(
+      JSON.stringify(useStore.getState().chats)
+    );
+    const chat = updatedChats[currentChatIndex];
     const newImage: ImageContentInterface = {
       type: 'image_url',
       image_url: {
-        detail: 'auto',
+        detail: chat.imageDetail,
         url: imageUrl,
       },
     };
@@ -148,12 +156,13 @@ const EditView = ({
   };
 
   const handleSave = () => {
-    if (
-      sticky &&
-      ((_content[0] as TextContentInterface).text === '' ||
-        useStore.getState().generating)
-    )
+    const hasTextContent = (_content[0] as TextContentInterface).text !== '';
+    const hasImageContent = _content.some(content => content.type === 'image_url');
+
+    if (sticky && (!hasTextContent && !hasImageContent || useStore.getState().generating)) {
       return;
+    }
+
     const updatedChats: ChatInterface[] = JSON.parse(
       JSON.stringify(useStore.getState().chats)
     );
@@ -177,14 +186,20 @@ const EditView = ({
 
   const { handleSubmit } = useSubmit();
   const handleGenerate = () => {
-    if (useStore.getState().generating) return;
+    const hasTextContent = (_content[0] as TextContentInterface).text !== '';
+    const hasImageContent = _content.some(content => content.type === 'image_url');
+  
+    if (!hasTextContent && !hasImageContent || useStore.getState().generating) {
+      return;
+    }
+  
     const updatedChats: ChatInterface[] = JSON.parse(
       JSON.stringify(useStore.getState().chats)
     );
     const updatedMessages = updatedChats[currentChatIndex].messages;
-
+  
     if (sticky) {
-      if ((_content[0] as TextContentInterface).text !== '') {
+      if (hasTextContent || hasImageContent) {
         updatedMessages.push({ role: inputRole, content: _content });
       }
       _setContent([
@@ -212,6 +227,10 @@ const EditView = ({
 
   const handlePaste = async (e: React.ClipboardEvent<HTMLTextAreaElement>) => {
     const items = e.clipboardData.items;
+    const updatedChats: ChatInterface[] = JSON.parse(
+      JSON.stringify(useStore.getState().chats)
+    );
+    const chat = updatedChats[currentChatIndex];
     for (const item of items) {
       if (item.type.startsWith('image/')) {
         const blob = item.getAsFile();
@@ -220,7 +239,7 @@ const EditView = ({
           const newImage: ImageContentInterface = {
             type: 'image_url',
             image_url: {
-              detail: 'auto',
+              detail: chat.imageDetail,
               url: base64Image,
             },
           };
