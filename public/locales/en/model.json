@@ -25,5 +25,11 @@
   },
   "defaultChatConfig": "Default Chat Config",
   "defaultSystemMessage": "Default System Message",
-  "resetToDefault": "Reset To Default"
+  "resetToDefault": "Reset To Default",
+  "imageDetail": {
+    "label": "Image Detail",
+    "low": "low",
+    "high": "high",
+    "auto": "auto"
+  }
 }

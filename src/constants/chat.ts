@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import {
   ChatInterface,
   ConfigInterface,
+  ImageDetail,
   TextContentInterface,
 } from '@type/chat';
 import useStore from '@store/store';
@@ -58,6 +59,7 @@ export const generateDefaultChat = (
   config: { ...useStore.getState().defaultChatConfig },
   titleSet: false,
   folder,
+  imageDetail: useStore.getState().defaultImageDetail,
 });
 
 export const codeLanguageSubset = [
@@ -100,3 +102,4 @@ export const codeLanguageSubset = [
 
 export const _defaultMenuWidth = 260;
 export const _defaultDisplayChatSize = false;
+export const _defaultImageDetail : ImageDetail = 'auto'

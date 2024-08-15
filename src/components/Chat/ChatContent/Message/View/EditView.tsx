@@ -98,6 +98,10 @@ const EditView = ({
   };
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const updatedChats: ChatInterface[] = JSON.parse(
+      JSON.stringify(useStore.getState().chats)
+    );
+    const chat = updatedChats[currentChatIndex];
     const files = e.target.files!;
     const newImageURLs = Array.from(files).map((file: Blob) =>
       URL.createObjectURL(file)
@@ -108,7 +112,7 @@ const EditView = ({
         return {
           type: 'image_url',
           image_url: {
-            detail: 'auto',
+            detail: chat.imageDetail,
             url: (await blobToBase64(blob)) as string,
           },
         } as ImageContentInterface;
@@ -121,11 +125,14 @@ const EditView = ({
 
   const handleImageUrlChange = () => {
     if (imageUrl.trim() === '') return;
-
+    const updatedChats: ChatInterface[] = JSON.parse(
+      JSON.stringify(useStore.getState().chats)
+    );
+    const chat = updatedChats[currentChatIndex];
     const newImage: ImageContentInterface = {
       type: 'image_url',
       image_url: {
-        detail: 'auto',
+        detail: chat.imageDetail,
         url: imageUrl,
       },
     };
@@ -220,6 +227,10 @@ const EditView = ({
 
   const handlePaste = async (e: React.ClipboardEvent<HTMLTextAreaElement>) => {
     const items = e.clipboardData.items;
+    const updatedChats: ChatInterface[] = JSON.parse(
+      JSON.stringify(useStore.getState().chats)
+    );
+    const chat = updatedChats[currentChatIndex];
     for (const item of items) {
       if (item.type.startsWith('image/')) {
         const blob = item.getAsFile();
@@ -228,7 +239,7 @@ const EditView = ({
           const newImage: ImageContentInterface = {
             type: 'image_url',
             image_url: {
-              detail: 'auto',
+              detail: chat.imageDetail,
               url: base64Image,
             },
           };

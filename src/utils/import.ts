@@ -14,6 +14,7 @@ import { roles } from '@type/chat';
 import {
   defaultModel,
   _defaultChatConfig,
+  _defaultImageDetail,
 } from '@constants/chat';
 import { ExportV1, OpenAIChat, OpenAIPlaygroundJSON } from '@type/export';
 import { modelOptions } from '@constants/modelLoader';
@@ -218,6 +219,7 @@ export const convertOpenAIToBetterChatGPTFormat = (
     messages,
     config,
     titleSet: true,
+    imageDetail: _defaultImageDetail,
   };
 };
 

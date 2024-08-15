@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import useStore from '@store/store';
 import { useTranslation } from 'react-i18next';
 
+import Select from 'react-select';
 import PopupModal from '@components/PopupModal';
 import {
   FrequencyPenaltySlider,
+  ImageDetailSelector,
   MaxTokenSlider,
   ModelSelector,
   PresencePenaltySlider,
@@ -12,8 +14,13 @@ import {
   TopPSlider,
 } from '@components/ConfigMenu/ConfigMenu';
 
-import { _defaultChatConfig, _defaultSystemMessage } from '@constants/chat';
+import {
+  _defaultChatConfig,
+  _defaultImageDetail,
+  _defaultSystemMessage,
+} from '@constants/chat';
 import { ModelOptions } from '@utils/modelReader';
+import { ImageDetail } from '@type/chat';
 
 const ChatConfigMenu = () => {
   const { t } = useTranslation('model');
@@ -42,6 +49,9 @@ const ChatConfigPopup = ({
   const setDefaultSystemMessage = useStore(
     (state) => state.setDefaultSystemMessage
   );
+  const setDefaultImageDetail = useStore(
+    (state) => state.setDefaultImageDetail
+  );
 
   const [_systemMessage, _setSystemMessage] = useState<string>(
     useStore.getState().defaultSystemMessage
@@ -56,6 +66,9 @@ const ChatConfigPopup = ({
   const [_frequencyPenalty, _setFrequencyPenalty] = useState<number>(
     config.frequency_penalty
   );
+  const [_imageDetail, _setImageDetail] = useState<ImageDetail>(
+    useStore.getState().defaultImageDetail
+  );
 
   const { t } = useTranslation('model');
 
@@ -69,6 +82,7 @@ const ChatConfigPopup = ({
       frequency_penalty: _frequencyPenalty,
     });
     setDefaultSystemMessage(_systemMessage);
+    setDefaultImageDetail(_imageDetail);
     setIsModalOpen(false);
   };
 
@@ -79,7 +93,9 @@ const ChatConfigPopup = ({
     _setTopP(_defaultChatConfig.top_p);
     _setPresencePenalty(_defaultChatConfig.presence_penalty);
     _setFrequencyPenalty(_defaultChatConfig.frequency_penalty);
+    _setImageDetail(_defaultImageDetail);
     _setSystemMessage(_defaultSystemMessage);
+    _setImageDetail(_defaultImageDetail);
   };
 
   return (
@@ -93,7 +109,11 @@ const ChatConfigPopup = ({
           _systemMessage={_systemMessage}
           _setSystemMessage={_setSystemMessage}
         />
-        <ModelSelector _model={_model} _setModel={_setModel} _label={t('model')} />
+        <ModelSelector
+          _model={_model}
+          _setModel={_setModel}
+          _label={t('model')}
+        />
         <MaxTokenSlider
           _maxToken={_maxToken}
           _setMaxToken={_setMaxToken}
@@ -112,6 +132,11 @@ const ChatConfigPopup = ({
           _frequencyPenalty={_frequencyPenalty}
           _setFrequencyPenalty={_setFrequencyPenalty}
         />
+        <ImageDetailSelector
+          _imageDetail={_imageDetail}
+          _setImageDetail={_setImageDetail}
+        />
+        
         <div
           className='btn btn-neutral cursor-pointer mt-5'
           onClick={handleReset}

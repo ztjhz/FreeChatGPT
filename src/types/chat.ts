@@ -54,6 +54,7 @@ export interface ChatInterface {
   messages: MessageInterface[];
   config: ConfigInterface;
   titleSet: boolean;
+  imageDetail: ImageDetail;
 }
 
 export interface ConfigInterface {
@@ -208,5 +209,10 @@ export interface LocalStorageInterfaceV8_1ToV8_2
   displayChatSize: boolean;
 }
 
-// export interface LocalStorageInterfaceV8_2ToV9
-//   extends LocalStorageInterfaceV8_1ToV8_2 {
+export interface LocalStorageInterfaceV8_2ToV9
+  extends LocalStorageInterfaceV8_1ToV8_2 {
+  defaultImageDetail: ImageDetail;
+}
+
+// export interface LocalStorageInterfaceV9ToV10
+//   extends LocalStorageInterfaceV8_2ToV9 {

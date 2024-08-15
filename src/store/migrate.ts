@@ -14,6 +14,7 @@ import {
   LocalStorageInterfaceV8_1ToV8_2,
   LocalStorageInterfaceV8oV8_1,
   TextContentInterface,
+  LocalStorageInterfaceV8_2ToV9,
 } from '@type/chat';
 import {
   _defaultChatConfig,
@@ -22,6 +23,7 @@ import {
   defaultApiVersion,
   defaultModel,
   defaultUserMaxToken,
+  _defaultImageDetail,
 } from '@constants/chat';
 import { officialAPIEndpoint } from '@constants/auth';
 import defaultPrompts from '@constants/prompt';
@@ -128,4 +130,10 @@ export const migrateV8_1 = (persistedState: LocalStorageInterfaceV8oV8_1) => {
 export const migrateV8_1_fix = (persistedState: LocalStorageInterfaceV8_1ToV8_2) => {
   persistedState.menuWidth = _defaultMenuWidth;
   persistedState.displayChatSize = _defaultDisplayChatSize;
+};
+
+export const migrateV8_2 = (persistedState: LocalStorageInterfaceV8_2ToV9) => {
+  persistedState.chats.forEach((chat) => {
+    if (chat.imageDetail == undefined) chat.imageDetail = _defaultImageDetail
+  });
 };
