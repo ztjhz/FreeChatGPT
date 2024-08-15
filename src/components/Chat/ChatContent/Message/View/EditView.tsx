@@ -149,12 +149,13 @@ const EditView = ({
   };
 
   const handleSave = () => {
-    if (
-      sticky &&
-      ((_content[0] as TextContentInterface).text === '' ||
-        useStore.getState().generating)
-    )
+    const hasTextContent = (_content[0] as TextContentInterface).text !== '';
+    const hasImageContent = _content.some(content => content.type === 'image_url');
+
+    if (sticky && (!hasTextContent && !hasImageContent || useStore.getState().generating)) {
       return;
+    }
+
     const updatedChats: ChatInterface[] = JSON.parse(
       JSON.stringify(useStore.getState().chats)
     );
@@ -178,14 +179,20 @@ const EditView = ({
 
   const { handleSubmit } = useSubmit();
   const handleGenerate = () => {
-    if (useStore.getState().generating) return;
+    const hasTextContent = (_content[0] as TextContentInterface).text !== '';
+    const hasImageContent = _content.some(content => content.type === 'image_url');
+  
+    if (!hasTextContent && !hasImageContent || useStore.getState().generating) {
+      return;
+    }
+  
     const updatedChats: ChatInterface[] = JSON.parse(
       JSON.stringify(useStore.getState().chats)
     );
     const updatedMessages = updatedChats[currentChatIndex].messages;
-
+  
     if (sticky) {
-      if ((_content[0] as TextContentInterface).text !== '') {
+      if (hasTextContent || hasImageContent) {
         updatedMessages.push({ role: inputRole, content: _content });
       }
       _setContent([
