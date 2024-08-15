@@ -1,3 +1,4 @@
+import { ModelOptions } from '@utils/modelReader';
 import { Prompt } from './prompt';
 import { Theme } from './theme';
 
@@ -53,6 +54,7 @@ export interface ChatInterface {
   messages: MessageInterface[];
   config: ConfigInterface;
   titleSet: boolean;
+  imageDetail: ImageDetail;
 }
 
 export interface ConfigInterface {
@@ -87,28 +89,6 @@ export interface Folder {
   color?: string;
 }
 
-export type ModelOptions =
-  | 'gpt-4o-mini'
-  | 'gpt-4o-mini-2024-07-18'
-  | 'gpt-4o'
-  | 'gpt-4o-2024-05-13'
-  | 'gpt-4o-2024-08-06'
-  | 'gpt-4-vision-preview'
-  | 'gpt-4'
-  | 'gpt-4-32k'
-  | 'gpt-4-1106-preview'
-  | 'gpt-4-0125-preview'
-  | 'gpt-4-turbo'
-  | 'gpt-4-turbo-2024-04-09'
-  | 'gpt-3.5-turbo'
-  | 'gpt-3.5-turbo-16k'
-  | 'gpt-3.5-turbo-1106'
-  | 'gpt-3.5-turbo-0125';
-// | 'gpt-3.5-turbo-0301';
-// | 'gpt-4-0314'
-// | 'gpt-4-32k-0314'
-
-export type ModelType = 'text' | 'image';
 interface Pricing {
   price: number;
   unit: number;
@@ -117,6 +97,7 @@ interface Pricing {
 interface CostDetails {
   prompt: Pricing;
   completion: Pricing;
+  image: Pricing;
 }
 
 export interface ModelCost {
@@ -127,6 +108,7 @@ export type TotalTokenUsed = {
   [model in ModelOptions]?: {
     promptTokens: number;
     completionTokens: number;
+    imageTokens: number;
   };
 };
 export interface LocalStorageInterfaceV0ToV1 {
@@ -227,5 +209,10 @@ export interface LocalStorageInterfaceV8_1ToV8_2
   displayChatSize: boolean;
 }
 
-// export interface LocalStorageInterfaceV8_2ToV9
-//   extends LocalStorageInterfaceV8_1ToV8_2 {
+export interface LocalStorageInterfaceV8_2ToV9
+  extends LocalStorageInterfaceV8_1ToV8_2 {
+  defaultImageDetail: ImageDetail;
+}
+
+// export interface LocalStorageInterfaceV9ToV10
+//   extends LocalStorageInterfaceV8_2ToV9 {

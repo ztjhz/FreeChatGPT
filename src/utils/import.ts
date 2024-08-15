@@ -13,10 +13,11 @@ import {
 import { roles } from '@type/chat';
 import {
   defaultModel,
-  modelOptions,
   _defaultChatConfig,
+  _defaultImageDetail,
 } from '@constants/chat';
 import { ExportV1, OpenAIChat, OpenAIPlaygroundJSON } from '@type/export';
+import { modelOptions } from '@constants/modelLoader';
 
 export const validateAndFixChats = (chats: any): chats is ChatInterface[] => {
   if (!Array.isArray(chats)) return false;
@@ -218,6 +219,7 @@ export const convertOpenAIToBetterChatGPTFormat = (
     messages,
     config,
     titleSet: true,
+    imageDetail: _defaultImageDetail,
   };
 };
 

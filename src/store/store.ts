@@ -17,6 +17,7 @@ import {
   LocalStorageInterfaceV7oV8,
   LocalStorageInterfaceV8_1ToV8_2,
   LocalStorageInterfaceV8oV8_1,
+  LocalStorageInterfaceV8_2ToV9,
 } from '@type/chat';
 import {
   migrateV0,
@@ -29,6 +30,7 @@ import {
   migrateV7,
   migrateV8_1,
   migrateV8_1_fix,
+  migrateV8_2,
 } from './migrate';
 
 export type StoreState = ChatSlice &
@@ -66,6 +68,7 @@ export const createPartializedState = (state: StoreState) => ({
   countTotalTokens: state.countTotalTokens,
   displayChatSize: state.displayChatSize,
   menuWidth: state.menuWidth,
+  defaultImageDetail: state.defaultImageDetail,
 });
 
 const useStore = create<StoreState>()(
@@ -81,7 +84,7 @@ const useStore = create<StoreState>()(
     {
       name: 'free-chat-gpt',
       partialize: (state) => createPartializedState(state),
-      version: 8.2,
+      version: 9,
       migrate: (persistedState, version) => {
         switch (version) {
           case 0:
@@ -105,6 +108,9 @@ const useStore = create<StoreState>()(
             break;
           case 8.1:
             migrateV8_1_fix(persistedState as LocalStorageInterfaceV8_1ToV8_2);
+            break;
+          case 8.2:
+            migrateV8_2(persistedState as LocalStorageInterfaceV8_2ToV9);
             break;
         }
         return persistedState as StoreState;

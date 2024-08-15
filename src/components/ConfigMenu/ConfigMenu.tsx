@@ -1,19 +1,23 @@
 import React, { useEffect, useRef, useState } from 'react';
-import useStore from '@store/store';
 import { useTranslation } from 'react-i18next';
 import PopupModal from '@components/PopupModal';
-import { ConfigInterface, ModelOptions } from '@type/chat';
-import DownChevronArrow from '@icon/DownChevronArrow';
-import { modelMaxToken, modelOptions } from '@constants/chat';
+import { ConfigInterface, ImageDetail } from '@type/chat';
+import Select from 'react-select';
+import { modelOptions, modelMaxToken } from '@constants/modelLoader';
+import { ModelOptions } from '@utils/modelReader';
 
 const ConfigMenu = ({
   setIsModalOpen,
   config,
   setConfig,
+  imageDetail,
+  setImageDetail,
 }: {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   config: ConfigInterface;
   setConfig: (config: ConfigInterface) => void;
+  imageDetail: ImageDetail;
+  setImageDetail: (imageDetail: ImageDetail) => void;
 }) => {
   const [_maxToken, _setMaxToken] = useState<number>(config.max_tokens);
   const [_model, _setModel] = useState<ModelOptions>(config.model);
@@ -25,6 +29,7 @@ const ConfigMenu = ({
   const [_frequencyPenalty, _setFrequencyPenalty] = useState<number>(
     config.frequency_penalty
   );
+  const [_imageDetail, _setImageDetail] = useState<ImageDetail>(imageDetail);
   const { t } = useTranslation('model');
 
   const handleConfirm = () => {
@@ -36,6 +41,7 @@ const ConfigMenu = ({
       top_p: _topP,
       frequency_penalty: _frequencyPenalty,
     });
+    setImageDetail(_imageDetail);
     setIsModalOpen(false);
   };
 
@@ -70,6 +76,10 @@ const ConfigMenu = ({
           _frequencyPenalty={_frequencyPenalty}
           _setFrequencyPenalty={_setFrequencyPenalty}
         />
+        <ImageDetailSelector
+          _imageDetail={_imageDetail}
+          _setImageDetail={_setImageDetail}
+        />
       </div>
     </PopupModal>
   );
@@ -84,46 +94,59 @@ export const ModelSelector = ({
   _setModel: React.Dispatch<React.SetStateAction<ModelOptions>>;
   _label: string;
 }) => {
-  const [dropDown, setDropDown] = useState<boolean>(false);
+  const { t } = useTranslation('model');
+
+  const modelOptionsFormatted = modelOptions.map((model) => ({
+    value: model,
+    label: model,
+  }));
+  const customStyles = {
+    control: (provided: any) => ({
+      ...provided,
+      backgroundColor: '#2D3748', // Dark background color
+      color: '#E2E8F0', // Light text color
+    }),
+    menu: (provided: any) => ({
+      ...provided,
+      backgroundColor: '#2D3748', // Dark background color
+    }),
+    option: (provided: any, state: any) => ({
+      ...provided,
+      'backgroundColor': state.isSelected ? '#4A5568' : '#2D3748', // Darker background for selected option
+      'color': '#E2E8F0', // Light text color
+      '&:hover': {
+        backgroundColor: '#4A5568', // Darker background on hover
+      },
+    }),
+    singleValue: (provided: any) => ({
+      ...provided,
+      color: '#E2E8F0', // Light text color
+    }),
+    input: (provided: any) => ({
+      ...provided,
+      color: '#E2E8F0', // Light text color for input
+    }),
+    placeholder: (provided: any) => ({
+      ...provided,
+      color: '#A0AEC0', // Light gray color for placeholder
+    }),
+  };
 
   return (
     <div className='mb-4'>
       <label className='block text-sm font-medium text-gray-900 dark:text-white'>
         {_label}
       </label>
-      <button
-        className='btn btn-neutral btn-small flex gap-1'
-        type='button'
-        onClick={() => setDropDown((prev) => !prev)}
-        aria-label='model'
-      >
-        {_model}
-        <DownChevronArrow />
-      </button>
-      <div
-        id='dropdown'
-        className={`${
-          dropDown ? '' : 'hidden'
-        } absolute top-100 bottom-100 z-10 bg-white rounded-lg shadow-xl border-b border-black/10 dark:border-gray-900/50 text-gray-800 dark:text-gray-100 group dark:bg-gray-800 opacity-90`}
-      >
-        <ul
-          className='text-sm text-gray-700 dark:text-gray-200 p-0 m-0'
-          aria-labelledby='dropdownDefaultButton'
-        >
-          {modelOptions.map((m) => (
-            <li
-              className='px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer'
-              onClick={() => {
-                _setModel(m);
-                setDropDown(false);
-              }}
-              key={m}
-            >
-              {m}
-            </li>
-          ))}
-        </ul>
-      </div>
+      <Select
+        value={{ value: _model, label: _model }}
+        onChange={(selectedOption) =>
+          _setModel(selectedOption?.value as ModelOptions)
+        }
+        options={modelOptionsFormatted}
+        className='basic-single'
+        classNamePrefix='select'
+        styles={customStyles}
+      />
     </div>
   );
 };
@@ -298,6 +321,74 @@ export const FrequencyPenaltySlider = ({
       <div className='min-w-fit text-gray-500 dark:text-gray-300 text-sm mt-2'>
         {t('frequencyPenalty.description')}
       </div>
+    </div>
+  );
+};
+
+export const ImageDetailSelector = ({
+  _imageDetail,
+  _setImageDetail,
+}: {
+  _imageDetail: ImageDetail;
+  _setImageDetail: React.Dispatch<React.SetStateAction<ImageDetail>>;
+}) => {
+  const { t } = useTranslation('model');
+
+  const imageDetailOptions = [
+    { value: 'low', label: t('imageDetail.low') },
+    { value: 'high', label: t('imageDetail.high') },
+    { value: 'auto', label: t('imageDetail.auto') },
+  ];
+
+  const customStyles = {
+    control: (provided: any) => ({
+      ...provided,
+      backgroundColor: '#2D3748', // Dark background color
+      color: '#E2E8F0', // Light text color
+    }),
+    menu: (provided: any) => ({
+      ...provided,
+      backgroundColor: '#2D3748', // Dark background color
+    }),
+    option: (provided: any, state: any) => ({
+      ...provided,
+      'backgroundColor': state.isSelected ? '#4A5568' : '#2D3748', // Darker background for selected option
+      'color': '#E2E8F0', // Light text color
+      '&:hover': {
+        backgroundColor: '#4A5568', // Darker background on hover
+      },
+    }),
+    singleValue: (provided: any) => ({
+      ...provided,
+      color: '#E2E8F0', // Light text color
+    }),
+    input: (provided: any) => ({
+      ...provided,
+      color: '#E2E8F0', // Light text color for input
+    }),
+    placeholder: (provided: any) => ({
+      ...provided,
+      color: '#A0AEC0', // Light gray color for placeholder
+    }),
+  };
+
+  return (
+    <div className='mt-5 pt-5 border-t border-gray-500'>
+      <label className='block text-sm font-medium text-gray-900 dark:text-white'>
+        {t('imageDetail.label')}
+      </label>
+      <Select
+        value={imageDetailOptions.find(
+          (option) => option.value === _imageDetail
+        )}
+        onChange={(selectedOption) =>
+          _setImageDetail(selectedOption?.value as ImageDetail)
+        }
+        options={imageDetailOptions}
+        className='basic-single'
+        classNamePrefix='select'
+        styles={customStyles}
+      />
     </div>
   );
 };

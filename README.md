@@ -235,3 +235,21 @@ If you would like to support the team, consider sponsoring us through one of the
 | Wechat (Ayaka) | <img src="https://ayaka14732.github.io/sponsor/wechat.png" width=150 />                                                                              |
 
 Thank you for being a part of our community, and we look forward to serving you better in the future.
+
+# Adding new settings
+Example of files that had to be changed in order for a new settings to be added (e.g. ImageDetail for each chat + default config)
+```plaintext
+- public/locales/en/main.json
+- public/locales/en/model.json
+- src/assets/icons/AttachmentIcon.tsx
+- src/components/Chat/ChatContent/ChatTitle.tsx
+- src/components/Chat/ChatContent/Message/EditView.tsx
+- src/components/ChatConfigMenu/ChatConfigMenu.tsx
+- src/components/ConfigMenu/ConfigMenu.tsx
+- src/constants/chat.ts
+- src/store/config-slice.ts
+- src/store/migrate.ts
+- src/store/store.ts
+- src/types/chat.ts
+- src/utils/import.ts
+```
