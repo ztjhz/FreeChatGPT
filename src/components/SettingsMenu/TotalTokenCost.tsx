@@ -28,7 +28,7 @@ const tokenCostToCost = (
   const completionCost =
     (completion.price / completion.unit) * tokenCost.completionTokens;
     const promptCost = (prompt.price / prompt.unit) * tokenCost.promptTokens;
-    const imageCost = (image.price / image.unit) * tokenCost.imageTokens;
+    const imageCost = (image.price / image.unit) * (tokenCost.imageTokens ? 1 : 0);
   return completionCost + promptCost + imageCost;
 };
 

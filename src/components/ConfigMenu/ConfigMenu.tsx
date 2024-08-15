@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import useStore from '@store/store';
 import { useTranslation } from 'react-i18next';
 import PopupModal from '@components/PopupModal';
 import { ConfigInterface } from '@type/chat';
-import DownChevronArrow from '@icon/DownChevronArrow';
+import Select from 'react-select';
 import { modelOptions, modelMaxToken } from '@constants/modelLoader';
 import { ModelOptions } from '@utils/modelReader';
+
 const ConfigMenu = ({
   setIsModalOpen,
   config,
@@ -84,46 +84,57 @@ export const ModelSelector = ({
   _setModel: React.Dispatch<React.SetStateAction<ModelOptions>>;
   _label: string;
 }) => {
-  const [dropDown, setDropDown] = useState<boolean>(false);
+  const { t } = useTranslation('model');
+
+  const modelOptionsFormatted = modelOptions.map((model) => ({
+    value: model,
+    label: model,
+  }));
+  const customStyles = {
+    control: (provided: any) => ({
+      ...provided,
+      backgroundColor: '#2D3748', // Dark background color
+      color: '#E2E8F0', // Light text color
+    }),
+    menu: (provided: any) => ({
+      ...provided,
+      backgroundColor: '#2D3748', // Dark background color
+    }),
+    option: (provided: any, state: any) => ({
+      ...provided,
+      backgroundColor: state.isSelected ? '#4A5568' : '#2D3748', // Darker background for selected option
+      color: '#E2E8F0', // Light text color
+      '&:hover': {
+        backgroundColor: '#4A5568', // Darker background on hover
+      },
+    }),
+    singleValue: (provided: any) => ({
+      ...provided,
+      color: '#E2E8F0', // Light text color
+    }),
+    input: (provided: any) => ({
+      ...provided,
+      color: '#E2E8F0', // Light text color for input
+    }),
+    placeholder: (provided: any) => ({
+      ...provided,
+      color: '#A0AEC0', // Light gray color for placeholder
+    }),
+  };
 
   return (
     <div className='mb-4'>
       <label className='block text-sm font-medium text-gray-900 dark:text-white'>
         {_label}
       </label>
-      <button
-        className='btn btn-neutral btn-small flex gap-1'
-        type='button'
-        onClick={() => setDropDown((prev) => !prev)}
-        aria-label='model'
-      >
-        {_model}
-        <DownChevronArrow />
-      </button>
-      <div
-        id='dropdown'
-        className={`${
-          dropDown ? '' : 'hidden'
-        } absolute top-100 bottom-100 z-10 bg-white rounded-lg shadow-xl border-b border-black/10 dark:border-gray-900/50 text-gray-800 dark:text-gray-100 group dark:bg-gray-800 opacity-90`}
-      >
-        <ul
-          className='text-sm text-gray-700 dark:text-gray-200 p-0 m-0'
-          aria-labelledby='dropdownDefaultButton'
-        >
-          {modelOptions.map((m) => (
-            <li
-              className='px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer'
-              onClick={() => {
-                _setModel(m);
-                setDropDown(false);
-              }}
-              key={m}
-            >
-              {m}
-            </li>
-          ))}
-        </ul>
-      </div>
+      <Select
+        value={{ value: _model, label: _model }}
+        onChange={(selectedOption) => _setModel(selectedOption?.value as ModelOptions)}
+        options={modelOptionsFormatted}
+        className='basic-single'
+        classNamePrefix='select'
+        styles={customStyles}
+      />
     </div>
   );
 };
