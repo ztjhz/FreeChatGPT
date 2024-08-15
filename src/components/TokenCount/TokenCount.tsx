@@ -23,7 +23,10 @@ const tokenCostToCost = (
   const completionCost =
     (completion.price / completion.unit) * tokenCost.completionTokens;
   const promptCost = (prompt.price / prompt.unit) * tokenCost.promptTokens;
-  const imageCost = image && tokenCost.imageTokens ? (image.price / image.unit) * tokenCost.imageTokens : 0;
+  const imageCost =
+    image && tokenCost.imageTokens
+      ? (image.price / image.unit) * (tokenCost.imageTokens ? 1 : 0)
+      : 0;
 
   return completionCost + promptCost + imageCost;
 };
@@ -56,8 +59,8 @@ const TokenCount = React.memo(() => {
 
   useEffect(() => {
     if (!generating) {
-      const textPrompts = messages.filter(e => e.content.some(isTextContent));
-      const imgPrompts = messages.filter(e => e.content.some(isImageContent));
+      const textPrompts = messages.filter((e) => e.content.some(isTextContent));
+      const imgPrompts = messages.filter((e) => e.content.some(isImageContent));
       const newPromptTokens = countTokens(textPrompts, model);
       const newImageTokens = countTokens(imgPrompts, model);
       setTokenCount(newPromptTokens);
