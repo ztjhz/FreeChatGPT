@@ -17,7 +17,8 @@ interface ModelData {
     instruct_type: string | null;
   };
   top_provider: {
-    max_completion_tokens: number;
+    context_length: number;
+    max_completion_tokens: number | null;
     is_moderated: boolean;
   };
   per_request_limits: any;
@@ -26,6 +27,7 @@ interface ModelData {
 interface ModelsJson {
   data: ModelData[];
 }
+
 const modelsJsonUrl = 'models.json';
 
 export const loadModels = async (): Promise<{

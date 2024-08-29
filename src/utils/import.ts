@@ -107,11 +107,14 @@ const isContentInterface = (content: any): content is ContentInterface => {
 };
 
 export const isOpenAIContent = (content: any) => {
-  return isOpenAIChat(content) || isOpenAIPlaygroundJSON(content);
+  return isOpenAIChat(content) || isOpenAIPlaygroundJSON(content) || isOpenAIDataExport(content);
 };
 
 const isOpenAIChat = (content: any): content is OpenAIChat => {
   return typeof content === 'object' && 'mapping' in content;
+};
+const isOpenAIDataExport = (content: any): content is OpenAIChat => {
+  return (Array.isArray(content)) && content.length > 0 && (isOpenAIChat(content[0]));
 };
 const isOpenAIPlaygroundJSON = (
   content: any

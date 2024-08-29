@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import useStore from '@store/store';
+import { useTranslation } from 'react-i18next';
 
 import ScrollToBottomButton from './ScrollToBottomButton';
 import ChatTitle from './ChatTitle';
@@ -13,10 +14,15 @@ import DownloadChat from './DownloadChat';
 import CloneChat from './CloneChat';
 import ShareGPT from '@components/ShareGPT';
 import { ImageContentInterface, TextContentInterface } from '@type/chat';
+import countTokens, { limitMessageTokens } from '@utils/messageUtils';
+import { defaultModel, reduceMessagesToTotalToken } from '@constants/chat';
+import { toast } from 'react-toastify';
 
 const ChatContent = () => {
+  const { t } = useTranslation();
   const inputRole = useStore((state) => state.inputRole);
   const setError = useStore((state) => state.setError);
+  const setChats = useStore((state) => state.setChats);
   const messages = useStore((state) =>
     state.chats &&
     state.chats.length > 0 &&
@@ -25,6 +31,7 @@ const ChatContent = () => {
       ? state.chats[state.currentChatIndex].messages
       : []
   );
+  const currentChatIndex = useStore((state) => state.currentChatIndex);
   const stickyIndex = useStore((state) =>
     state.chats &&
     state.chats.length > 0 &&
@@ -36,6 +43,50 @@ const ChatContent = () => {
   const advancedMode = useStore((state) => state.advancedMode);
   const generating = useStore.getState().generating;
   const hideSideMenu = useStore((state) => state.hideSideMenu);
+  const model = useStore((state) =>
+    state.chats &&
+    state.chats.length > 0 &&
+    state.currentChatIndex >= 0 &&
+    state.currentChatIndex < state.chats.length
+      ? state.chats[state.currentChatIndex].config.model
+      : defaultModel
+  );
+  const messagesLimited = limitMessageTokens(messages, reduceMessagesToTotalToken, model);
+
+  const handleReduceMessages = () => {
+    const confirmMessage = t('reduceMessagesWarning');
+    if (window.confirm(confirmMessage)) {
+      const updatedChats = JSON.parse(JSON.stringify(useStore.getState().chats));
+      const removedMessagesCount = messages.length - messagesLimited.length;
+      updatedChats[currentChatIndex].messages = messagesLimited;
+      setChats(updatedChats);
+      toast.dismiss();
+      toast.success(t('reduceMessagesSuccess', { count: removedMessagesCount }));
+    }
+  };
+
+  useEffect(() => {
+    if (!generating) {
+      if (messagesLimited.length < messages.length) {
+        const hiddenTokens =
+          countTokens(messages, model) - countTokens(messagesLimited, model);
+        const message = (
+          <div>
+            <span>
+              {t('hiddenMessagesWarning', { hiddenTokens, reduceMessagesToTotalToken })}
+            </span><br />
+            <button
+              onClick={handleReduceMessages}
+              className="px-2 py-1 bg-blue-500 text-white rounded"
+            >
+              {t('reduceMessagesButton')}
+            </button>
+          </div>
+        );
+        toast.error(message);
+      }
+    }
+  }, [messagesLimited, generating, messages, model]);
 
   const saveRef = useRef<HTMLDivElement>(null);
 
@@ -64,26 +115,29 @@ const ChatContent = () => {
             {!generating && advancedMode && messages?.length === 0 && (
               <NewMessageButton messageIndex={-1} />
             )}
-            {messages?.map((message, index) => (
-              (advancedMode || index !== 0 || message.role !== 'system') && (
-                <React.Fragment key={index}>
-                  <Message
-                    role={message.role}
-                    content={message.content}
-                    messageIndex={index}
-                  />
-                  {!generating && advancedMode && <NewMessageButton messageIndex={index} />}
-                </React.Fragment>
-              )
-            ))}
+            {messagesLimited?.map(
+              (message, index) =>
+                (advancedMode || index !== 0 || message.role !== 'system') && (
+                  <React.Fragment key={index}>
+                    <Message
+                      role={message.role}
+                      content={message.content}
+                      messageIndex={index}
+                    />
+                    {!generating && advancedMode && (
+                      <NewMessageButton messageIndex={index} />
+                    )}
+                  </React.Fragment>
+                )
+            )}
           </div>
 
           <Message
             role={inputRole}
             // For now we always initizlize a new message with an empty text content.
-            // It is possible to send a message to the API without a TextContentInterface, 
+            // It is possible to send a message to the API without a TextContentInterface,
             // but the UI would need to be modified to allow the user to control the order of text and image content
-            content={[{type: 'text', text: ''} as TextContentInterface]}
+            content={[{ type: 'text', text: '' } as TextContentInterface]}
             messageIndex={stickyIndex}
             sticky
           />
