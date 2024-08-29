@@ -16,6 +16,11 @@ import { ChatInterface, Folder, FolderCollection } from '@type/chat';
 import { ExportBase } from '@type/export';
 import { toast } from 'react-toastify';
 
+type ImportResult = {
+  success: boolean;
+  message: string;
+};
+
 const ImportChat = () => {
   const { t } = useTranslation(['main', 'import']);
   const setChats = useStore.getState().setChats;
@@ -45,10 +50,9 @@ const ImportChat = () => {
           parsedData: any,
           shouldReduce = false,
           type: string = ''
-        ) => {
+        ): Promise<ImportResult> => {
           let chatsToImport = parsedData;
           let removedChatsCount = 0;
-
           while (true) {
             try {
               if (type === 'OpenAIContent' || isOpenAIContent(chatsToImport)) {
@@ -65,7 +69,8 @@ const ImportChat = () => {
                       ns: 'import',
                       imported: chats.length,
                       total: originalParsedData.length,
-                    })}`, { autoClose: 15000 }
+                    })}`,
+                    { autoClose: 15000 }
                   );
                 }
                 if (chats.length > 0) {
@@ -145,7 +150,8 @@ const ImportChat = () => {
                         ns: 'import',
                         imported: chatsToImport.length,
                         total: originalParsedData.length,
-                      })}`, { autoClose: 15000 }
+                      })}`,
+                      { autoClose: 15000 }
                     );
                   }
                   if (chatsToImport.length > 0) {
@@ -211,7 +217,8 @@ const ImportChat = () => {
                               originalParsedData.chats.length -
                               removedChatsCount,
                             total: originalParsedData.chats.length,
-                          })}`, { autoClose: 15000 }
+                          })}`,
+                          { autoClose: 15000 }
                         );
                       }
 
