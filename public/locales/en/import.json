@@ -1,10 +1,14 @@
 {
     "notifications": {
-        "invalidOpenAIDataFormat" : "Invalid openai data format",
-        "invalidChatsDataFormat" : "Invalid chats data format",
-        "invalidFormatForVersion" : "Invalid format for specified version",
-        "successfulImport" : "Succesfully imported!",
-        "unrecognisedDataFormat" : "Unrecognised data format. Supported formats are: BetterGPT export, OpenAI export, OpenAI Playground (JSON)"
-    }
-}
+      "invalidOpenAIDataFormat": "Invalid openai data format",
+      "invalidChatsDataFormat": "Invalid chats data format",
+      "invalidFormatForVersion": "Invalid format for specified version",
+      "quotaExceeded": "Storage quota exceeded",
+      "successfulImport": "Successfully imported!",
+      "nothingImported": "No data has been imported",
+      "unrecognisedDataFormat": "Unrecognised data format. Supported formats are: BetterGPT export, OpenAI export, OpenAI Playground (JSON)",
+      "chatsImported": "{{imported}} chats were imported out of {{total}}."
+    },
+    "reduceMessagesSuccess": "{{count}} messages were reduced."
+  }
   

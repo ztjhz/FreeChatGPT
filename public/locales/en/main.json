@@ -47,5 +47,10 @@
   "cloneChat": "Clone Chat",
   "cloned": "Cloned",
   "enterToSubmit": "Enter to submit",
-  "submitPlaceholder": "Type a message or click [/] for prompts..."
+  "submitPlaceholder": "Type a message or click [/] for prompts...",
+  "reduceMessagesWarning": "Reducing messages may result in data loss. It is recommended to download the chat in JSON format if you care about the data. Do you want to proceed?",
+  "reduceMessagesFailedImportWarning": "Full import failed as the data hit the maximum storage limit. Import as much as possible?",
+  "reduceMessagesButton": "Reduce Messages",
+  "reduceMessagesSuccess": "Successfully reduced messages. {{count}} messages were removed.",
+  "hiddenMessagesWarning": "Some messages were hidden with the total length of {{hiddenTokens}} tokens to {{reduceMessagesToTotalToken}} tokens to avoid laggy UI."
 }

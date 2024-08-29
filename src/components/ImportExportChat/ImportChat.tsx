@@ -32,157 +32,314 @@ const ImportChat = () => {
     if (file) {
       const reader = new FileReader();
 
-      reader.onload = (event) => {
+      reader.onload = async (event) => {
         const data = event.target?.result as string;
+        const originalChats = JSON.parse(
+          JSON.stringify(useStore.getState().chats)
+        );
+        const originalFolders = JSON.parse(
+          JSON.stringify(useStore.getState().folders)
+        );
+        var originalParsedData: any;
+        const importData = async (
+          parsedData: any,
+          shouldReduce = false,
+          type: string = ''
+        ) => {
+          let chatsToImport = parsedData;
+          let removedChatsCount = 0;
 
-        try {
-          const parsedData = JSON.parse(data);
-          if (isOpenAIContent(parsedData)) {
+          while (true) {
             try {
-              const chats = importOpenAIChatExport(parsedData);
-              const prevChats: ChatInterface[] = JSON.parse(
-                JSON.stringify(useStore.getState().chats)
-              );
-              setChats(chats.concat(prevChats));
-              toast.success(
-                t('notifications.successfulImport', { ns: 'import' })
-              );
-            } catch (error: unknown) {
-              toast.error(
-                `${t('notifications.invalidOpenAIDataFormat', {
-                  ns: 'import',
-                })}: ${(error as Error).message}`
-              );
-            }
-          } else if (isLegacyImport(parsedData)) {
-            if (validateAndFixChats(parsedData)) {
-              // import new folders
-              const folderNameToIdMap: Record<string, string> = {};
-              const parsedFolders: string[] = [];
-
-              parsedData.forEach((data) => {
-                const folder = data.folder;
-                if (folder) {
-                  if (!parsedFolders.includes(folder)) {
-                    parsedFolders.push(folder);
-                    folderNameToIdMap[folder] = uuidv4();
-                  }
-                  data.folder = folderNameToIdMap[folder];
-                }
-              });
-
-              const newFolders: FolderCollection = parsedFolders.reduce(
-                (acc, curr, index) => {
-                  const id = folderNameToIdMap[curr];
-                  const _newFolder: Folder = {
-                    id,
-                    name: curr,
-                    expanded: false,
-                    order: index,
-                  };
-                  return { [id]: _newFolder, ...acc };
-                },
-                {}
-              );
-
-              // increment the order of existing folders
-              const offset = parsedFolders.length;
-
-              const updatedFolders = useStore.getState().folders;
-              Object.values(updatedFolders).forEach((f) => (f.order += offset));
-
-              setFolders({ ...newFolders, ...updatedFolders });
-
-              // import chats
-              const prevChats = useStore.getState().chats;
-              if (prevChats) {
-                const updatedChats: ChatInterface[] = JSON.parse(
-                  JSON.stringify(prevChats)
+              if (type === 'OpenAIContent' || isOpenAIContent(chatsToImport)) {
+                const chats = importOpenAIChatExport(chatsToImport);
+                const prevChats: ChatInterface[] = JSON.parse(
+                  JSON.stringify(useStore.getState().chats)
                 );
-                setChats(parsedData.concat(updatedChats));
-              } else {
-                setChats(parsedData);
-              }
-              toast.success(
-                t('notifications.successfulImport', { ns: 'import' })
-              );
-              setAlert({ message: 'Succesfully imported!', success: true });
-            } else {
-              toast.error(
-                t('notifications.invalidChatsDataFormat', { ns: 'import' })
-              );
-              setAlert({
-                message: t('notifications.invalidChatsDataFormat', {
-                  ns: 'import',
-                }),
-                success: false,
-              });
-            }
-          } else {
-            switch ((parsedData as ExportBase).version) {
-              case 1:
-                if (validateExportV1(parsedData)) {
-                  // import folders
-                  parsedData.folders;
+                setChats(chats.concat(prevChats));
+                if (removedChatsCount > 0) {
+                  toast.info(
+                    `${t('reduceMessagesSuccess', {
+                      count: removedChatsCount,
+                    })}. ${t('notifications.chatsImported', {
+                      ns: 'import',
+                      imported: chats.length,
+                      total: originalParsedData.length,
+                    })}`, { autoClose: 15000 }
+                  );
+                }
+                if (chats.length > 0) {
+                  return {
+                    success: true,
+                    message: t('notifications.successfulImport', {
+                      ns: 'import',
+                    }),
+                  };
+                } else {
+                  return {
+                    success: false,
+                    message: t('notifications.quotaExceeded', {
+                      ns: 'import',
+                    }),
+                  };
+                }
+              } else if (
+                type === 'LegacyImport' ||
+                isLegacyImport(chatsToImport)
+              ) {
+                if (validateAndFixChats(chatsToImport)) {
+                  // import new folders
+                  const folderNameToIdMap: Record<string, string> = {};
+                  const parsedFolders: string[] = [];
+
+                  chatsToImport.forEach((data) => {
+                    const folder = data.folder;
+                    if (folder) {
+                      if (!parsedFolders.includes(folder)) {
+                        parsedFolders.push(folder);
+                        folderNameToIdMap[folder] = uuidv4();
+                      }
+                      data.folder = folderNameToIdMap[folder];
+                    }
+                  });
+
+                  const newFolders: FolderCollection = parsedFolders.reduce(
+                    (acc, curr, index) => {
+                      const id = folderNameToIdMap[curr];
+                      const _newFolder: Folder = {
+                        id,
+                        name: curr,
+                        expanded: false,
+                        order: index,
+                      };
+                      return { [id]: _newFolder, ...acc };
+                    },
+                    {}
+                  );
+
                   // increment the order of existing folders
-                  const offset = Object.keys(parsedData.folders).length;
+                  const offset = parsedFolders.length;
 
                   const updatedFolders = useStore.getState().folders;
                   Object.values(updatedFolders).forEach(
                     (f) => (f.order += offset)
                   );
 
-                  setFolders({ ...parsedData.folders, ...updatedFolders });
+                  setFolders({ ...newFolders, ...updatedFolders });
 
                   // import chats
                   const prevChats = useStore.getState().chats;
-                  if (parsedData.chats) {
-                    if (prevChats) {
-                      const updatedChats: ChatInterface[] = JSON.parse(
-                        JSON.stringify(prevChats)
-                      );
-                      setChats(parsedData.chats.concat(updatedChats));
-                    } else {
-                      setChats(parsedData.chats);
-                    }
+                  if (prevChats) {
+                    const updatedChats: ChatInterface[] = JSON.parse(
+                      JSON.stringify(prevChats)
+                    );
+                    setChats(chatsToImport.concat(updatedChats));
+                  } else {
+                    setChats(chatsToImport);
                   }
-
-                  toast.success(
-                    t('notifications.successfulImport', { ns: 'import' })
-                  );
-                  setAlert({
-                    message: t('notifications.successfulImport', {
-                      ns: 'import',
-                    }),
-                    success: true,
-                  });
+                  if (removedChatsCount > 0) {
+                    toast.info(
+                      `${t('reduceMessagesSuccess', {
+                        count: removedChatsCount,
+                      })}. ${t('notifications.chatsImported', {
+                        ns: 'import',
+                        imported: chatsToImport.length,
+                        total: originalParsedData.length,
+                      })}`, { autoClose: 15000 }
+                    );
+                  }
+                  if (chatsToImport.length > 0) {
+                    return {
+                      success: true,
+                      message: t('notifications.successfulImport', {
+                        ns: 'import',
+                      }),
+                    };
+                  } else {
+                    return {
+                      success: false,
+                      message: t('notifications.nothingImported', {
+                        ns: 'import',
+                      }),
+                    };
+                  }
                 } else {
-                  toast.error(
-                    t('notifications.invalidFormatForVersion', { ns: 'import' })
-                  );
-                  setAlert({
-                    message: t('notifications.invalidFormatForVersion', {
+                  return {
+                    success: false,
+                    message: t('notifications.invalidChatsDataFormat', {
                       ns: 'import',
                     }),
-                    success: false,
-                  });
+                  };
                 }
-                break;
-              default:
-                toast.error(
-                  t('notifications.unrecognisedDataFormat', { ns: 'import' })
-                );
-                setAlert({
-                  message: t('notifications.unrecognisedDataFormat', {
-                    ns: 'import',
-                  }),
-                  success: false,
-                });
-                break;
+              } else {
+                switch ((parsedData as ExportBase).version) {
+                  case 1:
+                    if (validateExportV1(parsedData)) {
+                      // increment the order of existing folders
+                      const offset = Object.keys(parsedData.folders).length;
+
+                      const updatedFolders = useStore.getState().folders;
+                      Object.values(updatedFolders).forEach(
+                        (f) => (f.order += offset)
+                      );
+
+                      setFolders({ ...parsedData.folders, ...updatedFolders });
+
+                      // import chats
+                      const prevChats = useStore.getState().chats;
+                      if (parsedData.chats) {
+                        if (prevChats) {
+                          const updatedChats: ChatInterface[] = JSON.parse(
+                            JSON.stringify(prevChats)
+                          );
+                          setChats(parsedData.chats.concat(updatedChats));
+                        } else {
+                          setChats(parsedData.chats);
+                        }
+                      }
+                      if (
+                        removedChatsCount > 0 &&
+                        parsedData.chats &&
+                        parsedData.chats.length > 0
+                      ) {
+                        toast.info(
+                          `${t('reduceMessagesSuccess', {
+                            count: removedChatsCount,
+                          })}. ${t('notifications.chatsImported', {
+                            ns: 'import',
+                            imported:
+                              originalParsedData.chats.length -
+                              removedChatsCount,
+                            total: originalParsedData.chats.length,
+                          })}`, { autoClose: 15000 }
+                        );
+                      }
+
+                      if (parsedData.chats && parsedData.chats.length > 0) {
+                        return {
+                          success: true,
+                          message: t('notifications.successfulImport', {
+                            ns: 'import',
+                          }),
+                        };
+                      } else {
+                        return {
+                          success: false,
+                          message: t('notifications.quotaExceeded', {
+                            ns: 'import',
+                          }),
+                        };
+                      }
+                    } else {
+                      return {
+                        success: false,
+                        message: t('notifications.invalidFormatForVersion', {
+                          ns: 'import',
+                        }),
+                      };
+                    }
+                  default:
+                    return {
+                      success: false,
+                      message: t('notifications.unrecognisedDataFormat', {
+                        ns: 'import',
+                      }),
+                    };
+                }
+              }
+            } catch (error: unknown) {
+              if ((error as DOMException).name === 'QuotaExceededError') {
+                setChats(originalChats);
+                setFolders(originalFolders);
+                if (type === 'ExportV1') {
+                  if (chatsToImport.chats.length > 0) {
+                    if (shouldReduce) {
+                      chatsToImport.chats.pop();
+                      removedChatsCount++;
+                    } else {
+                      const confirmMessage = t(
+                        'reduceMessagesFailedImportWarning'
+                      );
+                      if (window.confirm(confirmMessage)) {
+                        return await importData(parsedData, true, type);
+                      } else {
+                        return {
+                          success: false,
+                          message: t('notifications.quotaExceeded', {
+                            ns: 'import',
+                          }),
+                        };
+                      }
+                    }
+                  } else {
+                    return {
+                      success: false,
+                      message: t('notifications.quotaExceeded', {
+                        ns: 'import',
+                      }),
+                    };
+                  }
+                } else {
+                  if (chatsToImport.length > 0) {
+                    if (shouldReduce) {
+                      chatsToImport.pop();
+                      removedChatsCount++;
+                    } else {
+                      const confirmMessage = t(
+                        'reduceMessagesFailedImportWarning'
+                      );
+                      if (window.confirm(confirmMessage)) {
+                        return await importData(parsedData, true, type);
+                      } else {
+                        return {
+                          success: false,
+                          message: t('notifications.quotaExceeded', {
+                            ns: 'import',
+                          }),
+                        };
+                      }
+                    }
+                  } else {
+                    return {
+                      success: false,
+                      message: t('notifications.quotaExceeded', {
+                        ns: 'import',
+                      }),
+                    };
+                  }
+                }
+              } else {
+                return { success: false, message: (error as Error).message };
+              }
             }
           }
+        };
+
+        try {
+          const parsedData = JSON.parse(data);
+          originalParsedData = JSON.parse(data);
+          let type = '';
+          if (isOpenAIContent(parsedData)) {
+            type = 'OpenAIContent';
+          } else if (isLegacyImport(parsedData)) {
+            type = 'LegacyImport';
+          } else if ((parsedData as ExportBase).version === 1) {
+            type = 'ExportV1';
+          }
+          const result = await importData(parsedData, false, type);
+          if (result.success) {
+            toast.success(result.message);
+            setAlert({ message: result.message, success: true });
+          } else {
+            setChats(originalChats);
+            setFolders(originalFolders);
+            toast.error(result.message, { autoClose: 15000 });
+            setAlert({ message: result.message, success: false });
+          }
         } catch (error: unknown) {
-          toast.error((error as Error).message);
+          setChats(originalChats);
+          setFolders(originalFolders);
+          toast.error((error as Error).message, { autoClose: 15000 });
           setAlert({ message: (error as Error).message, success: false });
         }
       };

@@ -26,6 +26,7 @@ export const defaultApiVersion = '2024-04-01-preview';
 export const defaultModel = 'gpt-4o-mini';
 
 export const defaultUserMaxToken = 4000;
+export const reduceMessagesToTotalToken = 256000; // sufficient for almost all models; gemini has 1.5kk though
 
 export const _defaultChatConfig: ConfigInterface = {
   model: defaultModel,
@@ -33,7 +34,7 @@ export const _defaultChatConfig: ConfigInterface = {
   temperature: 1,
   presence_penalty: 0,
   top_p: 1,
-  frequency_penalty: 0
+  frequency_penalty: 0,
 };
 
 export const generateDefaultChat = (
@@ -102,4 +103,4 @@ export const codeLanguageSubset = [
 
 export const _defaultMenuWidth = 260;
 export const _defaultDisplayChatSize = false;
-export const _defaultImageDetail : ImageDetail = 'auto'
+export const _defaultImageDetail: ImageDetail = 'auto';
