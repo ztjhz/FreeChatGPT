@@ -18,6 +18,7 @@ import { defaultModel } from '@constants/chat';
 import AttachmentIcon from '@icon/AttachmentIcon';
 import { ModelOptions } from '@utils/modelReader';
 import { modelTypes } from '@constants/modelLoader';
+import { toast } from 'react-toastify';
 
 const EditView = ({
   content: content,
@@ -36,10 +37,13 @@ const EditView = ({
   var currentChatIndex = useStore((state) => state.currentChatIndex);
   const model = useStore((state) => {
     const isInitialised =
-      state.chats && state.chats.length > 0 && state.currentChatIndex >= 0 && state.currentChatIndex < state.chats.length;
+      state.chats &&
+      state.chats.length > 0 &&
+      state.currentChatIndex >= 0 &&
+      state.currentChatIndex < state.chats.length;
     if (!isInitialised) {
-      currentChatIndex = 0
-      setCurrentChatIndex(0)
+      currentChatIndex = 0;
+      setCurrentChatIndex(0);
     }
     return isInitialised
       ? state.chats![state.currentChatIndex].config.model
@@ -154,15 +158,21 @@ const EditView = ({
 
     _setContent(updatedImages);
   };
-
   const handleSave = () => {
     const hasTextContent = (_content[0] as TextContentInterface).text !== '';
-    const hasImageContent = _content.some(content => content.type === 'image_url');
+    const hasImageContent = _content.some(
+      (content) => content.type === 'image_url'
+    );
 
-    if (sticky && (!hasTextContent && !hasImageContent || useStore.getState().generating)) {
+    if (
+      sticky &&
+      ((!hasTextContent && !hasImageContent) || useStore.getState().generating)
+    ) {
       return;
     }
-
+    const originalChats: ChatInterface[] = JSON.parse(
+      JSON.stringify(useStore.getState().chats)
+    );
     const updatedChats: ChatInterface[] = JSON.parse(
       JSON.stringify(useStore.getState().chats)
     );
@@ -181,23 +191,61 @@ const EditView = ({
       updatedMessages[messageIndex].content = _content;
       setIsEdit(false);
     }
-    setChats(updatedChats);
+    try {
+      setChats(updatedChats);
+    } catch (error: unknown) {
+      if ((error as DOMException).name === 'QuotaExceededError') {
+        setChats(originalChats);
+        toast.error(
+          t('notifications.quotaExceeded', {
+            ns: 'import',
+          }),
+          { autoClose: 15000 }
+        );
+        // try to save text only
+        const textOnlyContent = _content.filter(isTextContent);
+        if (textOnlyContent.length > 0) {
+          updatedMessages[messageIndex].content = textOnlyContent;
+          try {
+            setChats(updatedChats);
+            toast.info(
+              t('notifications.textSavedOnly', {
+                ns: 'import',
+              }),
+              { autoClose: 15000 }
+            );
+          } catch (innerError: unknown) {
+            toast.error((innerError as Error).message);
+          }
+        }
+      } else {
+        toast.error((error as Error).message);
+      }
+    }
   };
 
   const { handleSubmit } = useSubmit();
   const handleGenerate = () => {
     const hasTextContent = (_content[0] as TextContentInterface).text !== '';
-    const hasImageContent = _content.some(content => content.type === 'image_url');
-  
-    if (!hasTextContent && !hasImageContent || useStore.getState().generating) {
+    const hasImageContent = _content.some(
+      (content) => content.type === 'image_url'
+    );
+
+    if (
+      (!hasTextContent && !hasImageContent) ||
+      useStore.getState().generating
+    ) {
       return;
     }
-  
+
+    const originalChats: ChatInterface[] = JSON.parse(
+      JSON.stringify(useStore.getState().chats)
+    );
     const updatedChats: ChatInterface[] = JSON.parse(
       JSON.stringify(useStore.getState().chats)
     );
     const updatedMessages = updatedChats[currentChatIndex].messages;
-  
+
     if (sticky) {
       if (hasTextContent || hasImageContent) {
         updatedMessages.push({ role: inputRole, content: _content });
@@ -219,10 +267,42 @@ const EditView = ({
     }
     try {
       setChats(updatedChats);
-    } catch (e) {
-      console.log(e);
+    } catch (error: unknown) {
+      if ((error as DOMException).name === 'QuotaExceededError') {
+        setChats(originalChats);
+        toast.error(
+          t('notifications.quotaExceeded', {
+            ns: 'import',
+          }),
+          { autoClose: 15000 }
+        );
+        // try to save text only
+        const textOnlyContent = _content.filter(isTextContent);
+        if (textOnlyContent.length > 0) {
+          updatedMessages[messageIndex].content = textOnlyContent;
+          try {
+            setChats(updatedChats);
+            toast.info(
+              t('notifications.textSavedOnly', {
+                ns: 'import',
+              }),
+              { autoClose: 15000 }
+            );
+          } catch (innerError: unknown) {
+            console.log(innerError);
+          }
+        }
+      } else {
+        console.log(error);
+      }
     }
     handleSubmit();
+  };
+
+  const isTextContent = (
+    content: ContentInterface
+  ): content is TextContentInterface => {
+    return content.type === 'text';
   };
 
   const handlePaste = async (e: React.ClipboardEvent<HTMLTextAreaElement>) => {
@@ -295,7 +375,9 @@ const EditView = ({
           {/* Place the AttachmentIcon directly over the textarea */}
           <textarea
             ref={textareaRef}
-            className={`m-0 resize-none rounded-lg bg-transparent overflow-y-hidden focus:ring-0 focus-visible:ring-0 leading-7 w-full placeholder:text-gray-500/40 pr-10 ${modelTypes[model] == 'image' ? 'pl-7' : ''}`} // Adjust padding-right to make space for the icon
+            className={`m-0 resize-none rounded-lg bg-transparent overflow-y-hidden focus:ring-0 focus-visible:ring-0 leading-7 w-full placeholder:text-gray-500/40 pr-10 ${
+              modelTypes[model] == 'image' ? 'pl-7' : ''
+            }`} // Adjust padding-right to make space for the icon
             onChange={(e) => {
               _setContent((prev) => [
                 { type: 'text', text: e.target.value },
