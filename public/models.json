@@ -2,6 +2,198 @@
   "data": [
     {
       "architecture": {
+        "instruct_type": "llama3",
+        "modality": "text->text",
+        "tokenizer": "Llama3"
+      },
+      "context_length": 8192,
+      "created": 1724803200,
+      "description": "Euryale L3.1 70B v2.2 is a model focused on creative roleplay from [Sao10k](https://ko-fi.com/sao10k). It is the successor of [Euryale L3 70B v2.1](/models/sao10k/l3-euryale-70b).",
+      "id": "sao10k/l3.1-euryale-70b",
+      "name": "Llama 3.1 Euryale 70B v2.2",
+      "per_request_limits": null,
+      "pricing": {
+        "completion": "0.0000015",
+        "image": "0",
+        "prompt": "0.0000015",
+        "request": "0"
+      },
+      "top_provider": {
+        "context_length": 16000,
+        "is_moderated": false,
+        "max_completion_tokens": null
+      }
+    },
+    {
+      "architecture": {
+        "instruct_type": null,
+        "modality": "text->text",
+        "tokenizer": "Other"
+      },
+      "context_length": 256000,
+      "created": 1724371200,
+      "description": "Jamba 1.5 Large is part of AI21's new family of open models, offering superior speed, efficiency, and quality.\n\nIt features a 256K effective context window, the longest among open models, enabling improved performance on tasks like document summarization and analysis.\n\nBuilt on a novel SSM-Transformer architecture, it outperforms larger models like Llama 3.1 70B on benchmarks while maintaining resource efficiency.\n\nRead their [announcement](https://www.ai21.com/blog/announcing-jamba-model-family) to learn more.",
+      "id": "ai21/jamba-1-5-large",
+      "name": "AI21: Jamba 1.5 Large",
+      "per_request_limits": null,
+      "pricing": {
+        "completion": "0.000008",
+        "image": "0",
+        "prompt": "0.000002",
+        "request": "0"
+      },
+      "top_provider": {
+        "context_length": 256000,
+        "is_moderated": false,
+        "max_completion_tokens": 4096
+      }
+    },
+    {
+      "architecture": {
+        "instruct_type": null,
+        "modality": "text->text",
+        "tokenizer": "Other"
+      },
+      "context_length": 256000,
+      "created": 1724371200,
+      "description": "Jamba 1.5 Mini is the world's first production-grade Mamba-based model, combining SSM and Transformer architectures for a 256K context window and high efficiency.\n\nIt works with 9 languages and can handle various writing and analysis tasks as well as or better than similar small models.\n\nThis model uses less computer memory and works faster with longer texts than previous designs.\n\nRead their [announcement](https://www.ai21.com/blog/announcing-jamba-model-family) to learn more.",
+      "id": "ai21/jamba-1-5-mini",
+      "name": "AI21: Jamba 1.5 Mini",
+      "per_request_limits": null,
+      "pricing": {
+        "completion": "0.0000004",
+        "image": "0",
+        "prompt": "0.0000002",
+        "request": "0"
+      },
+      "top_provider": {
+        "context_length": 256000,
+        "is_moderated": false,
+        "max_completion_tokens": 4096
+      }
+    },
+    {
+      "architecture": {
+        "instruct_type": "chatml",
+        "modality": "text->text",
+        "tokenizer": "Yi"
+      },
+      "context_length": 4096,
+      "created": 1724371200,
+      "description": "The Yi series models are large language models trained from scratch by developers at [01.AI](https://01.ai/). This is a predecessor to the Yi 34B model. It is continuously pre-trained on Yi with a high-quality corpus of 500B tokens and fine-tuned on 3M diverse fine-tuning samples..",
+      "id": "01-ai/yi-1.5-34b-chat",
+      "name": "Yi 1.5 34B Chat",
+      "per_request_limits": null,
+      "pricing": {
+        "completion": "0.00000072",
+        "image": "0",
+        "prompt": "0.00000072",
+        "request": "0"
+      },
+      "top_provider": {
+        "context_length": 4096,
+        "is_moderated": false,
+        "max_completion_tokens": null
+      }
+    },
+    {
+      "architecture": {
+        "instruct_type": "phi3",
+        "modality": "text->text",
+        "tokenizer": "Other"
+      },
+      "context_length": 128000,
+      "created": 1724198400,
+      "description": "Phi-3.5 models are lightweight, state-of-the-art open models. These models were trained with Phi-3 datasets that include both synthetic data and the filtered, publicly available websites data, with a focus on high quality and reasoning-dense properties. Phi-3.5 Mini uses 3.8B parameters, and is a dense decoder-only transformer model using the same tokenizer as [Phi-3 Mini](/models/microsoft/phi-3-mini-128k-instruct).\n\nThe models underwent a rigorous enhancement process, incorporating both supervised fine-tuning, proximal policy optimization, and direct preference optimization to ensure precise instruction adherence and robust safety measures. When assessed against benchmarks that test common sense, language understanding, math, code, long context and logical reasoning, Phi-3.5 models showcased robust and state-of-the-art performance among models with less than 13 billion parameters.",
+      "id": "microsoft/phi-3.5-mini-128k-instruct",
+      "name": "Phi-3.5 Mini 128K Instruct",
+      "per_request_limits": null,
+      "pricing": {
+        "completion": "0.0000001",
+        "image": "0",
+        "prompt": "0.0000001",
+        "request": "0"
+      },
+      "top_provider": {
+        "context_length": 128000,
+        "is_moderated": false,
+        "max_completion_tokens": null
+      }
+    },
+    {
+      "architecture": {
+        "instruct_type": "chatml",
+        "modality": "text->text",
+        "tokenizer": "Llama3"
+      },
+      "context_length": 131072,
+      "created": 1723939200,
+      "description": "Hermes 3 is a generalist language model with many improvements over [Hermes 2](/models/nousresearch/nous-hermes-2-mistral-7b-dpo), including advanced agentic capabilities, much better roleplaying, reasoning, multi-turn conversation, long context coherence, and improvements across the board.\n\nHermes 3 70B is a competitive, if not superior finetune of the [Llama-3.1 70B foundation model](/models/meta-llama/llama-3.1-70b-instruct), focused on aligning LLMs to the user, with powerful steering capabilities and control given to the end user.\n\nThe Hermes 3 series builds and expands on the Hermes 2 set of capabilities, including more powerful and reliable function calling and structured output capabilities, generalist assistant capabilities, and improved code generation skills.",
+      "id": "nousresearch/hermes-3-llama-3.1-70b",
+      "name": "Nous: Hermes 3 70B Instruct",
+      "per_request_limits": null,
+      "pricing": {
+        "completion": "0.0000004",
+        "image": "0",
+        "prompt": "0.0000004",
+        "request": "0"
+      },
+      "top_provider": {
+        "context_length": 12288,
+        "is_moderated": false,
+        "max_completion_tokens": null
+      }
+    },
+    {
+      "architecture": {
+        "instruct_type": "chatml",
+        "modality": "text->text",
+        "tokenizer": "Llama3"
+      },
+      "context_length": 131072,
+      "created": 1723766400,
+      "description": "Hermes 3 is a generalist language model with many improvements over Hermes 2, including advanced agentic capabilities, much better roleplaying, reasoning, multi-turn conversation, long context coherence, and improvements across the board.\n\nHermes 3 405B is a frontier-level, full-parameter finetune of the Llama-3.1 405B foundation model, focused on aligning LLMs to the user, with powerful steering capabilities and control given to the end user.\n\nThe Hermes 3 series builds and expands on the Hermes 2 set of capabilities, including more powerful and reliable function calling and structured output capabilities, generalist assistant capabilities, and improved code generation skills.\n\nHermes 3 is competitive, if not superior, to Llama-3.1 Instruct models at general capabilities, with varying strengths and weaknesses attributable between the two.",
+      "id": "nousresearch/hermes-3-llama-3.1-405b",
+      "name": "Nous: Hermes 3 405B Instruct",
+      "per_request_limits": null,
+      "pricing": {
+        "completion": "0",
+        "image": "0",
+        "prompt": "0",
+        "request": "0"
+      },
+      "top_provider": {
+        "context_length": 18000,
+        "is_moderated": false,
+        "max_completion_tokens": null
+      }
+    },
+    {
+      "architecture": {
+        "instruct_type": "chatml",
+        "modality": "text->text",
+        "tokenizer": "Llama3"
+      },
+      "context_length": 128000,
+      "created": 1723766400,
+      "description": "Hermes 3 is a generalist language model with many improvements over Hermes 2, including advanced agentic capabilities, much better roleplaying, reasoning, multi-turn conversation, long context coherence, and improvements across the board.\n\nHermes 3 405B is a frontier-level, full-parameter finetune of the Llama-3.1 405B foundation model, focused on aligning LLMs to the user, with powerful steering capabilities and control given to the end user.\n\nThe Hermes 3 series builds and expands on the Hermes 2 set of capabilities, including more powerful and reliable function calling and structured output capabilities, generalist assistant capabilities, and improved code generation skills.\n\nHermes 3 is competitive, if not superior, to Llama-3.1 Instruct models at general capabilities, with varying strengths and weaknesses attributable between the two.\n\n_These are extended-context endpoints for [Hermes 3 405B Instruct](/models/nousresearch/hermes-3-llama-3.1-405b). They may have higher prices._",
+      "id": "nousresearch/hermes-3-llama-3.1-405b:extended",
+      "name": "Nous: Hermes 3 405B Instruct (extended)",
+      "per_request_limits": null,
+      "pricing": {
+        "completion": "0",
+        "image": "0",
+        "prompt": "0",
+        "request": "0"
+      },
+      "top_provider": {
+        "context_length": 128000,
+        "is_moderated": false,
+        "max_completion_tokens": null
+      }
+    },
+    {
+      "architecture": {
         "instruct_type": null,
         "modality": "text->text",
         "tokenizer": "Llama3"
@@ -19,8 +211,9 @@
         "request": "0.005"
       },
       "top_provider": {
+        "context_length": 127072,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -42,6 +235,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 128000,
         "is_moderated": true,
         "max_completion_tokens": 16384
       }
@@ -65,8 +259,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -88,8 +283,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 12000,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -111,6 +307,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 128000,
         "is_moderated": true,
         "max_completion_tokens": 16384
       }
@@ -134,8 +331,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32768,
         "is_moderated": false,
-        "max_completion_tokens": 8192
+        "max_completion_tokens": 32768
       }
     },
     {
@@ -157,6 +355,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 16384,
         "is_moderated": false,
         "max_completion_tokens": 2700
       }
@@ -180,8 +379,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 16384,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -203,8 +403,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4096,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -226,8 +427,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32000,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -238,7 +440,7 @@
       },
       "context_length": 4000000,
       "created": 1722470400,
-      "description": "Gemini 1.5 Pro (0801) is an experimental version of the [Gemini 1.5 Pro](/models/google/gemini-pro-1.5) model. Because it's currently experimental, it will be **heavily rate-limited** by Google.\n\nUsage of Gemini is subject to Google's [Gemini Terms of Use](https://ai.google.dev/terms).\n\n#multimodal",
+      "description": "Gemini 1.5 Pro (0801) is an experimental version of the [Gemini 1.5 Pro](/models/google/gemini-pro-1.5) model.\n\nUsage of Gemini is subject to Google's [Gemini Terms of Use](https://ai.google.dev/terms).\n\n#multimodal\n\nNote: This model is experimental and not suited for production use-cases. It may be removed or redirected to another model in the future.",
       "id": "google/gemini-pro-1.5-exp",
       "name": "Google: Gemini Pro 1.5 (0801)",
       "per_request_limits": null,
@@ -249,6 +451,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4000000,
         "is_moderated": false,
         "max_completion_tokens": 32768
       }
@@ -272,8 +475,9 @@
         "request": "0.005"
       },
       "top_provider": {
+        "context_length": 127072,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -295,8 +499,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 131072,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -318,8 +523,9 @@
         "request": "0.005"
       },
       "top_provider": {
+        "context_length": 127072,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -341,8 +547,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 131072,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -353,19 +560,20 @@
       },
       "context_length": 131072,
       "created": 1721692800,
-      "description": "Meta's latest class of model (Llama 3.1) launched with a variety of sizes & flavors. This 70B instruct-tuned version is optimized for high quality dialogue usecases.\n\nIt has demonstrated strong performance compared to leading closed-source models in human evaluations.\n\nTo read more about the model release, [click here](https://ai.meta.com/blog/meta-llama-3-1/). Usage of this model is subject to [Meta's Acceptable Use Policy](https://llama.meta.com/llama3/use-policy/).",
+      "description": "Meta's latest class of model (Llama 3.1) launched with a variety of sizes & flavors. This 70B instruct-tuned version is optimized for high quality dialogue usecases.\n\nIt has demonstrated strong performance compared to leading closed-source models in human evaluations.\n\nTo read more about the model release, [click here](https://ai.meta.com/blog/meta-llama-3/). Usage of this model is subject to [Meta's Acceptable Use Policy](https://llama.meta.com/llama3/use-policy/).",
       "id": "meta-llama/llama-3.1-70b-instruct",
       "name": "Meta: Llama 3.1 70B Instruct",
       "per_request_limits": null,
       "pricing": {
         "completion": "0.0000004",
         "image": "0",
-        "prompt": "0.0000004",
+        "prompt": "0.00000035",
         "request": "0"
       },
       "top_provider": {
+        "context_length": 100000,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -376,7 +584,7 @@
       },
       "context_length": 131072,
       "created": 1721692800,
-      "description": "Meta's latest class of model (Llama 3.1) launched with a variety of sizes & flavors. This 8B instruct-tuned version is fast and efficient.\n\nIt has demonstrated strong performance compared to leading closed-source models in human evaluations.\n\nTo read more about the model release, [click here](https://ai.meta.com/blog/meta-llama-3-1/). Usage of this model is subject to [Meta's Acceptable Use Policy](https://llama.meta.com/llama3/use-policy/).\n\n_These are free, rate-limited endpoints for [Llama 3.1 8B Instruct](/models/meta-llama/llama-3.1-8b-instruct). Outputs may be cached. Read about rate limits [here](/docs/limits)._",
+      "description": "Meta's latest class of model (Llama 3.1) launched with a variety of sizes & flavors. This 8B instruct-tuned version is fast and efficient.\n\nIt has demonstrated strong performance compared to leading closed-source models in human evaluations.\n\nTo read more about the model release, [click here](https://ai.meta.com/blog/meta-llama-3/). Usage of this model is subject to [Meta's Acceptable Use Policy](https://llama.meta.com/llama3/use-policy/).\n\n_These are free, rate-limited endpoints for [Llama 3.1 8B Instruct](/models/meta-llama/llama-3.1-8b-instruct). Outputs may be cached. Read about rate limits [here](/docs/limits)._",
       "id": "meta-llama/llama-3.1-8b-instruct:free",
       "name": "Meta: Llama 3.1 8B Instruct (free)",
       "per_request_limits": null,
@@ -387,6 +595,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
         "max_completion_tokens": 4096
       }
@@ -399,19 +608,20 @@
       },
       "context_length": 131072,
       "created": 1721692800,
-      "description": "Meta's latest class of model (Llama 3.1) launched with a variety of sizes & flavors. This 8B instruct-tuned version is fast and efficient.\n\nIt has demonstrated strong performance compared to leading closed-source models in human evaluations.\n\nTo read more about the model release, [click here](https://ai.meta.com/blog/meta-llama-3-1/). Usage of this model is subject to [Meta's Acceptable Use Policy](https://llama.meta.com/llama3/use-policy/).",
+      "description": "Meta's latest class of model (Llama 3.1) launched with a variety of sizes & flavors. This 8B instruct-tuned version is fast and efficient.\n\nIt has demonstrated strong performance compared to leading closed-source models in human evaluations.\n\nTo read more about the model release, [click here](https://ai.meta.com/blog/meta-llama-3/). Usage of this model is subject to [Meta's Acceptable Use Policy](https://llama.meta.com/llama3/use-policy/).",
       "id": "meta-llama/llama-3.1-8b-instruct",
       "name": "Meta: Llama 3.1 8B Instruct",
       "per_request_limits": null,
       "pricing": {
-        "completion": "0.00000006",
+        "completion": "0.000000055",
         "image": "0",
-        "prompt": "0.00000006",
+        "prompt": "0.000000055",
         "request": "0"
       },
       "top_provider": {
+        "context_length": 100000,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -422,19 +632,20 @@
       },
       "context_length": 131072,
       "created": 1721692800,
-      "description": "The highly anticipated 400B class of Llama3 is here! Clocking in at 128k context with impressive eval scores, the Meta AI team continues to push the frontier of open-source LLMs.\n\nMeta's latest class of model (Llama 3.1) launched with a variety of sizes & flavors. This 405B instruct-tuned version is optimized for high quality dialogue usecases.\n\nIt has demonstrated strong performance compared to leading closed-source models including GPT-4o and Claude 3.5 Sonnet in evaluations.\n\nTo read more about the model release, [click here](https://ai.meta.com/blog/meta-llama-3-1/). Usage of this model is subject to [Meta's Acceptable Use Policy](https://llama.meta.com/llama3/use-policy/).",
+      "description": "The highly anticipated 400B class of Llama3 is here! Clocking in at 128k context with impressive eval scores, the Meta AI team continues to push the frontier of open-source LLMs.\n\nMeta's latest class of model (Llama 3.1) launched with a variety of sizes & flavors. This 405B instruct-tuned version is optimized for high quality dialogue usecases.\n\nIt has demonstrated strong performance compared to leading closed-source models in human evaluations.\n\nTo read more about the model release, [click here](https://ai.meta.com/blog/meta-llama-3/). Usage of this model is subject to [Meta's Acceptable Use Policy](https://llama.meta.com/llama3/use-policy/).",
       "id": "meta-llama/llama-3.1-405b-instruct",
       "name": "Meta: Llama 3.1 405B Instruct",
       "per_request_limits": null,
       "pricing": {
-        "completion": "0.0000027",
+        "completion": "0.0000025",
         "image": "0",
-        "prompt": "0.0000027",
+        "prompt": "0.0000025",
         "request": "0"
       },
       "top_provider": {
+        "context_length": 131072,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -450,14 +661,15 @@
       "name": "Dolphin Llama 3 70B 🐬",
       "per_request_limits": null,
       "pricing": {
-        "completion": "0.00000079",
+        "completion": "0.0000004",
         "image": "0",
-        "prompt": "0.00000059",
+        "prompt": "0.00000035",
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -479,8 +691,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 256000,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -502,8 +715,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32768,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -514,7 +728,7 @@
       },
       "context_length": 128000,
       "created": 1721260800,
-      "description": "GPT-4o mini is OpenAI's newest model after [GPT-4 Omni](/models/openai/gpt-4o), supporting both text and image inputs with text outputs.\n\nAs their most advanced small model, it is many multiples more affordable than other recent frontier models, and more than 60% cheaper than [GPT-3.5 Turbo](/models/openai/gpt-3.5-turbo). It maintains SOTA intelligence, while being significantly more cost-effective.\n\nGPT-4o mini achieves an 82% score on MMLU and presently ranks higher than GPT-4 on chat preferences [common leaderboards](https://arena.lmsys.org/).\n\nCheck out the [launch announcement](https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/) to learn more.\n\n#multimodal",
+      "description": "GPT-4o mini is OpenAI's newest model after [GPT-4 Omni](/models/openai/gpt-4o), supporting both text and image inputs with text outputs.\n\nAs their most advanced small model, it is many multiples more affordable than other recent frontier models, and more than 60% cheaper than [GPT-3.5 Turbo](/models/openai/gpt-3.5-turbo). It maintains SOTA intelligence, while being significantly more cost-effective.\n\nGPT-4o mini achieves an 82% score on MMLU and presently ranks higher than GPT-4 on chat preferences [common leaderboards](https://arena.lmsys.org/).\n\nCheck out the [launch announcement](https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/) to learn more.",
       "id": "openai/gpt-4o-mini-2024-07-18",
       "name": "OpenAI: GPT-4o-mini (2024-07-18)",
       "per_request_limits": null,
@@ -525,6 +739,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 128000,
         "is_moderated": true,
         "max_completion_tokens": 16384
       }
@@ -537,7 +752,7 @@
       },
       "context_length": 128000,
       "created": 1721260800,
-      "description": "GPT-4o mini is OpenAI's newest model after [GPT-4 Omni](/models/openai/gpt-4o), supporting both text and image inputs with text outputs.\n\nAs their most advanced small model, it is many multiples more affordable than other recent frontier models, and more than 60% cheaper than [GPT-3.5 Turbo](/models/openai/gpt-3.5-turbo). It maintains SOTA intelligence, while being significantly more cost-effective.\n\nGPT-4o mini achieves an 82% score on MMLU and presently ranks higher than GPT-4 on chat preferences [common leaderboards](https://arena.lmsys.org/).\n\nCheck out the [launch announcement](https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/) to learn more.\n\n#multimodal",
+      "description": "GPT-4o mini is OpenAI's newest model after [GPT-4 Omni](/models/openai/gpt-4o), supporting both text and image inputs with text outputs.\n\nAs their most advanced small model, it is many multiples more affordable than other recent frontier models, and more than 60% cheaper than [GPT-3.5 Turbo](/models/openai/gpt-3.5-turbo). It maintains SOTA intelligence, while being significantly more cost-effective.\n\nGPT-4o mini achieves an 82% score on MMLU and presently ranks higher than GPT-4 on chat preferences [common leaderboards](https://arena.lmsys.org/).\n\nCheck out the [launch announcement](https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/) to learn more.",
       "id": "openai/gpt-4o-mini",
       "name": "OpenAI: GPT-4o-mini",
       "per_request_limits": null,
@@ -548,6 +763,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 128000,
         "is_moderated": true,
         "max_completion_tokens": 16384
       }
@@ -571,6 +787,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
         "max_completion_tokens": 4096
       }
@@ -588,14 +805,15 @@
       "name": "Qwen 2 7B Instruct",
       "per_request_limits": null,
       "pricing": {
-        "completion": "0.00000007",
+        "completion": "0.000000055",
         "image": "0",
-        "prompt": "0.00000007",
+        "prompt": "0.000000055",
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32768,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -617,8 +835,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4096,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -640,6 +859,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 16384,
         "is_moderated": false,
         "max_completion_tokens": 1024
       }
@@ -663,6 +883,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 16384,
         "is_moderated": false,
         "max_completion_tokens": 2048
       }
@@ -686,6 +907,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4096,
         "is_moderated": false,
         "max_completion_tokens": 2048
       }
@@ -703,37 +925,15 @@
       "name": "Google: Gemma 2 9B",
       "per_request_limits": null,
       "pricing": {
-        "completion": "0.00000008",
+        "completion": "0.00000006",
         "image": "0",
-        "prompt": "0.00000008",
+        "prompt": "0.00000006",
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4096,
         "is_moderated": false,
-        "max_completion_tokens": 0
-      }
-    },
-    {
-      "architecture": {
-        "instruct_type": "llama3",
-        "modality": "text->text",
-        "tokenizer": "Router"
-      },
-      "context_length": 32000,
-      "created": 1719446400,
-      "description": "This is a router model that rotates its underlying model weekly. It aims to be a simple way to explore the capabilities of new models while using the same model ID.\n\nThe current underlying model is [Llama 3 Stheno 8B v3.3 32K](/models/sao10k/l3-stheno-8b).\n\nNOTE: Pricing depends on the underlying model as well as the provider routed to. To see which model and provider were used, visit [Activity](/activity).",
-      "id": "openrouter/flavor-of-the-week",
-      "name": "Flavor of The Week",
-      "per_request_limits": null,
-      "pricing": {
-        "completion": "-1",
-        "image": "-1",
-        "prompt": "-1",
-        "request": "-1"
-      },
-      "top_provider": {
-        "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -755,8 +955,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32000,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -778,6 +979,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 256000,
         "is_moderated": false,
         "max_completion_tokens": 4096
       }
@@ -801,8 +1003,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32768,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -824,6 +1027,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 200000,
         "is_moderated": true,
         "max_completion_tokens": 8192
       }
@@ -847,6 +1051,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 200000,
         "is_moderated": false,
         "max_completion_tokens": 8192
       }
@@ -864,14 +1069,15 @@
       "name": "Llama 3 Euryale 70B v2.1",
       "per_request_limits": null,
       "pricing": {
-        "completion": "0.00000079",
+        "completion": "0.0000004",
         "image": "0",
-        "prompt": "0.00000059",
+        "prompt": "0.00000035",
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -893,8 +1099,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4000,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -916,8 +1123,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 16000,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -933,14 +1141,15 @@
       "name": "Qwen 2 72B Instruct",
       "per_request_limits": null,
       "pricing": {
-        "completion": "0.00000077",
+        "completion": "0.0000004",
         "image": "0",
-        "prompt": "0.00000056",
+        "prompt": "0.00000035",
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32768,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -956,14 +1165,15 @@
       "name": "OpenChat 3.6 8B",
       "per_request_limits": null,
       "pricing": {
-        "completion": "0.000000064",
+        "completion": "0.000000055",
         "image": "0",
-        "prompt": "0.000000064",
+        "prompt": "0.000000055",
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -985,8 +1195,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -1002,14 +1213,15 @@
       "name": "Mistral: Mistral 7B Instruct v0.3",
       "per_request_limits": null,
       "pricing": {
-        "completion": "0.000000059",
+        "completion": "0.000000055",
         "image": "0",
-        "prompt": "0.000000059",
+        "prompt": "0.000000055",
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32768,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -1031,6 +1243,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
         "max_completion_tokens": 4096
       }
@@ -1048,14 +1261,15 @@
       "name": "Mistral: Mistral 7B Instruct",
       "per_request_limits": null,
       "pricing": {
-        "completion": "0.000000059",
+        "completion": "0.000000055",
         "image": "0",
-        "prompt": "0.000000059",
+        "prompt": "0.000000055",
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32768,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -1077,8 +1291,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32768,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -1100,6 +1315,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
         "max_completion_tokens": 4096
       }
@@ -1123,8 +1339,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 128000,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -1146,6 +1363,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
         "max_completion_tokens": 4096
       }
@@ -1169,8 +1387,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 128000,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -1192,6 +1411,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
         "max_completion_tokens": 2048
       }
@@ -1215,6 +1435,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4000000,
         "is_moderated": false,
         "max_completion_tokens": 32768
       }
@@ -1238,6 +1459,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 128000,
         "is_moderated": false,
         "max_completion_tokens": 4096
       }
@@ -1261,6 +1483,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 128000,
         "is_moderated": false,
         "max_completion_tokens": 4096
       }
@@ -1284,8 +1507,9 @@
         "request": "0.005"
       },
       "top_provider": {
+        "context_length": 28000,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -1307,8 +1531,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32768,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -1330,8 +1555,9 @@
         "request": "0.005"
       },
       "top_provider": {
+        "context_length": 28000,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -1353,8 +1579,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32768,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -1376,8 +1603,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -1399,8 +1627,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -1422,8 +1651,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -1434,7 +1664,7 @@
       },
       "context_length": 128000,
       "created": 1715558400,
-      "description": "GPT-4o (\"o\" for \"omni\") is OpenAI's latest AI model, supporting both text and image inputs with text outputs. It maintains the intelligence level of [GPT-4 Turbo](/models/openai/gpt-4-turbo) while being twice as fast and 50% more cost-effective. GPT-4o also offers improved performance in processing non-English languages and enhanced visual capabilities.\n\nFor benchmarking against other models, it was briefly called [\"im-also-a-good-gpt2-chatbot\"](https://twitter.com/LiamFedus/status/1790064963966370209)\n\n#multimodal",
+      "description": "GPT-4o (\"o\" for \"omni\") is OpenAI's latest AI model, supporting both text and image inputs with text outputs. It maintains the intelligence level of [GPT-4 Turbo](/models/openai/gpt-4-turbo) while being twice as fast and 50% more cost-effective. GPT-4o also offers improved performance in processing non-English languages and enhanced visual capabilities.\n\nFor benchmarking against other models, it was briefly called [\"im-also-a-good-gpt2-chatbot\"](https://twitter.com/LiamFedus/status/1790064963966370209)",
       "id": "openai/gpt-4o-2024-05-13",
       "name": "OpenAI: GPT-4o (2024-05-13)",
       "per_request_limits": null,
@@ -1445,6 +1675,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 128000,
         "is_moderated": true,
         "max_completion_tokens": 4096
       }
@@ -1457,7 +1688,7 @@
       },
       "context_length": 128000,
       "created": 1715558400,
-      "description": "GPT-4o (\"o\" for \"omni\") is OpenAI's latest AI model, supporting both text and image inputs with text outputs. It maintains the intelligence level of [GPT-4 Turbo](/models/openai/gpt-4-turbo) while being twice as fast and 50% more cost-effective. GPT-4o also offers improved performance in processing non-English languages and enhanced visual capabilities.\n\nFor benchmarking against other models, it was briefly called [\"im-also-a-good-gpt2-chatbot\"](https://twitter.com/LiamFedus/status/1790064963966370209)\n\n#multimodal",
+      "description": "GPT-4o (\"o\" for \"omni\") is OpenAI's latest AI model, supporting both text and image inputs with text outputs. It maintains the intelligence level of [GPT-4 Turbo](/models/openai/gpt-4-turbo) while being twice as fast and 50% more cost-effective. GPT-4o also offers improved performance in processing non-English languages and enhanced visual capabilities.\n\nFor benchmarking against other models, it was briefly called [\"im-also-a-good-gpt2-chatbot\"](https://twitter.com/LiamFedus/status/1790064963966370209)",
       "id": "openai/gpt-4o",
       "name": "OpenAI: GPT-4o",
       "per_request_limits": null,
@@ -1468,6 +1699,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 128000,
         "is_moderated": true,
         "max_completion_tokens": 4096
       }
@@ -1475,12 +1707,12 @@
     {
       "architecture": {
         "instruct_type": null,
-        "modality": "text+image->text",
+        "modality": "text->text",
         "tokenizer": "GPT"
       },
       "context_length": 128000,
       "created": 1715558400,
-      "description": "GPT-4o (\"o\" for \"omni\") is OpenAI's latest AI model, supporting both text and image inputs with text outputs. It maintains the intelligence level of [GPT-4 Turbo](/models/openai/gpt-4-turbo) while being twice as fast and 50% more cost-effective. GPT-4o also offers improved performance in processing non-English languages and enhanced visual capabilities.\n\nFor benchmarking against other models, it was briefly called [\"im-also-a-good-gpt2-chatbot\"](https://twitter.com/LiamFedus/status/1790064963966370209)\n\n#multimodal\n\n_These are extended-context endpoints for [GPT-4o](/models/openai/gpt-4o). They may have higher prices._",
+      "description": "GPT-4o Extended is an experimental variant of GPT-4o with an extended max output tokens. This model supports only text input to text output.\n\n_These are extended-context endpoints for [GPT-4o](/models/openai/gpt-4o). They may have higher prices._",
       "id": "openai/gpt-4o:extended",
       "name": "OpenAI: GPT-4o (extended)",
       "per_request_limits": null,
@@ -1491,6 +1723,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 128000,
         "is_moderated": false,
         "max_completion_tokens": 64000
       }
@@ -1514,8 +1747,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 2048,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -1537,8 +1771,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32768,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -1560,8 +1795,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32768,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -1583,8 +1819,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32768,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -1606,8 +1843,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32768,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -1629,8 +1867,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32768,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -1652,8 +1891,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32768,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -1675,8 +1915,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -1698,6 +1939,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 24576,
         "is_moderated": false,
         "max_completion_tokens": 2048
       }
@@ -1721,31 +1963,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4096,
         "is_moderated": false,
-        "max_completion_tokens": 0
-      }
-    },
-    {
-      "architecture": {
-        "instruct_type": "llama3",
-        "modality": "text->text",
-        "tokenizer": "Llama3"
-      },
-      "context_length": 24576,
-      "created": 1713744000,
-      "description": "Soliloquy-L3 v2 is a fast, highly capable roleplaying model designed for immersive, dynamic experiences. Trained on over 250 million tokens of roleplaying data, Soliloquy-L3 has a vast knowledge base, rich literary expression, and support for up to 24k context length. It outperforms existing ~13B models, delivering enhanced roleplaying capabilities.\n\nUsage of this model is subject to [Meta's Acceptable Use Policy](https://llama.meta.com/llama3/use-policy/).",
-      "id": "lynn/soliloquy-l3",
-      "name": "Lynn: Llama 3 Soliloquy 8B v2",
-      "per_request_limits": null,
-      "pricing": {
-        "completion": "0.00000005",
-        "image": "0",
-        "prompt": "0.00000005",
-        "request": "0"
-      },
-      "top_provider": {
-        "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -1767,6 +1987,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
         "max_completion_tokens": 2048
       }
@@ -1784,14 +2005,15 @@
       "name": "Meta: Llama 3 70B Instruct",
       "per_request_limits": null,
       "pricing": {
-        "completion": "0.00000074",
+        "completion": "0.0000004",
         "image": "0",
-        "prompt": "0.00000051",
+        "prompt": "0.00000035",
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
-        "max_completion_tokens": 8192
+        "max_completion_tokens": null
       }
     },
     {
@@ -1813,8 +2035,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -1836,6 +2059,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
         "max_completion_tokens": 4096
       }
@@ -1853,14 +2077,15 @@
       "name": "Meta: Llama 3 8B Instruct",
       "per_request_limits": null,
       "pricing": {
-        "completion": "0.00000006",
+        "completion": "0.000000055",
         "image": "0",
-        "prompt": "0.00000006",
+        "prompt": "0.000000055",
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -1882,8 +2107,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -1905,6 +2131,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 16384,
         "is_moderated": false,
         "max_completion_tokens": 2048
       }
@@ -1928,8 +2155,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 65536,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -1945,14 +2173,15 @@
       "name": "WizardLM-2 7B",
       "per_request_limits": null,
       "pricing": {
-        "completion": "0.00000006",
+        "completion": "0.000000055",
         "image": "0",
-        "prompt": "0.00000006",
+        "prompt": "0.000000055",
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32000,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -1968,14 +2197,15 @@
       "name": "WizardLM-2 8x22B",
       "per_request_limits": null,
       "pricing": {
-        "completion": "0.00000063",
+        "completion": "0.0000005",
         "image": "0",
-        "prompt": "0.00000063",
+        "prompt": "0.0000005",
         "request": "0"
       },
       "top_provider": {
+        "context_length": 65536,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -1997,8 +2227,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 65536,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -2020,6 +2251,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4000000,
         "is_moderated": false,
         "max_completion_tokens": 32768
       }
@@ -2043,6 +2275,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 128000,
         "is_moderated": true,
         "max_completion_tokens": 4096
       }
@@ -2066,6 +2299,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 128000,
         "is_moderated": false,
         "max_completion_tokens": 4000
       }
@@ -2089,8 +2323,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32768,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -2112,8 +2347,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4096,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -2135,6 +2371,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 128000,
         "is_moderated": false,
         "max_completion_tokens": 4000
       }
@@ -2158,6 +2395,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4096,
         "is_moderated": false,
         "max_completion_tokens": 4000
       }
@@ -2181,6 +2419,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 200000,
         "is_moderated": true,
         "max_completion_tokens": 4096
       }
@@ -2204,6 +2443,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 200000,
         "is_moderated": false,
         "max_completion_tokens": 4096
       }
@@ -2227,6 +2467,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 200000,
         "is_moderated": true,
         "max_completion_tokens": 4096
       }
@@ -2250,6 +2491,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 200000,
         "is_moderated": false,
         "max_completion_tokens": 4096
       }
@@ -2273,6 +2515,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 200000,
         "is_moderated": true,
         "max_completion_tokens": 4096
       }
@@ -2296,6 +2539,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 200000,
         "is_moderated": false,
         "max_completion_tokens": 4096
       }
@@ -2319,8 +2563,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 128000,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -2342,6 +2587,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
         "max_completion_tokens": 4096
       }
@@ -2365,8 +2611,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -2388,8 +2635,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -2411,8 +2659,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32768,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -2434,8 +2683,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4096,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -2457,8 +2707,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 10000,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -2480,6 +2731,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 128000,
         "is_moderated": true,
         "max_completion_tokens": 4096
       }
@@ -2503,6 +2755,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4095,
         "is_moderated": true,
         "max_completion_tokens": 4096
       }
@@ -2526,8 +2779,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32768,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -2549,8 +2803,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32768,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -2572,8 +2827,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32000,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -2595,8 +2851,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32000,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -2618,8 +2875,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32000,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -2641,8 +2899,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4096,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -2664,8 +2923,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4096,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -2681,14 +2941,15 @@
       "name": "Mistral: Mistral 7B Instruct v0.2",
       "per_request_limits": null,
       "pricing": {
-        "completion": "0.00000006",
+        "completion": "0.000000055",
         "image": "0",
-        "prompt": "0.00000006",
+        "prompt": "0.000000055",
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32768,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -2710,8 +2971,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32768,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -2733,6 +2995,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 65536,
         "is_moderated": false,
         "max_completion_tokens": 8192
       }
@@ -2756,6 +3019,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 131040,
         "is_moderated": false,
         "max_completion_tokens": 32768
       }
@@ -2779,8 +3043,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 10000,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -2802,8 +3067,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 10000,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -2825,8 +3091,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32768,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -2848,8 +3115,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32768,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -2871,8 +3139,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32768,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -2894,8 +3163,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32768,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -2917,8 +3187,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32768,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -2940,6 +3211,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
         "max_completion_tokens": 4096
       }
@@ -2963,6 +3235,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32768,
         "is_moderated": false,
         "max_completion_tokens": 2048
       }
@@ -2986,8 +3259,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4096,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -3009,8 +3283,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4096,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -3032,8 +3307,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4096,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -3055,6 +3331,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
         "max_completion_tokens": 4096
       }
@@ -3078,8 +3355,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -3101,6 +3379,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
         "max_completion_tokens": 4096
       }
@@ -3118,14 +3397,15 @@
       "name": "OpenChat 3.5 7B",
       "per_request_limits": null,
       "pricing": {
-        "completion": "0.00000006",
+        "completion": "0.000000055",
         "image": "0",
-        "prompt": "0.00000006",
+        "prompt": "0.000000055",
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -3147,6 +3427,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
         "max_completion_tokens": 2048
       }
@@ -3170,6 +3451,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 100000,
         "is_moderated": true,
         "max_completion_tokens": 2048
       }
@@ -3193,6 +3475,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 200000,
         "is_moderated": true,
         "max_completion_tokens": 4096
       }
@@ -3216,6 +3499,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 200000,
         "is_moderated": false,
         "max_completion_tokens": 4096
       }
@@ -3239,6 +3523,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 200000,
         "is_moderated": true,
         "max_completion_tokens": 4096
       }
@@ -3262,6 +3547,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 200000,
         "is_moderated": false,
         "max_completion_tokens": 4096
       }
@@ -3285,8 +3571,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4096,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -3308,6 +3595,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 128000,
         "is_moderated": true,
         "max_completion_tokens": 4096
       }
@@ -3325,14 +3613,15 @@
       "name": "lzlv 70B",
       "per_request_limits": null,
       "pricing": {
-        "completion": "0.00000078",
+        "completion": "0.0000004",
         "image": "0",
-        "prompt": "0.00000058",
+        "prompt": "0.00000035",
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4096,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -3354,6 +3643,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 6144,
         "is_moderated": false,
         "max_completion_tokens": 400
       }
@@ -3377,6 +3667,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4096,
         "is_moderated": false,
         "max_completion_tokens": 2048
       }
@@ -3400,8 +3691,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4096,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -3423,31 +3715,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4096,
         "is_moderated": false,
-        "max_completion_tokens": 0
-      }
-    },
-    {
-      "architecture": {
-        "instruct_type": null,
-        "modality": "text->text",
-        "tokenizer": "Router"
-      },
-      "context_length": 200000,
-      "created": 1699401600,
-      "description": "Depending on their size, subject, and complexity, your prompts will be sent to [Llama 3 70B Instruct](/models/meta-llama/llama-3-70b-instruct), [Claude 3.5 Sonnet (self-moderated)](/models/anthropic/claude-3.5-sonnet:beta) or [GPT-4o](/models/openai/gpt-4o).  To see which model was used, visit [Activity](/activity).\n\nA major redesign of this router is coming soon. Stay tuned on [Discord](https://discord.gg/fVyRaUDgxW) for updates.",
-      "id": "openrouter/auto",
-      "name": "Auto (best for prompt)",
-      "per_request_limits": null,
-      "pricing": {
-        "completion": "-1",
-        "image": "-1",
-        "prompt": "-1",
-        "request": "-1"
-      },
-      "top_provider": {
-        "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -3469,6 +3739,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 128000,
         "is_moderated": true,
         "max_completion_tokens": 4096
       }
@@ -3492,6 +3763,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 16385,
         "is_moderated": true,
         "max_completion_tokens": 4096
       }
@@ -3515,6 +3787,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 131072,
         "is_moderated": false,
         "max_completion_tokens": 32768
       }
@@ -3538,6 +3811,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 131072,
         "is_moderated": false,
         "max_completion_tokens": 32768
       }
@@ -3561,8 +3835,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -3584,8 +3859,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -3607,8 +3883,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4096,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -3630,6 +3907,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
         "max_completion_tokens": 400
       }
@@ -3647,14 +3925,15 @@
       "name": "Mistral: Mistral 7B Instruct v0.1",
       "per_request_limits": null,
       "pricing": {
-        "completion": "0.00000006",
+        "completion": "0.000000055",
         "image": "0",
-        "prompt": "0.00000006",
+        "prompt": "0.000000055",
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4096,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -3676,6 +3955,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4095,
         "is_moderated": true,
         "max_completion_tokens": 4096
       }
@@ -3699,6 +3979,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
         "max_completion_tokens": 400
       }
@@ -3722,6 +4003,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32767,
         "is_moderated": true,
         "max_completion_tokens": 4096
       }
@@ -3745,6 +4027,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 32767,
         "is_moderated": true,
         "max_completion_tokens": 4096
       }
@@ -3768,6 +4051,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 16385,
         "is_moderated": true,
         "max_completion_tokens": 4096
       }
@@ -3791,8 +4075,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4096,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -3814,8 +4099,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 16384,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -3837,8 +4123,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -3860,6 +4147,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4096,
         "is_moderated": false,
         "max_completion_tokens": 2048
       }
@@ -3883,6 +4171,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8000,
         "is_moderated": false,
         "max_completion_tokens": 1000
       }
@@ -3906,6 +4195,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 100000,
         "is_moderated": true,
         "max_completion_tokens": 4096
       }
@@ -3929,6 +4219,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 100000,
         "is_moderated": true,
         "max_completion_tokens": 4096
       }
@@ -3952,6 +4243,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 100000,
         "is_moderated": true,
         "max_completion_tokens": 4096
       }
@@ -3975,6 +4267,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 100000,
         "is_moderated": true,
         "max_completion_tokens": 4096
       }
@@ -3998,6 +4291,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 100000,
         "is_moderated": false,
         "max_completion_tokens": 4096
       }
@@ -4021,6 +4315,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 100000,
         "is_moderated": true,
         "max_completion_tokens": 4096
       }
@@ -4044,6 +4339,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 100000,
         "is_moderated": false,
         "max_completion_tokens": 4096
       }
@@ -4067,8 +4363,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4096,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -4090,6 +4387,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 6144,
         "is_moderated": false,
         "max_completion_tokens": 400
       }
@@ -4113,6 +4411,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 28672,
         "is_moderated": false,
         "max_completion_tokens": 4096
       }
@@ -4136,6 +4435,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 36864,
         "is_moderated": false,
         "max_completion_tokens": 4096
       }
@@ -4159,8 +4459,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4096,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -4182,8 +4483,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4096,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -4205,6 +4507,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8192,
         "is_moderated": false,
         "max_completion_tokens": 400
       }
@@ -4228,8 +4531,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4096,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -4251,8 +4555,9 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4096,
         "is_moderated": false,
-        "max_completion_tokens": 0
+        "max_completion_tokens": null
       }
     },
     {
@@ -4274,6 +4579,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8191,
         "is_moderated": true,
         "max_completion_tokens": 4096
       }
@@ -4297,6 +4603,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 8191,
         "is_moderated": true,
         "max_completion_tokens": 4096
       }
@@ -4320,6 +4627,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 4095,
         "is_moderated": true,
         "max_completion_tokens": 4096
       }
@@ -4343,6 +4651,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 16385,
         "is_moderated": true,
         "max_completion_tokens": 4096
       }
@@ -4366,6 +4675,7 @@
         "request": "0"
       },
       "top_provider": {
+        "context_length": 16385,
         "is_moderated": true,
         "max_completion_tokens": 4096
       }
