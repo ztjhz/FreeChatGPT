@@ -40,7 +40,7 @@ export const getChatGPTEncoding = (
 };
 
 const countTokens = (messages: MessageInterface[], model: ModelOptions) => {
-  if (messages.length === 0) return 0;
+  if (!messages || messages.length === 0) return 0;
   return getChatGPTEncoding(messages, model).length;
 };
 
@@ -77,7 +77,7 @@ export const limitMessageTokens = (
   if (retainSystemMessage) {
     // Insert the system message in the third position from the end
     limitedMessages.splice(-3, 0, { ...messages[0] });
-  } else if (!isSystemFirstMessage) {
+  } else if (!isSystemFirstMessage && messages.length > 0) {
     // Check if the first message (non-system) can fit within the limit
     const firstMessageTokenCount = countTokens([messages[0]], model);
     if (firstMessageTokenCount + tokenCount < limit) {
