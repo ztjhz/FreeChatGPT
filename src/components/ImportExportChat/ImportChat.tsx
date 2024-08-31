@@ -8,6 +8,7 @@ import {
   importOpenAIChatExport,
   isLegacyImport,
   isOpenAIContent,
+  PartialImportError,
   validateAndFixChats,
   validateExportV1,
 } from '@utils/import';
@@ -34,6 +35,7 @@ const ImportChat = () => {
   const handleFileUpload = () => {
     if (!inputRef || !inputRef.current) return;
     const file = inputRef.current.files?.[0];
+    var shouldAllowPartialImport = false;
     if (file) {
       const reader = new FileReader();
 
@@ -56,7 +58,10 @@ const ImportChat = () => {
           while (true) {
             try {
               if (type === 'OpenAIContent' || isOpenAIContent(chatsToImport)) {
-                const chats = importOpenAIChatExport(chatsToImport);
+                const chats = importOpenAIChatExport(
+                  chatsToImport,
+                  shouldAllowPartialImport
+                );
                 const prevChats: ChatInterface[] = JSON.parse(
                   JSON.stringify(useStore.getState().chats)
                 );
@@ -314,6 +319,25 @@ const ImportChat = () => {
                       }),
                     };
                   }
+                }
+              } else if (error instanceof PartialImportError) {
+                // Handle PartialImportError
+                const confirmMessage = t('partialImportWarning', {
+                  message: error.message,
+                });
+
+                if (window.confirm(confirmMessage)) {
+                  shouldAllowPartialImport = true;
+                  // User chose to continue with the partial import
+                  return await importData(parsedData, true, type);
+                } else {
+                  // User chose not to proceed with the partial import
+                  return {
+                    success: false,
+                    message: t('notifications.nothingImported', {
+                      ns: 'import',
+                    }),
+                  };
                 }
               } else {
                 return { success: false, message: (error as Error).message };

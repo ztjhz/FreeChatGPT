@@ -6,7 +6,6 @@ import PopupModal from '@components/PopupModal';
 
 import ImportChat from './ImportChat';
 import ExportChat from './ExportChat';
-import ImportChatOpenAI from './ImportChatOpenAI';
 
 const ImportExportChat = () => {
   const { t } = useTranslation();
