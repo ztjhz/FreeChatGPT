@@ -1,180 +1,148 @@
-## 🚀 维护中的 Better ChatGPT 分叉版本
+# 更好的 ChatGPT PLUS
 
-这是原始 Better ChatGPT 项目的一个维护中的分叉版本。这个分叉版本的主要区别包括：
-
-- **视觉支持**：为兼容的模型添加了图片上传支持。
-- **UI 增强**：改进了用户界面，增加了新功能。
-- **Azure API 扩展支持**：可以在配置中指定 API 版本。
-
-原项目更新不太频繁，我们致力于提供更动态和持续的改进。我们欢迎大家的贡献！请随时提交 PR 来帮助我们进一步改进这个项目。
-
-<h1 align="center"><b>Better ChatGPT</b></h1>
-
-<p align="center">
-    <a href="https://animalnots.github.io/BetterChatGPT-VISION/" target="_blank"><img src="public/apple-touch-icon.png" alt="Better ChatGPT" width="100" /></a>
+<p>
+    <a href="https://animalnots.github.io/BetterChatGPT-PLUS/" target="_blank"><img src="public/public.jpg" alt="Better ChatGPT" width="150" /></a>
 </p>
 
-<h4 align="center"><b>免费、无限、强大、智能、迷人</b></h4>
+![许可证](https://img.shields.io/github/license/animalnots/BetterChatGPT-PLUS?style=flat-square)
+![星标](https://img.shields.io/github/stars/animalnots/BetterChatGPT-PLUS?style=flat-square)
+![分叉](https://img.shields.io/github/forks/animalnots/BetterChatGPT-PLUS?style=flat-square)
+![问题](https://img.shields.io/github/issues/animalnots/BetterChatGPT-PLUS?style=flat-square)
+![拉取请求](https://img.shields.io/github/issues-pr/animalnots/BetterChatGPT-PLUS?style=flat-square)
+<a href="https://discord.gg/2CKfAbAJrH"><img src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/636e0b52aa9e99b832574a53_full_logo_blurple_RGB.png" height="20"></a>
 
-<p align="center">
-<a href="https://github.com/animalnots/BetterChatGPT-VISION/blob/main/LICENSE" target="_blank">
-<img src="https://img.shields.io/github/license/animalnots/BetterChatGPT-VISION?style=flat-square" alt="licence" />
-</a>
-<a href="https://github.com/animalnots/BetterChatGPT-VISION/fork" target="_blank">
-<img src="https://img.shields.io/github/forks/animalnots/BetterChatGPT-VISION?style=flat-square" alt="forks"/>
-</a>
-<a href="https://github.com/animalnots/BetterChatGPT-VISION/stargazers" target="_blank">
-<img src="https://img.shields.io/github/stars/animalnots/BetterChatGPT-VISION?style=flat-square" alt="stars"/>
-</a>
-<a href="https://github.com/animalnots/BetterChatGPT-VISION/issues" target="_blank">
-<img src="https://img.shields.io/github/issues/animalnots/BetterChatGPT-VISION?style=flat-square" alt="issues"/>
-</a>
-<a href="https://github.com/animalnots/BetterChatGPT-VISION/pulls" target="_blank">
-<img src="https://img.shields.io/github/issues-pr/animalnots/BetterChatGPT-VISION?style=flat-square" alt="pull-requests"/>
-</a>
-<a href="https://twitter.com/intent/tweet?text=👋看看这个惊人的存储库%20https://github.com/animalnots/BetterChatGPT-VISION，由%20@nikushii_%20创建。"><img src="https://img.shields.io/twitter/url?label=%E5%88%86%E4%BA%AB%E5%88%B0%E6%8E%A8%E7%89%B9&style=social&url=https%3A%2F%2Fgithub.com%2Fztjhz%2FBetterChatGPT"></a>
-</p>
+## 🗳️ 功能优先级
 
-<p align="center">
-    <a href="https://animalnots.github.io/BetterChatGPT-VISION/">进入网站</a>
-    ·
-    <a href="https://github.com/animalnots/BetterChatGPT-VISION/issues/new/choose">反馈问题</a>
-    ·
-    <a href="https://github.com/animalnots/BetterChatGPT-VISION/issues/new/choose">请求功能</a>
-</p>
-<p align="center"><i>您喜欢使用 Better ChatGPT 吗？请给它一个星星以示支持！🌟</i></p>
+通过在 [Canny.io](https://betterchatgpt.canny.io/feature-requests) 上投票帮助我们决定下一个要开发的功能。急需某个功能？可以通过 $100 的赏金将其优先开发！
 
-## 👋🏻 介绍 Better ChatGPT
+## 🚀 介绍更好的 ChatGPT PLUS
 
-<p align="center">
-    <a href="https://animalnots.github.io/BetterChatGPT-VISION/" target="_blank">
-        <img src="assets/preview-zh_CN.png" alt="landing" width=500 />
-    </a>
-</p>
+体验免费的、无限制的对话式人工智能，使用 OpenAI 的 ChatGPT API。[访问我们的网站](https://animalnots.github.io/BetterChatGPT-PLUS/) 开始体验。
 
-您准备好使用 Better ChatGPT 充分发掘 ChatGPT 的潜力了吗？
+### 主要功能
 
-Better ChatGPT 是任何想要体验对话型人工智能无限潜力的人的终极目的地。我们的应用程序利用 OpenAI 的 ChatGPT API 的全部潜力，提供了一个无与伦比的聊天机器人体验，而且完全免费，并且没有任何限制。
+- **区域代理**：绕过 ChatGPT 限制。
+- **提示库**
+- **聊天组织**：文件夹和过滤器。
+- **令牌和定价信息**
+- **ShareGPT 集成**
+- **自定义模型参数**
+- **多功能消息**：以用户/助手/系统身份聊天。
+- **编辑和重新排序消息**
+- **自动保存和下载聊天记录**
+- **Google Drive 同步**
+- **多语言支持 (i18n)**
 
-无论您是想与虚拟助手聊天、提高语言技能，还是想享受有趣而引人入胜的对话，我们的应用都能满足您的需求。那么，为什么还要等呢？立即加入我们，探索 Better ChatGPT 的精彩世界！
+### PLUS 分叉增强
 
-# 🔥 功能
+我们不断改进更好的 ChatGPT PLUS。以下是主要区别和最近的更新：
 
-Better ChatGPT 已经包含了大量的功能。您可以使用以下功能：
+- **小型 UI 增强**：更时尚、更直观的界面，包括更新的附件图标，现在移动到底部。
+- **剪贴板支持**：直接从剪贴板粘贴图像。
+- **图像界面**：支持支持的模型的图像界面。
+- **标题模型选择**：允许指定用于聊天标题生成的模型。
+- **改进的导入**：修复导入 JSON 时的问题，并改进 GPT 数据。
+- **模型解析**：添加了基于 OpenRouter API 的模型解析支持。
+- **图像的令牌计数**：实现了图像的令牌计数和成本计算。
+- **缩放功能**：为图像添加了缩放功能。
+- **大文件处理**：改进了大文件的处理，以防止存储溢出。
+- **OpenAI 导入修复**：修复了 OpenAI 聊天分支的导入问题，确保导入包含最多消息的最深分支。
 
-- 支持使用内置代理解決 ChatGPT 地区限制
-- 支持自定义提示词资料库
-- 支持使用文件夹（且带颜色）整理聊天
-- 支持筛选聊天和文件夹
-- 支持实时计算 token 数量和价格
-- 支持使用 ShareGPT 分享聊天
-- 支持自定义 API 参数（例如存在惩罚）
-- 支持自定义用户/助理/系统身份
-- 支持任意编辑/插入/调整消息顺序
-- 支持自动生成聊天标题
-- 支持自动保存聊天记录
-- 支持导入/导出聊天记录
-- 支持将聊天保存为 Markdown/图片/JSON
-- 支持与 Google Drive 同步
-- 支持 Azure OpenAI 终端
-- 支持多语言 (i18n)
+欢迎贡献！请随时提交 [拉取请求](https://github.com/animalnots/BetterChatGPT-PLUS/pulls)。
 
-# 🛠️ 使用方法
+## 🚀 开始使用
 
-要开始使用，只需访问我们的网站：<https://animalnots.github.io/BetterChatGPT-VISION/>。您有 3 种方法可以开始使用 Better ChatGPT。
+1. **访问**：[我们的网站](https://animalnots.github.io/BetterChatGPT-PLUS/)
+2. **API 密钥**：输入你的 OpenAI API 密钥，从[这里](https://platform.openai.com/account/api-keys)获取。
+3. **代理**：使用 [ChatGPTAPIFree](https://github.com/ayaka14732/ChatGPTAPIFree) 或自行托管。
 
-1. 在 API 菜单中输入您从 [OpenAI API Keys](https://platform.openai.com/account/api-keys) 获得的 OpenAI API 密钥。
-2. 使用提供的 API 端点代理：[ayaka14732/ChatGPTAPIFree](https://github.com/ayaka14732/ChatGPTAPIFree)。（如果您所在的区域无法访问 ChatGPT）
-3. 按照这里提供的说明托管自己的 API 端点：<https://github.com/ayaka14732/ChatGPTAPIFree>。随后，在 API 菜单中输入 API 端点。
+## 🖥️ 桌面应用
 
-## 桌面应用
+从 [发布页面](https://github.com/animalnots/BetterChatGPT-PLUS/releases) 下载
 
-在此下载桌面应用程序：<https://github.com/animalnots/BetterChatGPT-VISION/releases/>
+| 操作系统 | 下载     |
+| -------- | -------- |
+| Windows  | .exe     |
+| MacOS    | .dmg     |
+| Linux    | .AppImage|
 
-| 操作系统 | 下载      |
-| -------- | --------- |
-| Windows  | .exe      |
-| MacOS    | .dmg      |
-| Linux    | .AppImage |
-
-### 功能
+### 桌面功能：
 
 - 无限本地存储
-- 本地运行（即使无法访问 Better ChatGPT 网站也可以使用）
+- 本地运行
 
-# 🛫 托管自己的实例
+## 🛠️ 自行托管实例
 
-如果您想运行自己的 Better ChatGPT 实例，可以按照以下步骤轻松完成：
+### Vercel
 
-## Vercel
+[使用 Vercel 部署](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fanimalnots%2FBetterChatGPT-PLUS)
 
-使用 Vercel 一键部署
+### GitHub Pages
 
-[![Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fztjhz%2FBetterChatGPT)
+1. **Star 和 Fork**：[这个仓库](https://github.com/animalnots/BetterChatGPT-PLUS)
+2. **设置**：导航到 `Settings` > `Pages`，选择 `GitHub Actions`
+3. **操作**：点击 `Actions`，`Deploy to GitHub Pages`，然后 `Run workflow`
 
-## GitHub 页面
+### 本地设置
 
-### 步骤
+1. 安装 [node.js](https://nodejs.org/en/) 和 [yarn/npm](https://www.npmjs.com/)
+2. **克隆仓库**：`git clone https://github.com/animalnots/BetterChatGPT-PLUS.git`
+3. 导航到：`cd BetterChatGPT-PLUS`
+4. **安装**：`yarn` 或 `npm install`
+5. **启动**：`yarn dev` 或 `npm run dev`
 
-1. 创建一个 GitHub 账户（如果您还没有账户）。
-1. 给此[存储库](https://github.com/animalnots/BetterChatGPT-VISION) 一个星星 ⭐️
-1. Fork 此[存储库](https://github.com/animalnots/BetterChatGPT-VISION)
-1. 在 fork 之后的存储库中点击 `Settings` 选项卡
-   ![image](https://user-images.githubusercontent.com/59118459/223753577-9b6f8266-26e8-471b-8f45-a1a02fbab232.png)
-1. 在左侧边栏中，单击 `Pages` ，在右侧区域中，为 `Source` 选择 `GitHub Actions`。
-   ![image](https://user-images.githubusercontent.com/59118459/227568881-d8fb7baa-f890-4dee-8fc2-b6b429ba2098.png)
-1. 现在点击 `Actions`
-   ![image](https://user-images.githubusercontent.com/59118459/223751928-cf2b91b9-4663-4a36-97de-5eb751b32c7e.png)
-1. 在左侧边栏中，点击 `Deploy to GitHub Pages`
-   ![image](https://user-images.githubusercontent.com/59118459/223752459-183ec23f-72f5-436e-a088-e3386492b8cb.png)
-1. 在运行的工作流列表上方，选择 `Run workflow` 。
-   ![image](https://user-images.githubusercontent.com/59118459/223753340-1270e038-d213-4d6f-938c-66a30dad7c88.png)
-1. 返回到 `Settings` 选项卡
-   ![image](https://user-images.githubusercontent.com/59118459/223753577-9b6f8266-26e8-471b-8f45-a1a02fbab232.png)
-1. 在左侧边栏中，单击 `Pages` 。然后在顶部部分，您可以看到 "Your site is live at `XXX`"。
-   ![image](https://user-images.githubusercontent.com/59118459/227568881-d8fb7baa-f890-4dee-8fc2-b6b429ba2098.png)
+### Docker Compose
 
-### 在本地运行
+1. 安装 [docker](https://www.docker.com/)
+2. **构建**：`docker compose build`
+3. **启动**：`docker compose up -d`
+4. **停止**：`docker compose down`
 
-1. 确保您已安装以下内容：
+### 构建桌面应用
 
-   - [node.js](https://nodejs.org/en/)
-   - [yarn](https://yarnpkg.com/) 或者 [npm](https://www.npmjs.com/)
+1. 安装 [yarn/npm](https://www.npmjs.com/)
+2. **构建（Windows）**：`yarn make --win`
 
-2. 通过运行 `git clone https://github.com/animalnots/BetterChatGPT-VISION.git` 克隆此[存储库](https://github.com/animalnots/BetterChatGPT-VISION)。
-3. 进入目录通过 `cd BetterChatGPT`
-4. 运行 `yarn` 或 `npm install`，具体取决于您是否安装了 yarn 或 npm。
-5. 运行 `yarn dev` 或 `npm run dev` 来启动应用程序。
+## ⭐️ 星标和支持
 
-# ⭐️ 星星历史
+[星标仓库](https://github.com/animalnots/BetterChatGPT-PLUS) 以鼓励开发。
+<br />[![星标历史图](https://api.star-history.com/svg?repos=animalnots/BetterChatGPT-PLUS&type=Date)](https://github.com/animalnots/BetterChatGPT-PLUS/stargazers)
 
-[![Star History Chart](https://api.star-history.com/svg?repos=animalnots/BetterChatGPT-VISION&type=Date)](https://github.com/animalnots/BetterChatGPT-VISION/stargazers)
+### 支持方式：
 
-<h3 align="center">
-    给 <b>Better ChatGPT</b> 一个星星 ⭐️ 可以让它更加锦上添花，让更多人受益匪浅。
-</h3>
+支持原始创作者 [这里](https://github.com/ztjhz/BetterChatGPT?tab=readme-ov-file#-support)
 
-# ❤️ 贡献者
+## ❤️ 贡献者
 
-感谢所有贡献者！
-
-<a href="https://github.com/animalnots/BetterChatGPT-VISION/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=animalnots/BetterChatGPT-VISION" />
+感谢所有的 [贡献者](https://github.com/animalnots/BetterChatGPT-PLUS/graphs/contributors)!
+<br /><a href="https://github.com/animalnots/BetterChatGPT-PLUS/graphs/contributors">
+<img src="https://contrib.rocks/image?repo=animalnots/BetterChatGPT-PLUS" />
 </a>
 
-# 🙏 支持
+## 🚀 更新和扩展
 
-在 Better ChatGPT，我们致力于为您提供实用和惊人的功能。就像任何项目一样，您的支持和激励将对我们在保持前进方面起到至关重要的作用！
+### 添加新设置
 
-如果您喜欢使用我们的应用程序，我们恳请您给这个项目一颗 ⭐️。您的认可对我们意义重大，鼓励我们更加努力，以提供最佳的体验。
+要添加新设置，请更新以下文件：
 
-如果您想支持我们的团队，请考虑通过以下方法之一赞助我们。每一份贡献，无论多小，都有助于我们维护和改善我们的服务。
+```plaintext
+public/locales/en/main.json
+public/locales/en/model.json
+src/assets/icons/AttachmentIcon.tsx
+src/components/Chat/ChatContent/ChatTitle.tsx
+src/components/Chat/ChatContent/Message/EditView.tsx
+src/components/ChatConfigMenu/ChatConfigMenu.tsx
+src/components/ConfigMenu/ConfigMenu.tsx
+src/constants/chat.ts
+src/store/config-slice.ts
+src/store/migrate.ts
+src/store/store.ts
+src/types/chat.ts
+src/utils/import.ts
+```
 
-| 付款方式       | 链接                                                                                                                                                 |
-| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 支付宝 (Ayaka) | <img src="https://ayaka14732.github.io/sponsor/alipay.jpg" width=150 />                                                                              |
-| 微信 (Ayaka)   | <img src="https://ayaka14732.github.io/sponsor/wechat.png" width=150 />                                                                              |
-| GitHub         | [![GitHub Sponsor](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/ztjhz) |
-| KoFi           | [![support](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/betterchatgpt)                                                             |
+### 更新模型
 
-感谢您成为我们社区的一员，我们期待着在未来为您提供更好的服务。
+1. 从 [OpenRouter](https://openrouter.ai/api/v1/models) 下载 `models.json`。
+2. 将其保存为根目录下的 `models.json`。
+3. 运行 `node sortModelsJsonKeys.js` 以组织键。
