@@ -10,6 +10,7 @@
       "unrecognisedDataFormat": "Unrecognised data format. Supported formats are: BetterGPT export, OpenAI export, OpenAI Playground (JSON)",
       "chatsImported": "{{imported}} chats were imported out of {{total}}."
     },
-    "reduceMessagesSuccess": "{{count}} messages were reduced."
+    "reduceMessagesSuccess": "{{count}} messages were reduced.",
+    "partialImportMessages": "expected {{total}} messages but found {{count}}"
   }
   
