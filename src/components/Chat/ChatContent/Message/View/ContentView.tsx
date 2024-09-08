@@ -38,6 +38,7 @@ import MarkdownModeButton from './Button/MarkdownModeButton';
 
 import CodeBlock from '../CodeBlock';
 import PopupModal from '@components/PopupModal';
+import { preprocessLaTeX } from '@utils/chat';
 
 const ContentView = memo(
   ({
@@ -144,7 +145,9 @@ const ContentView = memo(
                 p,
               }}
             >
-              {(content[0] as TextContentInterface).text}
+              {inlineLatex
+                ? preprocessLaTeX((content[0] as TextContentInterface).text)
+                : (content[0] as TextContentInterface).text}
             </ReactMarkdown>
           ) : (
             <span className='whitespace-pre-wrap'>
