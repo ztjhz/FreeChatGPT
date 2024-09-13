@@ -4,6 +4,150 @@
       "architecture": {
         "instruct_type": null,
         "modality": "text->text",
+        "tokenizer": "GPT"
+      },
+      "context_length": 128000,
+      "created": 1726099200,
+      "description": "The latest and strongest model family from OpenAI, o1 is designed to spend more time thinking before responding.\n\nThe o1 models are optimized for math, science, programming, and other STEM-related tasks. They consistently exhibit PhD-level accuracy on benchmarks in physics, chemistry, and biology. Learn more in the [launch announcement](https://openai.com/o1).\n\nNote: This model is currently experimental and not suitable for production use-cases, and may be heavily rate-limited.",
+      "id": "openai/o1-mini-2024-09-12",
+      "name": "OpenAI: o1-mini (2024-09-12)",
+      "per_request_limits": null,
+      "pricing": {
+        "completion": "0.000012",
+        "image": "0",
+        "prompt": "0.000003",
+        "request": "0"
+      },
+      "top_provider": {
+        "context_length": 128000,
+        "is_moderated": true,
+        "max_completion_tokens": 65536
+      }
+    },
+    {
+      "architecture": {
+        "instruct_type": null,
+        "modality": "text->text",
+        "tokenizer": "GPT"
+      },
+      "context_length": 128000,
+      "created": 1726099200,
+      "description": "The latest and strongest model family from OpenAI, o1 is designed to spend more time thinking before responding.\n\nThe o1 models are optimized for math, science, programming, and other STEM-related tasks. They consistently exhibit PhD-level accuracy on benchmarks in physics, chemistry, and biology. Learn more in the [launch announcement](https://openai.com/o1).\n\nNote: This model is currently experimental and not suitable for production use-cases, and may be heavily rate-limited.",
+      "id": "openai/o1-mini",
+      "name": "OpenAI: o1-mini",
+      "per_request_limits": null,
+      "pricing": {
+        "completion": "0.000012",
+        "image": "0",
+        "prompt": "0.000003",
+        "request": "0"
+      },
+      "top_provider": {
+        "context_length": 128000,
+        "is_moderated": true,
+        "max_completion_tokens": 65536
+      }
+    },
+    {
+      "architecture": {
+        "instruct_type": null,
+        "modality": "text->text",
+        "tokenizer": "GPT"
+      },
+      "context_length": 128000,
+      "created": 1726099200,
+      "description": "The latest and strongest model family from OpenAI, o1 is designed to spend more time thinking before responding.\n\nThe o1 models are optimized for math, science, programming, and other STEM-related tasks. They consistently exhibit PhD-level accuracy on benchmarks in physics, chemistry, and biology. Learn more in the [launch announcement](https://openai.com/o1).\n\nNote: This model is currently experimental and not suitable for production use-cases, and may be heavily rate-limited.",
+      "id": "openai/o1-preview-2024-09-12",
+      "name": "OpenAI: o1-preview (2024-09-12)",
+      "per_request_limits": null,
+      "pricing": {
+        "completion": "0.00006",
+        "image": "0",
+        "prompt": "0.000015",
+        "request": "0"
+      },
+      "top_provider": {
+        "context_length": 128000,
+        "is_moderated": true,
+        "max_completion_tokens": 32768
+      }
+    },
+    {
+      "architecture": {
+        "instruct_type": null,
+        "modality": "text->text",
+        "tokenizer": "GPT"
+      },
+      "context_length": 128000,
+      "created": 1726099200,
+      "description": "The latest and strongest model family from OpenAI, o1 is designed to spend more time thinking before responding.\n\nThe o1 models are optimized for math, science, programming, and other STEM-related tasks. They consistently exhibit PhD-level accuracy on benchmarks in physics, chemistry, and biology. Learn more in the [launch announcement](https://openai.com/o1).\n\nNote: This model is currently experimental and not suitable for production use-cases, and may be heavily rate-limited.",
+      "id": "openai/o1-preview",
+      "name": "OpenAI: o1-preview",
+      "per_request_limits": null,
+      "pricing": {
+        "completion": "0.00006",
+        "image": "0",
+        "prompt": "0.000015",
+        "request": "0"
+      },
+      "top_provider": {
+        "context_length": 128000,
+        "is_moderated": true,
+        "max_completion_tokens": 32768
+      }
+    },
+    {
+      "architecture": {
+        "instruct_type": null,
+        "modality": "text->text",
+        "tokenizer": "Llama3"
+      },
+      "context_length": 131072,
+      "created": 1725580800,
+      "description": "Reflection Llama-3.1 70B is trained with a new technique called Reflection-Tuning that teaches a LLM to detect mistakes in its reasoning and correct course.\n\nThe model was trained on synthetic data.\n\n_These are free, rate-limited endpoints for [Reflection 70B](/models/mattshumer/reflection-70b). Outputs may be cached. Read about rate limits [here](/docs/limits)._",
+      "id": "mattshumer/reflection-70b:free",
+      "name": "Reflection 70B (free)",
+      "per_request_limits": null,
+      "pricing": {
+        "completion": "0",
+        "image": "0",
+        "prompt": "0",
+        "request": "0"
+      },
+      "top_provider": {
+        "context_length": 8192,
+        "is_moderated": false,
+        "max_completion_tokens": 4096
+      }
+    },
+    {
+      "architecture": {
+        "instruct_type": null,
+        "modality": "text->text",
+        "tokenizer": "Llama3"
+      },
+      "context_length": 131072,
+      "created": 1725580800,
+      "description": "Reflection Llama-3.1 70B is trained with a new technique called Reflection-Tuning that teaches a LLM to detect mistakes in its reasoning and correct course.\n\nThe model was trained on synthetic data.",
+      "id": "mattshumer/reflection-70b",
+      "name": "Reflection 70B",
+      "per_request_limits": null,
+      "pricing": {
+        "completion": "0.0000004",
+        "image": "0",
+        "prompt": "0.00000035",
+        "request": "0"
+      },
+      "top_provider": {
+        "context_length": 8192,
+        "is_moderated": false,
+        "max_completion_tokens": null
+      }
+    },
+    {
+      "architecture": {
+        "instruct_type": null,
+        "modality": "text->text",
         "tokenizer": "Cohere"
       },
       "context_length": 128000,
@@ -104,7 +248,7 @@
       },
       "context_length": 4000000,
       "created": 1724803200,
-      "description": "Gemini 1.5 Flash 8B Experimental is an experimental, 8B parameter version of the [Gemini 1.5 Flash](/models/google/gemini-flash-1.5) model.\n\nUsage of Gemini is subject to Google's [Gemini Terms of Use](https://ai.google.dev/terms).\n\n#multimodal\n\nNote: This model is experimental and not suited for production use-cases. It may be removed or redirected to another model in the future.",
+      "description": "Gemini 1.5 Flash 8B Experimental is an experimental, 8B parameter version of the [Gemini 1.5 Flash](/models/google/gemini-flash-1.5) model.\n\nUsage of Gemini is subject to Google's [Gemini Terms of Use](https://ai.google.dev/terms).\n\n#multimodal\n\nNote: This model is currently experimental and not suitable for production use-cases, and may be heavily rate-limited.",
       "id": "google/gemini-flash-8b-1.5-exp",
       "name": "Google: Gemini Flash 8B 1.5 Experimental",
       "per_request_limits": null,
@@ -128,7 +272,7 @@
       },
       "context_length": 4000000,
       "created": 1724803200,
-      "description": "Gemini 1.5 Flash Experimental is an experimental version of the [Gemini 1.5 Flash](/models/google/gemini-flash-1.5) model.\n\nUsage of Gemini is subject to Google's [Gemini Terms of Use](https://ai.google.dev/terms).\n\n#multimodal\n\nNote: This model is experimental and not suited for production use-cases. It may be removed or redirected to another model in the future.",
+      "description": "Gemini 1.5 Flash Experimental is an experimental version of the [Gemini 1.5 Flash](/models/google/gemini-flash-1.5) model.\n\nUsage of Gemini is subject to Google's [Gemini Terms of Use](https://ai.google.dev/terms).\n\n#multimodal\n\nNote: This model is currently experimental and not suitable for production use-cases, and may be heavily rate-limited.",
       "id": "google/gemini-flash-1.5-exp",
       "name": "Google: Gemini Flash 1.5 Experimental",
       "per_request_limits": null,
@@ -218,30 +362,6 @@
     },
     {
       "architecture": {
-        "instruct_type": "chatml",
-        "modality": "text->text",
-        "tokenizer": "Yi"
-      },
-      "context_length": 4096,
-      "created": 1724371200,
-      "description": "The Yi series models are large language models trained from scratch by developers at [01.AI](https://01.ai/). This is a predecessor to the Yi 34B model. It is continuously pre-trained on Yi with a high-quality corpus of 500B tokens and fine-tuned on 3M diverse fine-tuning samples..",
-      "id": "01-ai/yi-1.5-34b-chat",
-      "name": "Yi 1.5 34B Chat",
-      "per_request_limits": null,
-      "pricing": {
-        "completion": "0.00000072",
-        "image": "0",
-        "prompt": "0.00000072",
-        "request": "0"
-      },
-      "top_provider": {
-        "context_length": 4096,
-        "is_moderated": false,
-        "max_completion_tokens": null
-      }
-    },
-    {
-      "architecture": {
         "instruct_type": "phi3",
         "modality": "text->text",
         "tokenizer": "Other"
@@ -318,6 +438,30 @@
         "modality": "text->text",
         "tokenizer": "Llama3"
       },
+      "context_length": 131072,
+      "created": 1723766400,
+      "description": "Hermes 3 is a generalist language model with many improvements over Hermes 2, including advanced agentic capabilities, much better roleplaying, reasoning, multi-turn conversation, long context coherence, and improvements across the board.\n\nHermes 3 405B is a frontier-level, full-parameter finetune of the Llama-3.1 405B foundation model, focused on aligning LLMs to the user, with powerful steering capabilities and control given to the end user.\n\nThe Hermes 3 series builds and expands on the Hermes 2 set of capabilities, including more powerful and reliable function calling and structured output capabilities, generalist assistant capabilities, and improved code generation skills.\n\nHermes 3 is competitive, if not superior, to Llama-3.1 Instruct models at general capabilities, with varying strengths and weaknesses attributable between the two.\n\n_These are free, rate-limited endpoints for [Hermes 3 405B Instruct](/models/nousresearch/hermes-3-llama-3.1-405b). Outputs may be cached. Read about rate limits [here](/docs/limits)._",
+      "id": "nousresearch/hermes-3-llama-3.1-405b:free",
+      "name": "Nous: Hermes 3 405B Instruct (free)",
+      "per_request_limits": null,
+      "pricing": {
+        "completion": "0",
+        "image": "0",
+        "prompt": "0",
+        "request": "0"
+      },
+      "top_provider": {
+        "context_length": 8192,
+        "is_moderated": false,
+        "max_completion_tokens": 4096
+      }
+    },
+    {
+      "architecture": {
+        "instruct_type": "chatml",
+        "modality": "text->text",
+        "tokenizer": "Llama3"
+      },
       "context_length": 128000,
       "created": 1723766400,
       "description": "Hermes 3 is a generalist language model with many improvements over Hermes 2, including advanced agentic capabilities, much better roleplaying, reasoning, multi-turn conversation, long context coherence, and improvements across the board.\n\nHermes 3 405B is a frontier-level, full-parameter finetune of the Llama-3.1 405B foundation model, focused on aligning LLMs to the user, with powerful steering capabilities and control given to the end user.\n\nThe Hermes 3 series builds and expands on the Hermes 2 set of capabilities, including more powerful and reliable function calling and structured output capabilities, generalist assistant capabilities, and improved code generation skills.\n\nHermes 3 is competitive, if not superior, to Llama-3.1 Instruct models at general capabilities, with varying strengths and weaknesses attributable between the two.\n\n_These are extended-context endpoints for [Hermes 3 405B Instruct](/models/nousresearch/hermes-3-llama-3.1-405b). They may have higher prices._",
@@ -368,7 +512,7 @@
       },
       "context_length": 128000,
       "created": 1723593600,
-      "description": "Dynamic model continuously updated to the current version of [GPT-4o](/models/openai/gpt-4o) in ChatGPT. Intended for research and evaluation.\n\nNote: This model is experimental and not suited for production use-cases. It may be removed or redirected to another model in the future.",
+      "description": "Dynamic model continuously updated to the current version of [GPT-4o](/models/openai/gpt-4o) in ChatGPT. Intended for research and evaluation.\n\nNote: This model is currently experimental and not suitable for production use-cases, and may be heavily rate-limited.",
       "id": "openai/chatgpt-4o-latest",
       "name": "OpenAI: ChatGPT-4o",
       "per_request_limits": null,
@@ -482,78 +626,6 @@
     },
     {
       "architecture": {
-        "instruct_type": null,
-        "modality": "text+image->text",
-        "tokenizer": "Yi"
-      },
-      "context_length": 16384,
-      "created": 1722556800,
-      "description": "The Yi Vision is a complex visual task models provide high-performance understanding and analysis capabilities based on multiple images.\n\nIt's ideal for scenarios that require analysis and interpretation of images and charts, such as image question answering, chart understanding, OCR, visual reasoning, education, research report understanding, or multilingual document reading.",
-      "id": "01-ai/yi-vision",
-      "name": "01.AI: Yi Vision",
-      "per_request_limits": null,
-      "pricing": {
-        "completion": "0.00000019",
-        "image": "0",
-        "prompt": "0.00000019",
-        "request": "0"
-      },
-      "top_provider": {
-        "context_length": 16384,
-        "is_moderated": false,
-        "max_completion_tokens": 2700
-      }
-    },
-    {
-      "architecture": {
-        "instruct_type": null,
-        "modality": "text->text",
-        "tokenizer": "Yi"
-      },
-      "context_length": 16384,
-      "created": 1722556800,
-      "description": "The Yi Large Function Calling (FC) is a specialized model with capability of tool use. The model can decide whether to call the tool based on the tool definition passed in by the user, and the calling method will be generate in the specified format.\n\nIt's applicable to various production scenarios that require building agents or workflows.",
-      "id": "01-ai/yi-large-fc",
-      "name": "01.AI: Yi Large FC",
-      "per_request_limits": null,
-      "pricing": {
-        "completion": "0.000003",
-        "image": "0",
-        "prompt": "0.000003",
-        "request": "0"
-      },
-      "top_provider": {
-        "context_length": 16384,
-        "is_moderated": false,
-        "max_completion_tokens": null
-      }
-    },
-    {
-      "architecture": {
-        "instruct_type": null,
-        "modality": "text->text",
-        "tokenizer": "Yi"
-      },
-      "context_length": 4096,
-      "created": 1722556800,
-      "description": "The Yi Large Turbo model is a High Performance and Cost-Effectiveness model offering powerful capabilities at a competitive price.\n\nIt's ideal for a wide range of scenarios, including complex inference and high-quality text generation.\n\nCheck out the [launch announcement](https://01-ai.github.io/blog/01.ai-yi-large-llm-launch) to learn more.",
-      "id": "01-ai/yi-large-turbo",
-      "name": "01.AI: Yi Large Turbo",
-      "per_request_limits": null,
-      "pricing": {
-        "completion": "0.00000019",
-        "image": "0",
-        "prompt": "0.00000019",
-        "request": "0"
-      },
-      "top_provider": {
-        "context_length": 4096,
-        "is_moderated": false,
-        "max_completion_tokens": null
-      }
-    },
-    {
-      "architecture": {
         "instruct_type": "chatml",
         "modality": "text->text",
         "tokenizer": "Mistral"
@@ -584,7 +656,7 @@
       },
       "context_length": 4000000,
       "created": 1722470400,
-      "description": "Gemini 1.5 Pro (0801) is an experimental version of the [Gemini 1.5 Pro](/models/google/gemini-pro-1.5) model.\n\nUsage of Gemini is subject to Google's [Gemini Terms of Use](https://ai.google.dev/terms).\n\n#multimodal\n\nNote: This model is experimental and not suited for production use-cases. It may be removed or redirected to another model in the future.",
+      "description": "Gemini 1.5 Pro (0827) is an experimental version of the [Gemini 1.5 Pro](/models/google/gemini-pro-1.5) model.\n\nUsage of Gemini is subject to Google's [Gemini Terms of Use](https://ai.google.dev/terms).\n\n#multimodal\n\nNote: This model is currently experimental and not suitable for production use-cases, and may be heavily rate-limited.",
       "id": "google/gemini-pro-1.5-exp",
       "name": "Google: Gemini Pro 1.5 Experimental",
       "per_request_limits": null,
@@ -709,13 +781,13 @@
       "name": "Meta: Llama 3.1 70B Instruct",
       "per_request_limits": null,
       "pricing": {
-        "completion": "0.0000004",
+        "completion": "0.0000003",
         "image": "0",
-        "prompt": "0.00000035",
+        "prompt": "0.0000003",
         "request": "0"
       },
       "top_provider": {
-        "context_length": 100000,
+        "context_length": 131072,
         "is_moderated": false,
         "max_completion_tokens": null
       }
@@ -781,37 +853,13 @@
       "name": "Meta: Llama 3.1 405B Instruct",
       "per_request_limits": null,
       "pricing": {
-        "completion": "0.0000025",
+        "completion": "0.00000179",
         "image": "0",
-        "prompt": "0.0000025",
+        "prompt": "0.00000179",
         "request": "0"
       },
       "top_provider": {
-        "context_length": 131072,
-        "is_moderated": false,
-        "max_completion_tokens": null
-      }
-    },
-    {
-      "architecture": {
-        "instruct_type": "chatml",
-        "modality": "text->text",
-        "tokenizer": "Llama3"
-      },
-      "context_length": 8192,
-      "created": 1721347200,
-      "description": "Dolphin 2.9 is designed for instruction following, conversational, and coding. This model is a fine-tune of [Llama 3 70B](/models/meta-llama/llama-3-70b-instruct). It demonstrates improvements in instruction, conversation, coding, and function calling abilities, when compared to the original.\n\nUncensored and is stripped of alignment and bias, it requires an external alignment layer for ethical use. Users are cautioned to use this highly compliant model responsibly, as detailed in a blog post about uncensored models at [erichartford.com/uncensored-models](https://erichartford.com/uncensored-models).\n\nUsage of this model is subject to [Meta's Acceptable Use Policy](https://llama.meta.com/llama3/use-policy/).",
-      "id": "cognitivecomputations/dolphin-llama-3-70b",
-      "name": "Dolphin Llama 3 70B 🐬",
-      "per_request_limits": null,
-      "pricing": {
-        "completion": "0.0000004",
-        "image": "0",
-        "prompt": "0.00000035",
-        "request": "0"
-      },
-      "top_provider": {
-        "context_length": 8192,
+        "context_length": 32000,
         "is_moderated": false,
         "max_completion_tokens": null
       }
@@ -853,13 +901,13 @@
       "name": "Mistral: Mistral Nemo",
       "per_request_limits": null,
       "pricing": {
-        "completion": "0.00000017",
+        "completion": "0.00000013",
         "image": "0",
-        "prompt": "0.00000017",
+        "prompt": "0.00000013",
         "request": "0"
       },
       "top_provider": {
-        "context_length": 32768,
+        "context_length": 128000,
         "is_moderated": false,
         "max_completion_tokens": null
       }
@@ -979,7 +1027,7 @@
         "request": "0"
       },
       "top_provider": {
-        "context_length": 4096,
+        "context_length": 8192,
         "is_moderated": false,
         "max_completion_tokens": null
       }
@@ -1084,30 +1132,6 @@
       "architecture": {
         "instruct_type": "llama3",
         "modality": "text->text",
-        "tokenizer": "Router"
-      },
-      "context_length": 32000,
-      "created": 1719446400,
-      "description": "This is a router model that rotates its underlying model weekly. It aims to be a simple way to explore the capabilities of new models while using the same model ID.\n\nThe current underlying model is [Llama 3 Stheno 8B v3.3 32K](/models/sao10k/l3-stheno-8b).\n\nNOTE: Pricing depends on the underlying model as well as the provider routed to. To see which model and provider were used, visit [Activity](/activity).",
-      "id": "openrouter/flavor-of-the-week",
-      "name": "Flavor of The Week",
-      "per_request_limits": null,
-      "pricing": {
-        "completion": "-1",
-        "image": "-1",
-        "prompt": "-1",
-        "request": "-1"
-      },
-      "top_provider": {
-        "context_length": null,
-        "is_moderated": false,
-        "max_completion_tokens": null
-      }
-    },
-    {
-      "architecture": {
-        "instruct_type": "llama3",
-        "modality": "text->text",
         "tokenizer": "Llama3"
       },
       "context_length": 32000,
@@ -1155,30 +1179,6 @@
     {
       "architecture": {
         "instruct_type": null,
-        "modality": "text->text",
-        "tokenizer": "Yi"
-      },
-      "context_length": 32768,
-      "created": 1719273600,
-      "description": "The Yi Large model was designed by 01.AI with the following usecases in mind: knowledge search, data classification, human-like chat bots, and customer service.\n\nIt stands out for its multilingual proficiency, particularly in Spanish, Chinese, Japanese, German, and French.\n\nCheck out the [launch announcement](https://01-ai.github.io/blog/01.ai-yi-large-llm-launch) to learn more.",
-      "id": "01-ai/yi-large",
-      "name": "01.AI: Yi Large",
-      "per_request_limits": null,
-      "pricing": {
-        "completion": "0.000003",
-        "image": "0",
-        "prompt": "0.000003",
-        "request": "0"
-      },
-      "top_provider": {
-        "context_length": 32768,
-        "is_moderated": false,
-        "max_completion_tokens": null
-      }
-    },
-    {
-      "architecture": {
-        "instruct_type": null,
         "modality": "text+image->text",
         "tokenizer": "Claude"
       },
@@ -1208,7 +1208,7 @@
       },
       "context_length": 200000,
       "created": 1718841600,
-      "description": "Claude 3.5 Sonnet delivers better-than-Opus capabilities, faster-than-Sonnet speeds, at the same Sonnet prices. Sonnet is particularly good at:\n\n- Coding: Autonomously writes, edits, and runs code with reasoning and troubleshooting\n- Data science: Augments human data science expertise; navigates unstructured data while using multiple tools for insights\n- Visual processing: excelling at interpreting charts, graphs, and images, accurately transcribing text to derive insights beyond just the text alone\n- Agentic tasks: exceptional tool use, making it great at agentic tasks (i.e. complex, multi-step problem solving tasks that require engaging with other systems)\n\n#multimodal\n\n_This is a faster endpoint, made available in collaboration with Anthropic, that is self-moderated: response moderation happens on the model's side instead of OpenRouter's. For requests that pass moderation, it's identical to the [Standard](/models/anthropic/claude-3.5-sonnet) variant._",
+      "description": "Claude 3.5 Sonnet delivers better-than-Opus capabilities, faster-than-Sonnet speeds, at the same Sonnet prices. Sonnet is particularly good at:\n\n- Coding: Autonomously writes, edits, and runs code with reasoning and troubleshooting\n- Data science: Augments human data science expertise; navigates unstructured data while using multiple tools for insights\n- Visual processing: excelling at interpreting charts, graphs, and images, accurately transcribing text to derive insights beyond just the text alone\n- Agentic tasks: exceptional tool use, making it great at agentic tasks (i.e. complex, multi-step problem solving tasks that require engaging with other systems)\n\n#multimodal\n\n_This is a faster endpoint, made available in collaboration with Anthropic, that is self-moderated: response moderation happens on the provider's side instead of OpenRouter's. For requests that pass moderation, it's identical to the [Standard](/models/anthropic/claude-3.5-sonnet) variant._",
       "id": "anthropic/claude-3.5-sonnet:beta",
       "name": "Anthropic: Claude 3.5 Sonnet (self-moderated)",
       "per_request_limits": null,
@@ -1316,30 +1316,6 @@
       },
       "top_provider": {
         "context_length": 32768,
-        "is_moderated": false,
-        "max_completion_tokens": null
-      }
-    },
-    {
-      "architecture": {
-        "instruct_type": "openchat",
-        "modality": "text->text",
-        "tokenizer": "Llama3"
-      },
-      "context_length": 8192,
-      "created": 1717200000,
-      "description": "OpenChat 8B is a library of open-source language models, fine-tuned with \"C-RLFT (Conditioned Reinforcement Learning Fine-Tuning)\" - a strategy inspired by offline reinforcement learning. It has been trained on mixed-quality data without preference labels.\n\nIt outperforms many similarly sized models including [Llama 3 8B Instruct](/models/meta-llama/llama-3-8b-instruct) and various fine-tuned models. It excels in general conversation, coding assistance, and mathematical reasoning.\n\n- For OpenChat fine-tuned on Mistral 7B, check out [OpenChat 7B](/models/openchat/openchat-7b).\n- For OpenChat fine-tuned on Llama 8B, check out [OpenChat 8B](/models/openchat/openchat-8b).\n\n#open-source",
-      "id": "openchat/openchat-8b",
-      "name": "OpenChat 3.6 8B",
-      "per_request_limits": null,
-      "pricing": {
-        "completion": "0.000000055",
-        "image": "0",
-        "prompt": "0.000000055",
-        "request": "0"
-      },
-      "top_provider": {
-        "context_length": 8192,
         "is_moderated": false,
         "max_completion_tokens": null
       }
@@ -1616,33 +1592,9 @@
       },
       "context_length": 128000,
       "created": 1715644800,
-      "description": "DeepSeek-Coder-V2, an open-source Mixture-of-Experts (MoE) code language model. It is further pre-trained from an intermediate checkpoint of DeepSeek-V2 with additional 6 trillion tokens.\n\nThe original V1 model was trained from scratch on 2T tokens, with a composition of 87% code and 13% natural language in both English and Chinese. It was pre-trained on project-level code corpus by employing a extra fill-in-the-blank task.",
-      "id": "deepseek/deepseek-coder",
-      "name": "DeepSeek-Coder-V2",
-      "per_request_limits": null,
-      "pricing": {
-        "completion": "0.00000028",
-        "image": "0",
-        "prompt": "0.00000014",
-        "request": "0"
-      },
-      "top_provider": {
-        "context_length": 128000,
-        "is_moderated": false,
-        "max_completion_tokens": 4096
-      }
-    },
-    {
-      "architecture": {
-        "instruct_type": null,
-        "modality": "text->text",
-        "tokenizer": "Other"
-      },
-      "context_length": 128000,
-      "created": 1715644800,
-      "description": "DeepSeek-V2 Chat is a conversational finetune of DeepSeek-V2, a Mixture-of-Experts (MoE) language model. It comprises 236B total parameters, of which 21B are activated for each token.\n\nCompared with DeepSeek 67B, DeepSeek-V2 achieves stronger performance, and meanwhile saves 42.5% of training costs, reduces the KV cache by 93.3%, and boosts the maximum generation throughput to 5.76 times.\n\nDeepSeek-V2 achieves remarkable performance on both standard benchmarks and open-ended generation evaluations.",
+      "description": "DeepSeek-V2.5 is an upgraded version that combines DeepSeek-V2-Chat and DeepSeek-Coder-V2-Instruct. The new model integrates the general and coding abilities of the two previous versions.\n\nDeepSeek-V2 Chat is a conversational finetune of DeepSeek-V2, a Mixture-of-Experts (MoE) language model. It comprises 236B total parameters, of which 21B are activated for each token.\n\nCompared with DeepSeek 67B, DeepSeek-V2 achieves stronger performance, and meanwhile saves 42.5% of training costs, reduces the KV cache by 93.3%, and boosts the maximum generation throughput to 5.76 times.\n\nDeepSeek-V2 achieves remarkable performance on both standard benchmarks and open-ended generation evaluations.",
       "id": "deepseek/deepseek-chat",
-      "name": "DeepSeek-V2 Chat",
+      "name": "DeepSeek V2.5",
       "per_request_limits": null,
       "pricing": {
         "completion": "0.00000028",
@@ -2384,7 +2336,7 @@
       },
       "context_length": 200000,
       "created": 1710288000,
-      "description": "Claude 3 Haiku is Anthropic's fastest and most compact model for\nnear-instant responsiveness. Quick and accurate targeted performance.\n\nSee the launch announcement and benchmark results [here](https://www.anthropic.com/news/claude-3-haiku)\n\n#multimodal\n\n_This is a faster endpoint, made available in collaboration with Anthropic, that is self-moderated: response moderation happens on the model's side instead of OpenRouter's. For requests that pass moderation, it's identical to the [Standard](/models/anthropic/claude-3-haiku) variant._",
+      "description": "Claude 3 Haiku is Anthropic's fastest and most compact model for\nnear-instant responsiveness. Quick and accurate targeted performance.\n\nSee the launch announcement and benchmark results [here](https://www.anthropic.com/news/claude-3-haiku)\n\n#multimodal\n\n_This is a faster endpoint, made available in collaboration with Anthropic, that is self-moderated: response moderation happens on the provider's side instead of OpenRouter's. For requests that pass moderation, it's identical to the [Standard](/models/anthropic/claude-3-haiku) variant._",
       "id": "anthropic/claude-3-haiku:beta",
       "name": "Anthropic: Claude 3 Haiku (self-moderated)",
       "per_request_limits": null,
@@ -2432,7 +2384,7 @@
       },
       "context_length": 200000,
       "created": 1709596800,
-      "description": "Claude 3 Sonnet is an ideal balance of intelligence and speed for enterprise workloads. Maximum utility at a lower price, dependable, balanced for scaled deployments.\n\nSee the launch announcement and benchmark results [here](https://www.anthropic.com/news/claude-3-family)\n\n#multimodal\n\n_This is a faster endpoint, made available in collaboration with Anthropic, that is self-moderated: response moderation happens on the model's side instead of OpenRouter's. For requests that pass moderation, it's identical to the [Standard](/models/anthropic/claude-3-sonnet) variant._",
+      "description": "Claude 3 Sonnet is an ideal balance of intelligence and speed for enterprise workloads. Maximum utility at a lower price, dependable, balanced for scaled deployments.\n\nSee the launch announcement and benchmark results [here](https://www.anthropic.com/news/claude-3-family)\n\n#multimodal\n\n_This is a faster endpoint, made available in collaboration with Anthropic, that is self-moderated: response moderation happens on the provider's side instead of OpenRouter's. For requests that pass moderation, it's identical to the [Standard](/models/anthropic/claude-3-sonnet) variant._",
       "id": "anthropic/claude-3-sonnet:beta",
       "name": "Anthropic: Claude 3 Sonnet (self-moderated)",
       "per_request_limits": null,
@@ -2480,7 +2432,7 @@
       },
       "context_length": 200000,
       "created": 1709596800,
-      "description": "Claude 3 Opus is Anthropic's most powerful model for highly complex tasks. It boasts top-level performance, intelligence, fluency, and understanding.\n\nSee the launch announcement and benchmark results [here](https://www.anthropic.com/news/claude-3-family)\n\n#multimodal\n\n_This is a faster endpoint, made available in collaboration with Anthropic, that is self-moderated: response moderation happens on the model's side instead of OpenRouter's. For requests that pass moderation, it's identical to the [Standard](/models/anthropic/claude-3-opus) variant._",
+      "description": "Claude 3 Opus is Anthropic's most powerful model for highly complex tasks. It boasts top-level performance, intelligence, fluency, and understanding.\n\nSee the launch announcement and benchmark results [here](https://www.anthropic.com/news/claude-3-family)\n\n#multimodal\n\n_This is a faster endpoint, made available in collaboration with Anthropic, that is self-moderated: response moderation happens on the provider's side instead of OpenRouter's. For requests that pass moderation, it's identical to the [Standard](/models/anthropic/claude-3-opus) variant._",
       "id": "anthropic/claude-3-opus:beta",
       "name": "Anthropic: Claude 3 Opus (self-moderated)",
       "per_request_limits": null,
@@ -2516,30 +2468,6 @@
       },
       "top_provider": {
         "context_length": 128000,
-        "is_moderated": false,
-        "max_completion_tokens": null
-      }
-    },
-    {
-      "architecture": {
-        "instruct_type": "rwkv",
-        "modality": "text->text",
-        "tokenizer": "RWKV"
-      },
-      "context_length": 10000,
-      "created": 1706486400,
-      "description": "Eagle 7B is trained on 1.1 Trillion Tokens across 100+ world languages (70% English, 15% multilang, 15% code).\n\n- Built on the [RWKV-v5](/models?q=rwkv) architecture (a linear transformer with 10-100x+ lower inference cost)\n- Ranks as the world's greenest 7B model (per token)\n- Outperforms all 7B class models in multi-lingual benchmarks\n- Approaches Falcon (1.5T), LLaMA2 (2T), Mistral (>2T?) level of performance in English evals\n- Trade blows with MPT-7B (1T) in English evals\n- All while being an [\"Attention-Free Transformer\"](https://www.isattentionallyouneed.com/)\n\nEagle 7B models are provided for free, by [Recursal.AI](https://recursal.ai), for the beta period till end of March 2024\n\nFind out more [here](https://blog.rwkv.com/p/eagle-7b-soaring-past-transformers)\n\n[rnn](/models?q=rwkv)",
-      "id": "recursal/eagle-7b",
-      "name": "RWKV v5: Eagle 7B",
-      "per_request_limits": null,
-      "pricing": {
-        "completion": "0",
-        "image": "0",
-        "prompt": "0",
-        "request": "0"
-      },
-      "top_provider": {
-        "context_length": 10000,
         "is_moderated": false,
         "max_completion_tokens": null
       }
@@ -2834,54 +2762,6 @@
     },
     {
       "architecture": {
-        "instruct_type": "rwkv",
-        "modality": "text->text",
-        "tokenizer": "RWKV"
-      },
-      "context_length": 10000,
-      "created": 1702166400,
-      "description": "This is an [RWKV 3B model](/models/rwkv/rwkv-5-world-3b) finetuned specifically for the [AI Town](https://github.com/a16z-infra/ai-town) project.\n\n[RWKV](https://wiki.rwkv.com) is an RNN (recurrent neural network) with transformer-level performance. It aims to combine the best of RNNs and transformers - great performance, fast inference, low VRAM, fast training, \"infinite\" context length, and free sentence embedding.\n\nRWKV 3B models are provided for free, by Recursal.AI, for the beta period. More details [here](https://substack.recursal.ai/p/public-rwkv-3b-model-via-openrouter).\n\n#rnn",
-      "id": "recursal/rwkv-5-3b-ai-town",
-      "name": "RWKV v5 3B AI Town",
-      "per_request_limits": null,
-      "pricing": {
-        "completion": "0",
-        "image": "0",
-        "prompt": "0",
-        "request": "0"
-      },
-      "top_provider": {
-        "context_length": 10000,
-        "is_moderated": false,
-        "max_completion_tokens": null
-      }
-    },
-    {
-      "architecture": {
-        "instruct_type": "rwkv",
-        "modality": "text->text",
-        "tokenizer": "RWKV"
-      },
-      "context_length": 10000,
-      "created": 1702166400,
-      "description": "[RWKV](https://wiki.rwkv.com) is an RNN (recurrent neural network) with transformer-level performance. It aims to combine the best of RNNs and transformers - great performance, fast inference, low VRAM, fast training, \"infinite\" context length, and free sentence embedding.\n\nRWKV-5 is trained on 100+ world languages (70% English, 15% multilang, 15% code).\n\nRWKV 3B models are provided for free, by Recursal.AI, for the beta period. More details [here](https://substack.recursal.ai/p/public-rwkv-3b-model-via-openrouter).\n\n#rnn",
-      "id": "rwkv/rwkv-5-world-3b",
-      "name": "RWKV v5 World 3B",
-      "per_request_limits": null,
-      "pricing": {
-        "completion": "0",
-        "image": "0",
-        "prompt": "0",
-        "request": "0"
-      },
-      "top_provider": {
-        "context_length": 10000,
-        "is_moderated": false,
-        "max_completion_tokens": null
-      }
-    },
-    {
-      "architecture": {
         "instruct_type": "mistral",
         "modality": "text->text",
         "tokenizer": "Mistral"
@@ -3026,54 +2906,6 @@
     },
     {
       "architecture": {
-        "instruct_type": "chatml",
-        "modality": "text->text",
-        "tokenizer": "Yi"
-      },
-      "context_length": 4096,
-      "created": 1701907200,
-      "description": "The Yi series models are large language models trained from scratch by developers at [01.AI](https://01.ai/). This 34B parameter model has been instruct-tuned for chat.",
-      "id": "01-ai/yi-34b-chat",
-      "name": "Yi 34B Chat",
-      "per_request_limits": null,
-      "pricing": {
-        "completion": "0.00000072",
-        "image": "0",
-        "prompt": "0.00000072",
-        "request": "0"
-      },
-      "top_provider": {
-        "context_length": 4096,
-        "is_moderated": false,
-        "max_completion_tokens": null
-      }
-    },
-    {
-      "architecture": {
-        "instruct_type": "airoboros",
-        "modality": "text->text",
-        "tokenizer": "Mistral"
-      },
-      "context_length": 8192,
-      "created": 1701734400,
-      "description": "The Capybara series is a collection of datasets and models made by fine-tuning on data created by Nous, mostly in-house.\n\nV1.9 uses unalignment techniques for more consistent and dynamic control. It also leverages a significantly better foundation model, [Mistral 7B](/models/mistralai/mistral-7b-instruct-v0.1).\n\n_These are free, rate-limited endpoints for [Capybara 7B](/models/nousresearch/nous-capybara-7b). Outputs may be cached. Read about rate limits [here](/docs/limits)._",
-      "id": "nousresearch/nous-capybara-7b:free",
-      "name": "Nous: Capybara 7B (free)",
-      "per_request_limits": null,
-      "pricing": {
-        "completion": "0",
-        "image": "0",
-        "prompt": "0",
-        "request": "0"
-      },
-      "top_provider": {
-        "context_length": 8192,
-        "is_moderated": false,
-        "max_completion_tokens": 4096
-      }
-    },
-    {
-      "architecture": {
         "instruct_type": "openchat",
         "modality": "text->text",
         "tokenizer": "Mistral"
@@ -3200,7 +3032,7 @@
       },
       "context_length": 200000,
       "created": 1700611200,
-      "description": "Claude 2 delivers advancements in key capabilities for enterprises—including an industry-leading 200K token context window, significant reductions in rates of model hallucination, system prompts and a new beta feature: tool use.\n\n_This is a faster endpoint, made available in collaboration with Anthropic, that is self-moderated: response moderation happens on the model's side instead of OpenRouter's. For requests that pass moderation, it's identical to the [Standard](/models/anthropic/claude-2.1) variant._",
+      "description": "Claude 2 delivers advancements in key capabilities for enterprises—including an industry-leading 200K token context window, significant reductions in rates of model hallucination, system prompts and a new beta feature: tool use.\n\n_This is a faster endpoint, made available in collaboration with Anthropic, that is self-moderated: response moderation happens on the provider's side instead of OpenRouter's. For requests that pass moderation, it's identical to the [Standard](/models/anthropic/claude-2.1) variant._",
       "id": "anthropic/claude-2.1:beta",
       "name": "Anthropic: Claude v2.1 (self-moderated)",
       "per_request_limits": null,
@@ -3248,7 +3080,7 @@
       },
       "context_length": 200000,
       "created": 1700611200,
-      "description": "Claude 2 delivers advancements in key capabilities for enterprises—including an industry-leading 200K token context window, significant reductions in rates of model hallucination, system prompts and a new beta feature: tool use.\n\n_This is a faster endpoint, made available in collaboration with Anthropic, that is self-moderated: response moderation happens on the model's side instead of OpenRouter's. For requests that pass moderation, it's identical to the [Standard](/models/anthropic/claude-2) variant._",
+      "description": "Claude 2 delivers advancements in key capabilities for enterprises—including an industry-leading 200K token context window, significant reductions in rates of model hallucination, system prompts and a new beta feature: tool use.\n\n_This is a faster endpoint, made available in collaboration with Anthropic, that is self-moderated: response moderation happens on the provider's side instead of OpenRouter's. For requests that pass moderation, it's identical to the [Standard](/models/anthropic/claude-2) variant._",
       "id": "anthropic/claude-2:beta",
       "name": "Anthropic: Claude v2 (self-moderated)",
       "per_request_limits": null,
@@ -3920,7 +3752,7 @@
       },
       "context_length": 100000,
       "created": 1690502400,
-      "description": "Anthropic's model for low-latency, high throughput text generation. Supports hundreds of pages of text.\n\n_This is a faster endpoint, made available in collaboration with Anthropic, that is self-moderated: response moderation happens on the model's side instead of OpenRouter's. For requests that pass moderation, it's identical to the [Standard](/models/anthropic/claude-instant-1) variant._",
+      "description": "Anthropic's model for low-latency, high throughput text generation. Supports hundreds of pages of text.\n\n_This is a faster endpoint, made available in collaboration with Anthropic, that is self-moderated: response moderation happens on the provider's side instead of OpenRouter's. For requests that pass moderation, it's identical to the [Standard](/models/anthropic/claude-instant-1) variant._",
       "id": "anthropic/claude-instant-1:beta",
       "name": "Anthropic: Claude Instant v1 (self-moderated)",
       "per_request_limits": null,
@@ -3968,7 +3800,7 @@
       },
       "context_length": 100000,
       "created": 1690502400,
-      "description": "Anthropic's flagship model. Superior performance on tasks that require complex reasoning. Supports hundreds of pages of text.\n\n_This is a faster endpoint, made available in collaboration with Anthropic, that is self-moderated: response moderation happens on the model's side instead of OpenRouter's. For requests that pass moderation, it's identical to the [Standard](/models/anthropic/claude-2.0) variant._",
+      "description": "Anthropic's flagship model. Superior performance on tasks that require complex reasoning. Supports hundreds of pages of text.\n\n_This is a faster endpoint, made available in collaboration with Anthropic, that is self-moderated: response moderation happens on the provider's side instead of OpenRouter's. For requests that pass moderation, it's identical to the [Standard](/models/anthropic/claude-2.0) variant._",
       "id": "anthropic/claude-2.0:beta",
       "name": "Anthropic: Claude v2.0 (self-moderated)",
       "per_request_limits": null,
