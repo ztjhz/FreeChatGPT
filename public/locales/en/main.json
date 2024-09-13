@@ -48,6 +48,7 @@
   "cloned": "Cloned",
   "enterToSubmit": "Enter to submit",
   "submitPlaceholder": "Type a message or click [/] for prompts...",
+  "stopNonStreamGenerationWarning": "Stopping generation is not recommended for non-stream models. Only use it if UI is stuck. Do you want to proceed?",
   "reduceMessagesWarning": "Reducing messages may result in data loss. It is recommended to download the chat in JSON format if you care about the data. Do you want to proceed?",
   "reduceMessagesFailedImportWarning": "Full import failed as the data hit the maximum storage limit. Import as much as possible?",
   "partialImportWarning": "Full import failed as not all of the expected messages were imported: {{message}}. Would you like to import anyway?",
