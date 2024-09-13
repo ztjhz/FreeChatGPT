@@ -22,6 +22,8 @@ interface ModelData {
     is_moderated: boolean;
   };
   per_request_limits: any;
+  // TODO: Remove workaround once openrouter supports it;
+  is_stream_supported: boolean; // custom field until better workaround or openrouter proper support
 }
 
 interface ModelsJson {
@@ -35,6 +37,7 @@ export const loadModels = async (): Promise<{
   modelMaxToken: { [key: string]: number };
   modelCost: ModelCost;
   modelTypes: { [key: string]: string };
+  modelStreamSupport: { [key: string]: boolean };
 }> => {
   const response = await fetch(modelsJsonUrl);
   const modelsJson: ModelsJson = await response.json();
@@ -43,6 +46,7 @@ export const loadModels = async (): Promise<{
   const modelMaxToken: { [key: string]: number } = {};
   const modelCost: ModelCost = {};
   const modelTypes: { [key: string]: string } = {};
+  const modelStreamSupport: { [key: string]: boolean } = {};
 
   // Prepend specific models
   const specificModels = [
@@ -56,6 +60,7 @@ export const loadModels = async (): Promise<{
         request: '0',
       },
       type: 'text',
+      is_stream_supported: true,
     },
     {
       id: 'gpt-4-turbo-2024-04-09',
@@ -67,6 +72,7 @@ export const loadModels = async (): Promise<{
         request: '0',
       },
       type: 'text',
+      is_stream_supported: false,
     },
   ];
 
@@ -79,6 +85,7 @@ export const loadModels = async (): Promise<{
       image: { price: parseFloat(model.pricing.image), unit: 1 },
     };
     modelTypes[model.id] = model.type;
+    modelStreamSupport[model.id] = model.is_stream_supported;
   });
 
   modelsJson.data.forEach((model) => {
@@ -91,6 +98,13 @@ export const loadModels = async (): Promise<{
       image: { price: 0, unit: 1 }, // default for no image models
     };
 
+    // TODO: Remove workaround once openrouter supports it
+    if (modelId.includes('o1-')) {
+      model.is_stream_supported = false;
+    } else {
+      model.is_stream_supported = true;
+    }
+
     // Detect image capabilities
     if (parseFloat(model.pricing.image) > 0) {
       modelTypes[modelId] = 'image';
@@ -101,23 +115,35 @@ export const loadModels = async (): Promise<{
     } else {
       modelTypes[modelId] = 'text';
     }
+    modelStreamSupport[modelId] = model.is_stream_supported;
   });
 
-  // Sort modelOptions to prioritize gpt-4o models at the top, followed by other OpenAI models
+  // Sort modelOptions to prioritize gpt-4o models at the top, followed by o1 models, and then other OpenAI models
   modelOptions.sort((a, b) => {
     const isGpt4oA = a.startsWith('gpt-4o');
     const isGpt4oB = b.startsWith('gpt-4o');
+    const isO1A = a.startsWith('o1-');
+    const isO1B = b.startsWith('o1-');
     const isOpenAIA = a.startsWith('gpt-');
     const isOpenAIB = b.startsWith('gpt-');
 
+    // Prioritize gpt-4o models
     if (isGpt4oA && !isGpt4oB) return -1;
     if (!isGpt4oA && isGpt4oB) return 1;
+
+    // If both are gpt-4o or neither, prioritize o1 models
+    if (isO1A && !isO1B) return -1;
+    if (!isO1A && isO1B) return 1;
+
+    // If both are gpt-4o or o1 or neither, prioritize other OpenAI models
     if (isOpenAIA && !isOpenAIB) return -1;
     if (!isOpenAIA && isOpenAIB) return 1;
+
+    // If both are the same type or neither, maintain original order
     return 0;
   });
 
-  return { modelOptions, modelMaxToken, modelCost, modelTypes };
+  return { modelOptions, modelMaxToken, modelCost, modelTypes, modelStreamSupport };
 };
 
 export type ModelOptions = string;
