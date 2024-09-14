@@ -1,5 +1,5 @@
 import html2canvas from 'html2canvas';
-import { ChatInterface } from '@type/chat';
+import { ChatInterface, ContentInterface, isTextContent } from '@type/chat';
 
 export const formatNumber = (num: number): string => {
   return new Intl.NumberFormat('en-US', {
@@ -37,10 +37,20 @@ export const downloadImg = (imgData: string, fileName: string) => {
 export const chatToMarkdown = (chat: ChatInterface) => {
   let markdown = `# ${chat.title}\n\n`;
   chat.messages.forEach((message) => {
-    markdown += `### **${message.role}**:\n\n${message.content}\n\n---\n\n`;
+    markdown += `### **${message.role}**:\n\n${contentToMarkdown(message.content)}---\n\n`;
   });
   return markdown;
 };
+
+// Function to convert content objects to markdown format
+export const contentToMarkdown = (contents: ContentInterface[]) => {
+  let text = '';
+  contents.forEach((content) => {
+    text += isTextContent(content)? content.text: `![image](${content.image_url.url})`;
+    text += "\n\n";
+  })
+  return text;
+}
 
 // Function to download the markdown content as a file
 export const downloadMarkdown = (markdown: string, fileName: string) => {
