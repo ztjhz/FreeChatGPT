@@ -89,7 +89,7 @@ const DownloadChat = React.memo(
                   if (saveRef && saveRef.current) {
                     const chats = useStore.getState().chats;
                     if (chats) {
-                      const markdown = await chatToMarkdown(
+                      const markdown = chatToMarkdown(
                         chats[useStore.getState().currentChatIndex]
                       );
                       downloadMarkdown(

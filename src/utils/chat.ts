@@ -1,7 +1,5 @@
 import html2canvas from 'html2canvas';
-import { remark } from 'remark';
-import stringify from 'remark-stringify';
-import { ChatInterface, ContentInterface, isImageContent } from '@type/chat';
+import { ChatInterface, ContentInterface, isTextContent } from '@type/chat';
 
 export const formatNumber = (num: number): string => {
   return new Intl.NumberFormat('en-US', {
@@ -36,27 +34,21 @@ export const downloadImg = (imgData: string, fileName: string) => {
 };
 
 // Function to convert a chat object to markdown format
-export const chatToMarkdown = async (chat: ChatInterface) => {
+export const chatToMarkdown = (chat: ChatInterface) => {
   let markdown = `# ${chat.title}\n\n`;
-  for (const message of chat.messages) {
-    markdown += `### **${message.role}**:\n\n${await contentToMarkdown(message.content)}---\n\n`;
-  }
+  chat.messages.forEach((message) => {
+    markdown += `### **${message.role}**:\n\n${contentToMarkdown(message.content)}---\n\n`;
+  });
   return markdown;
 };
 
 // Function to convert content objects to markdown format
-export const contentToMarkdown = async (contents: ContentInterface[]) => {
+export const contentToMarkdown = (contents: ContentInterface[]) => {
   let text = '';
-  for (const content of contents) {
-    if (isImageContent(content)) {
-      text += `![image](${content.image_url.url})\n\n`;
-      continue;
-    }
-    const normalizedFile = await remark()
-      .use(stringify)
-      .process(content.text);
-    text += String(normalizedFile) + "\n\n";
-  }
+  contents.forEach((content) => {
+    text += isTextContent(content)? content.text: `![image](${content.image_url.url})`;
+    text += "\n\n";
+  })
   return text;
 }
 
