@@ -231,10 +231,7 @@ const EditView = ({
       (content) => content.type === 'image_url'
     );
 
-    if (
-      (!hasTextContent && !hasImageContent) ||
-      useStore.getState().generating
-    ) {
+    if (useStore.getState().generating) {
       return;
     }
 
