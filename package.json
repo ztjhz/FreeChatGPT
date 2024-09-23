@@ -1,7 +1,7 @@
 {
   "name": "better-chatgpt",
   "private": true,
-  "version": "1.9.0",
+  "version": "1.10.0",
   "type": "module",
   "homepage": "./",
   "main": "electron/index.cjs",
@@ -22,6 +22,10 @@
     {
       "name": "yaner-here <Yaner>",
       "url": "https://github.com/yaner-here"
+    },
+    {
+      "name": "nm723",
+      "url": "https://github.com/nm723"
     }
   ],
   "description": "Play and chat smarter with BetterChatGPT - an amazing open-source web app with a better UI for exploring OpenAI's ChatGPT API!",
