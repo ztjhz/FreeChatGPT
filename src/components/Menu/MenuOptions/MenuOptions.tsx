@@ -25,11 +25,11 @@ const MenuOptions = () => {
       >
         {countTotalTokens && <TotalTokenCostDisplay />}
         {googleClientId && <GoogleSync clientId={googleClientId} />}
-        <AboutMenu />
-        <ImportExportChat />
+        {/* <AboutMenu />
+        <ImportExportChat /> */}
         <Api />
         <SettingsMenu />
-        <Me />
+        {/* <Me /> */}
       </div>
     </>
   );

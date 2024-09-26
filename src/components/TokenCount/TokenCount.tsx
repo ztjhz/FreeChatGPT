@@ -17,14 +17,18 @@ const TokenCount = React.memo(() => {
   const model = useStore((state) =>
     state.chats
       ? state.chats[state.currentChatIndex].config.model
-      : 'gpt-3.5-turbo'
+      : 'francfranc-gpt-4o'
   );
 
   const cost = useMemo(() => {
-    const price =
-      modelCost[model].prompt.price *
-      (tokenCount / modelCost[model].prompt.unit);
-    return price.toPrecision(3);
+    try {
+      const price =
+        modelCost[model].prompt.price *
+        (tokenCount / modelCost[model].prompt.unit);
+      return price.toPrecision(3);
+    } catch(e) {
+      return 0;
+    }
   }, [model, tokenCount]);
 
   useEffect(() => {
