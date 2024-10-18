@@ -57,16 +57,6 @@ const ContentView = memo(
     const inlineLatex = useStore((state) => state.inlineLatex);
     const markdownMode = useStore((state) => state.markdownMode);
 
-    const preprocessContent = (text: string) => {
-      return text
-        .replace(/\\\[/g, '$$')
-        .replace(/\\\]/g, '$$')
-        .replace(/\\\(/g, '$')
-        .replace(/\\\)/g, '$');
-    };
-
-    const preprocessedContent = preprocessContent(content);
-
     const handleDelete = () => {
       const updatedChats: ChatInterface[] = JSON.parse(
         JSON.stringify(useStore.getState().chats)
@@ -120,7 +110,7 @@ const ContentView = memo(
             <ReactMarkdown
               remarkPlugins={[
                 remarkGfm,
-                [remarkMath, { singleDollarTextMath: inlineLatex }],
+                [remarkMath, { singleDollarTextMath: inlineLatex, inlineMathDouble: true, blockMathDouble: true }],
               ]}
               rehypePlugins={[
                 rehypeKatex,
@@ -139,10 +129,10 @@ const ContentView = memo(
                 p,
               }}
             >
-              {preprocessedContent}
+              {content}
             </ReactMarkdown>
           ) : (
-            <span className='whitespace-pre-wrap'>{preprocessedContent}</span>
+            <span className='whitespace-pre-wrap'>{content}</span>
           )}
         </div>
         <div className='flex justify-end gap-2 w-full mt-2'>
