@@ -39,20 +39,27 @@ export const htmlToImg = async (html: HTMLDivElement) => {
 // Function to download the image as a file
 export const downloadImg = (imgData: string, fileName: string) => {
   const byteString = atob(imgData.split(',')[1]);
-  const mimeString = imgData.split(',')[0].split(':')[1].split(';')[0];
+  const mimeString = 'image/png';
   const ab = new ArrayBuffer(byteString.length);
   const ia = new Uint8Array(ab);
+
   for (let i = 0; i < byteString.length; i++) {
     ia[i] = byteString.charCodeAt(i);
   }
-  const blob = new Blob([ab], {type: mimeString});
+
+  const blob = new Blob([ab], { type: mimeString });
+
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = url;
+
+  fileName = fileName.endsWith('.png') ? fileName : `${fileName}.png`;
   link.download = fileName;
+
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
+
   URL.revokeObjectURL(url);
 };
 
