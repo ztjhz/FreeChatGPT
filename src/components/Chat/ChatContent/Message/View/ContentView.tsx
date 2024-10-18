@@ -57,6 +57,16 @@ const ContentView = memo(
     const inlineLatex = useStore((state) => state.inlineLatex);
     const markdownMode = useStore((state) => state.markdownMode);
 
+    const preprocessContent = (text: string) => {
+      return text
+        .replace(/\\\[/g, '$$')
+        .replace(/\\\]/g, '$$')
+        .replace(/\\\(/g, '$')
+        .replace(/\\\)/g, '$');
+    };
+
+    const preprocessedContent = preprocessContent(content);
+
     const handleDelete = () => {
       const updatedChats: ChatInterface[] = JSON.parse(
         JSON.stringify(useStore.getState().chats)
