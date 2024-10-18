@@ -10,8 +10,8 @@ export const htmlToImg = async (html: HTMLDivElement) => {
   }
   await Promise.all(
     Array.from(html.querySelectorAll('img'))
-      。filter(img => !img.complete)
-      。map(img => new Promise(resolve => { img.onload = img.onerror = resolve; }))
+      .filter(img => !img.complete)
+      .map(img => new Promise(resolve => { img.onload = img.onerror = resolve; }))
   );
   const canvas = await html2canvas(html, {
     useCORS: true,
@@ -32,9 +32,12 @@ export const htmlToImg = async (html: HTMLDivElement) => {
       0, 0,
       canvas.width - cropWidth, canvas.height - cropHeight
     );
-  }
   const dataURL = croppedCanvas.toDataURL('image/png');
   return dataURL;
+  } else {
+    const dataURL = canvas.toDataURL('image/png');
+    return dataURL;
+  }
 };
 
 // Function to download the image as a file
