@@ -57,7 +57,8 @@ export const downloadImg = (imgData: string, fileName: string) => {
   link.download = fileName;
 
   document.body.appendChild(link);
-  link.click();
+  const event = new MouseEvent('click');
+  link.dispatchEvent(event);
   document.body.removeChild(link);
 
   URL.revokeObjectURL(url);
