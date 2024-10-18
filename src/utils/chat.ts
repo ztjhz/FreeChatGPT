@@ -15,6 +15,7 @@ export const htmlToImg = async (html: HTMLDivElement) => {
   );
   const canvas = await html2canvas(html, {
     useCORS: true,
+    allowTaint: true,
   });
   if (needResize) html.style.width = initialWidth;
   const croppedCanvas = document.createElement('canvas');
