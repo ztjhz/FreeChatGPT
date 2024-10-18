@@ -52,21 +52,25 @@ export const downloadImg = (imgData: string, fileName: string) => {
 
   const blob = new Blob([ab], { type: mimeString });
 
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement('a');
-  link.href = url;
+  if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+    fileName = fileName.endsWith('.png') ? fileName : `${fileName}.png`;
+    window.navigator.msSaveOrOpenBlob(blob, fileName);
+  } else {
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
 
-  fileName = fileName.endsWith('.png') ? fileName : `${fileName}.png`;
-  link.download = fileName;
+    fileName = fileName.endsWith('.png') ? fileName : `${fileName}.png`;
+    link.download = fileName;
 
-  document.body.appendChild(link);
-  const event = new MouseEvent('click');
-  link.dispatchEvent(event);
-  document.body.removeChild(link);
+    document.body.appendChild(link);
+    const event = new MouseEvent('click');
+    link.dispatchEvent(event);
+    document.body.removeChild(link);
 
-  URL.revokeObjectURL(url);
+    URL.revokeObjectURL(url);
+  }
 };
-
 
 // Function to convert a chat object to markdown format
 export const chatToMarkdown = (chat: ChatInterface) => {
@@ -79,11 +83,19 @@ export const chatToMarkdown = (chat: ChatInterface) => {
 
 // Function to download the markdown content as a file
 export const downloadMarkdown = (markdown: string, fileName: string) => {
-  const link = document.createElement('a');
-  const markdownFile = new Blob([markdown], { type: 'text/markdown' });
-  link.href = URL.createObjectURL(markdownFile);
-  link.download = fileName;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+  const markdownFile = new Blob([markdown], { type: 'text/markdown;charset=utf-8' });
+
+  if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+    fileName = fileName.endsWith('.md') ? fileName : `${fileName}.md`;
+    window.navigator.msSaveOrOpenBlob(markdownFile, fileName);
+  } else {
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(markdownFile);
+    fileName = fileName.endsWith('.md') ? fileName : `${fileName}.md`;
+    link.download = fileName;
+    document.body.appendChild(link);
+    const event = new MouseEvent('click');
+    link.dispatchEvent(event);
+    document.body.removeChild(link);
+  }
 };
