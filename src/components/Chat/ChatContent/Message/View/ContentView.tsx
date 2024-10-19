@@ -45,6 +45,11 @@ const ContentView = memo(
     setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
     messageIndex: number;
   }) => {
+    const replaceMathDelimiters = (text: string) => {
+      text = text.replace(/\\\((.+?)\\\)/g, (match, p1) => `$${p1}$`);
+      text = text.replace(/\\\[(.+?)\\\]/gs, (match, p1) => `$$${p1}$$`);
+      return text;
+    };
     const { handleSubmit } = useSubmit();
 
     const [isDelete, setIsDelete] = useState<boolean>(false);
@@ -103,6 +108,8 @@ const ContentView = memo(
       navigator.clipboard.writeText(content);
     };
 
+    const processedContent = replaceMathDelimiters(content);
+
     return (
       <>
         <div className='markdown prose w-full md:max-w-full break-words dark:prose-invert dark share-gpt-message'>
@@ -110,7 +117,7 @@ const ContentView = memo(
             <ReactMarkdown
               remarkPlugins={[
                 remarkGfm,
-                [remarkMath, { singleDollarTextMath: inlineLatex, inlineMathDouble: true, blockMathDouble: true }],
+                [remarkMath, { singleDollarTextMath: inlineLatex }],
               ]}
               rehypePlugins={[
                 rehypeKatex,
@@ -129,7 +136,7 @@ const ContentView = memo(
                 p,
               }}
             >
-              {content}
+              {replaceMathDelimiters(content)}
             </ReactMarkdown>
           ) : (
             <span className='whitespace-pre-wrap'>{content}</span>
