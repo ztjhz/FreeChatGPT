@@ -45,11 +45,6 @@ const ContentView = memo(
     setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
     messageIndex: number;
   }) => {
-    const replaceMathDelimiters = (text: string) => {
-      text = text.replace(/\\\((.+?)\\\)/g, (match, p1) => `$${p1}$`);
-      text = text.replace(/\\\[(.+?)\\\]/gs, (match, p1) => `$$${p1}$$`);
-      return text;
-    };
     const { handleSubmit } = useSubmit();
 
     const [isDelete, setIsDelete] = useState<boolean>(false);
@@ -61,6 +56,32 @@ const ContentView = memo(
     );
     const inlineLatex = useStore((state) => state.inlineLatex);
     const markdownMode = useStore((state) => state.markdownMode);
+
+    const replaceMathDelimiters = (text: string) => {
+      text = text.replace(/\\\((.+?)\\\)/g, (match, p1) => `$${p1}$`);
+      text = text.replace(/\\\[(.+?)\\\]/gs, (match, p1) => `$$${p1}$$`);
+      return text;
+    };
+
+    const processContent = (text: string) => {
+      const regex = /(```[\s\S]*?```|'[^']*'|"[^"]*")/g;
+      let lastIndex = 0;
+      let result = '';
+
+      text.replace(regex, (match, offset) => {
+        const precedingText = text.slice(lastIndex, offset);
+        result += replaceMathDelimiters(precedingText);
+
+        result += match;
+
+        lastIndex = offset + match.length;
+        return match;
+      });
+
+      result += replaceMathDelimiters(text.slice(lastIndex));
+
+      return result;
+    };
 
     const handleDelete = () => {
       const updatedChats: ChatInterface[] = JSON.parse(
@@ -136,7 +157,7 @@ const ContentView = memo(
                 p,
               }}
             >
-              {replaceMathDelimiters(content)}
+              {processContent(content)}
             </ReactMarkdown>
           ) : (
             <span className='whitespace-pre-wrap'>{content}</span>
