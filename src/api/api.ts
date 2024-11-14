@@ -7,7 +7,8 @@ export const getChatCompletion = async (
   messages: MessageInterface[],
   config: ConfigInterface,
   apiKey?: string,
-  customHeaders?: Record<string, string>
+  customHeaders?: Record<string, string>,
+  selectedModel?: ModelOptions // Add this parameter
 ) => {
   const headers: HeadersInit = {
     'Content-Type': 'application/json',
@@ -25,9 +26,8 @@ export const getChatCompletion = async (
       'gpt-3.5-turbo-0125': 'gpt-35-turbo-0125',
     };
 
-    const model = modelmapping[config.model] || config.model;
+    const model = selectedModel ? modelmapping[selectedModel] || selectedModel : modelmapping[config.model] || config.model;
 
-    // set api version to 2023-07-01-preview for gpt-4 and gpt-4-32k, otherwise use 2023-03-15-preview
     const apiVersion =
       model === 'gpt-4' || model === 'gpt-4-32k'
         ? '2023-07-01-preview'
@@ -63,7 +63,8 @@ export const getChatCompletionStream = async (
   messages: MessageInterface[],
   config: ConfigInterface,
   apiKey?: string,
-  customHeaders?: Record<string, string>
+  customHeaders?: Record<string, string>,
+  selectedModel?: ModelOptions // Add this parameter
 ) => {
   const headers: HeadersInit = {
     'Content-Type': 'application/json',
@@ -79,9 +80,8 @@ export const getChatCompletionStream = async (
       'gpt-3.5-turbo-16k': 'gpt-35-turbo-16k',
     };
 
-    const model = modelmapping[config.model] || config.model;
+    const model = selectedModel ? modelmapping[selectedModel] || selectedModel : modelmapping[config.model] || config.model;
 
-    // set api version to 2023-07-01-preview for gpt-4 and gpt-4-32k, otherwise use 2023-03-15-preview
     const apiVersion =
       model === 'gpt-4' || model === 'gpt-4-32k'
         ? '2023-07-01-preview'
