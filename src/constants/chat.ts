@@ -33,6 +33,7 @@ export const modelOptions: ModelOptions[] = [
   'gpt-4o',
   'gpt-4o-2024-05-13',
   'gpt-4o-2024-08-06',
+  'gpt-4o-2024-11-20',
   'chatgpt-4o-latest',
   'o1-mini',
   'o1-mini-2024-09-12',
@@ -68,6 +69,7 @@ export const modelMaxToken = {
   'gpt-4o': 128000,
   'gpt-4o-2024-05-13': 128000,
   'gpt-4o-2024-08-06': 128000,
+  'gpt-4o-2024-11-20': 128000,
   'chatgpt-4o-latest': 128000,
   'o1-mini': 128000,
   'o1-mini-2024-09-12': 128000,
@@ -161,6 +163,10 @@ export const modelCost = {
     completion: { price: 0.015, unit: 1000 },
   },
   'gpt-4o-2024-08-06': {
+    prompt: { price: 0.0025, unit: 1000 },
+    completion: { price: 0.01, unit: 1000 },
+  },
+  'gpt-4o-2024-11-20': {
     prompt: { price: 0.0025, unit: 1000 },
     completion: { price: 0.01, unit: 1000 },
   },
