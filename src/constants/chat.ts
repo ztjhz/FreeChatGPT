@@ -58,7 +58,7 @@ export const modelMaxToken = {
   'gpt-4-turbo-2024-04-09': 128000,
   'gpt-4o': 128000,
   'gpt-4o-2024-05-13': 128000,
-  'gpt-4o-111': 128000,
+  'gpt-4o-2024-11-20': 128000,
 };
 
 export const modelCost = {
@@ -138,7 +138,7 @@ export const modelCost = {
     prompt: { price: 0.005, unit: 1000 },
     completion: { price: 0.015, unit: 1000 },
   },
-  'gpt-4o-111': {
+  'gpt-4o-2024-11-20': {
     prompt: { price: 0.005, unit: 1000 },
     completion: { price: 0.015, unit: 1000 },
   },
