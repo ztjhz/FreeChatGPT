@@ -109,6 +109,13 @@ One click deploy with Vercel
 
 [![Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fztjhz%2FBetterChatGPT)
 
+## AlibabaCloud ComputeNest
+
+One click deploy with AlibabaCloud ComputeNest
+
+[![Deploy on AlibabaCloud ComputeNest](https://service-info-public.oss-cn-hangzhou.aliyuncs.com/computenest-en.svg)](https://computenest.console.aliyun.com/service/instance/create/default?type=user&ServiceName=BetterChatGPT%E7%A4%BE%E5%8C%BA%E7%89%88)
+
+
 ## GitHub Pages
 
 ### Steps
