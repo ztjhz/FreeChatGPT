@@ -102,6 +102,12 @@ Better ChatGPT 已经包含了大量的功能。您可以使用以下功能：
 
 [![Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fztjhz%2FBetterChatGPT)
 
+## Aliyun ComputeNest
+
+使用 Aliyun ComputeNest 一键部署
+
+[![Deploy on Aliyun ComputeNest](https://service-info-public.oss-cn-hangzhou.aliyuncs.com/computenest.svg)](https://computenest.console.aliyun.com/service/instance/create/default?type=user&ServiceName=BetterChatGPT%E7%A4%BE%E5%8C%BA%E7%89%88)
+
 ## GitHub 页面
 
 ### 步骤
